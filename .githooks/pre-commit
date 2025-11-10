@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+echo "🔍 Running frontend checks (lint, typecheck, tests)..."
+cd frontend
+
+# If dependencies are missing, skip to avoid blocking commits unexpectedly.
+if [ ! -d node_modules ]; then
+  echo "⚠️  node_modules not found in frontend/. Skipping checks. Run 'npm install' to enable."
+  exit 0
+fi
+
+npm run lint
+npm run typecheck
+npm run test:ci
+
+echo "✅ Frontend checks passed."
