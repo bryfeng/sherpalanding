@@ -3,486 +3,239 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Sherpa · Agentic Wallet Intelligence" />
-    <title>Sherpa · Agentic Wallet Intelligence</title>
+    <meta name="description" content="Sherpa - Your AI-powered crypto copilot that knows your wallet." />
+    <title>Sherpa - AI Crypto Copilot</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Space+Grotesk:wght@500;600&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
+    <!-- Navigation -->
     <nav class="nav">
       <div class="nav-inner">
-        <a class="brand" href="#overview">
+        <a class="brand" href="#">
           <div class="brand-mark">S</div>
           <span>Sherpa</span>
         </a>
+
+        <button class="menu-toggle" aria-label="Toggle menu">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+
         <div class="nav-links">
-          <a href="#overview">Overview</a>
-          <a href="#stack">Agent Stack</a>
-          <a href="#live">Live Panels</a>
-          <a href="#trust">Trust</a>
+          <a href="#features">Features</a>
+          <a href="#how">How it works</a>
         </div>
-        <a class="btn btn-outline" href="#cta">Invite Sherpa</a>
+
+        <div class="nav-cta">
+          <a class="btn btn-primary btn-small" href="#cta">Get Early Access</a>
+        </div>
       </div>
     </nav>
 
     <main>
-      <section class="hero" id="overview">
-        <div class="hero-copy">
-          <p class="eyebrow">PS1-grade Agentic Wallet</p>
-          <h1>Meet the crypto Sherpa that already knows your wallet.</h1>
-          <p>
-            Wallet-aware chat plus an Agentic Full Self Driver that stages guarded routes and strategies across memecoins, RWAs, yield, perps, prediction, sports, and more—before you click.
+      <!-- Hero Section -->
+      <section class="hero" id="hero">
+        <div class="hero-content">
+          <span class="eyebrow">AI-Powered Wallet Intelligence</span>
+          <h1>Your crypto copilot that already knows your wallet.</h1>
+          <p class="hero-subtitle">
+            Sherpa connects to your wallet, understands your portfolio, and helps you execute trades with built-in safety guardrails.
           </p>
-          <ul class="hero-benefits">
-            <li>Pin live panels from chat: portfolio, trending, history, charts.</li>
-            <li>Execution guardrails: expiry, wallet match, human-in-loop.</li>
-            <li>Strategy builder: NL → spec → code → validate/backtest → task.</li>
-            <li>Multi-asset autopilot: memecoins, RWAs, yield, perps, prediction, sports.</li>
-          </ul>
           <div class="hero-cta">
-            <a class="btn btn-primary" href="#cta">Invite Sherpa</a>
-            <a class="btn btn-ghost" href="#live">See live panels</a>
-          </div>
-          <div class="stat-row">
-            <article>
-              <h4>Execution guardrails</h4>
-              <p>Expiry checks, wallet matching, and quote refresh before you sign.</p>
-            </article>
-            <article>
-              <h4>History proof</h4>
-              <p>Exports + comparisons for any address, with queue + retry metadata.</p>
-            </article>
-            <article>
-              <h4>Workspace-native</h4>
-              <p>Panels stream straight from the backend—no bespoke rewrites needed.</p>
-            </article>
+            <a class="btn btn-primary" href="#cta">Get Early Access</a>
+            <a class="btn btn-ghost" href="#how">See how it works</a>
           </div>
         </div>
-        <aside class="hero-panel" aria-label="Sherpa demo">
-          <div class="demo-head">
-            <div class="persona-chip">Friendly · LLM</div>
-            <div class="badge">Session · docked</div>
-          </div>
-          <h3>Agent + workspace, side by side.</h3>
-          <p class="panel-subhead">
-            This is what the real Sherpa renders today: chat + bridge/swap quotes + portfolio + history in one docked surface.
-          </p>
-          <div class="demo-stack">
-            <div class="demo-card relay">
-              <div class="card-head">
-                <span>Bridge quote</span>
-                <span class="status-dot">live</span>
+
+        <div class="hero-visual">
+          <div class="hero-demo">
+            <div class="demo-card">
+              <div class="demo-card-header">
+                <span class="demo-card-title">Portfolio</span>
+                <span class="demo-status">Live</span>
               </div>
-              <div class="quote-body">
-                <div>
-                  <p class="label">Output est.</p>
-                  <p class="value">3.12 ETH</p>
-                  <p class="helper">$9,842 · 2 hops</p>
-                </div>
-                <div>
-                  <p class="label">Quote expiry</p>
-                  <p class="value">02:12</p>
-                  <p class="helper">Wallet matches</p>
-                </div>
-              </div>
-              <div class="quote-actions">
-                <button class="btn btn-primary">Bridge</button>
-                <button class="btn btn-ghost">Refresh quote</button>
-              </div>
+              <p class="demo-value">$124,380</p>
+              <p class="demo-helper">Top: SOL 32% · ETH 28% · USDC 18%</p>
             </div>
             <div class="demo-grid">
-              <div class="demo-card portfolio">
-                <p class="label">Portfolio snapshot</p>
-                <p class="value">$124,380</p>
-                <p class="helper">Top: SOL · 32.4%</p>
-              </div>
-              <div class="demo-card trending">
-                <p class="label">Trending tokens</p>
-                <div class="chip-row">
-                  <span class="chip">PYTH +18%</span>
-                  <span class="chip">TIA +12%</span>
-                  <span class="chip">JUP +9%</span>
+              <div class="demo-card">
+                <div class="demo-card-header">
+                  <span class="demo-card-title">Bridge Quote</span>
+                  <span class="demo-status">Ready</span>
                 </div>
+                <p class="demo-value">3.12 ETH</p>
+                <p class="demo-helper">$9,842 · Expires 2:12</p>
               </div>
-              <div class="demo-card history">
-                <p class="label">History exports</p>
-                <p class="helper">CSV ready · queued JSON</p>
-                <button class="link-btn">Download latest</button>
-              </div>
-            </div>
-          </div>
-            <p class="reality-anchor">Reality anchor: Sherpa chat already renders these panels from the FastAPI backend.</p>
-          </aside>
-      </section>
-
-      <section class="section section-autopilot" id="autopilot">
-        <header class="section-header">
-          <p class="eyebrow">Autopilot runtime</p>
-          <h2>Agentic Full Self Driver for routes and strategies.</h2>
-          <p>Plan → simulate → stage. Sherpa chains intents into guarded routes and strategy builds, then waits for your go.</p>
-        </header>
-        <div class="autopilot-grid">
-          <article class="auto-card">
-            <div class="card-head">
-              <span>Route & strategy planner</span>
-              <span class="pill">Draft</span>
-            </div>
-          <div class="step-list">
-            <div class="step">
-              <span class="dot"></span>
-              <div>
-                <p class="label">Scan wallet</p>
-                  <p class="helper">Holdings, history, spendable balance</p>
+              <div class="demo-card">
+                <div class="demo-card-header">
+                  <span class="demo-card-title">Trending</span>
                 </div>
-                <span class="status-chip">Done</span>
+                <p class="demo-helper" style="margin-top: 0.5rem;">PYTH +18% · TIA +12% · JUP +9%</p>
               </div>
-              <div class="step">
-                <span class="dot"></span>
-                <div>
-                  <p class="label">Deconstruct idea</p>
-                  <p class="helper">NL → YAML spec for route + trading intent</p>
-                </div>
-                <span class="status-chip status-warn">Needs confirm</span>
-              </div>
-              <div class="step">
-                <span class="dot"></span>
-                <div>
-                  <p class="label">Generate & validate</p>
-                  <p class="helper">Code draft + platform/risk checks · backtest hook ready (memecoins, RWAs, yield, perps, prediction)</p>
-                </div>
-                <span class="status-chip">Ready</span>
-              </div>
-            </div>
-          </article>
-          <article class="auto-card">
-            <div class="card-head">
-              <span>Execution staging</span>
-              <span class="pill pill-warn">Human in loop</span>
-            </div>
-            <div class="timeline">
-              <div class="timeline-item active">
-                <p class="label">Bridge TX drafted</p>
-                <p class="helper">Expiry 03:04 · wallet match required · Task #9c1a · 42%</p>
-              </div>
-              <div class="timeline-item">
-                <p class="label">Strategy code queued</p>
-                <p class="helper">Spec validated · waiting risk check · updated 12s ago</p>
-              </div>
-              <div class="timeline-item">
-                <p class="label">Alert set</p>
-                <p class="helper">Price < $120 triggers refresh</p>
-              </div>
-            </div>
-            <div class="quote-actions">
-              <button class="btn btn-primary">Review & sign</button>
-              <button class="btn btn-ghost">Edit route/strategy</button>
-            </div>
-          </article>
-          <article class="auto-card">
-            <div class="card-head">
-              <span>Policy view</span>
-              <span class="pill">Safe mode</span>
-            </div>
-            <div class="policy-list">
-              <div class="policy">
-                <span class="badge-mini">Limits</span>
-                <p class="helper">Max per action: $2,500 · Daily: $10k</p>
-              </div>
-              <div class="policy">
-                <span class="badge-mini">Chains</span>
-                <p class="helper">Ethereum, Base, Solana allowed</p>
-              </div>
-              <div class="policy">
-                <span class="badge-mini">Alerts</span>
-                <p class="helper">Email + push on guardrail breach</p>
-              </div>
-              <div class="policy">
-                <span class="badge-mini">Tasks</span>
-                <p class="helper">Persisted task IDs, progress, updated_at, AI usage</p>
-              </div>
-            </div>
-            <p class="reality-anchor">Mocked view of the upcoming Full Self Driver controls.</p>
-          </article>
-        </div>
-      </section>
-
-      <section class="section section-markets" id="markets">
-        <header class="section-header">
-          <p class="eyebrow">Markets covered</p>
-          <h2>Autopilot spans the full on-chain stack.</h2>
-          <p>Strategies and routes adapt per asset class with the same guardrails and tasking.</p>
-        </header>
-        <div class="markets-grid">
-          <article class="market-card">
-            <h3>Memecoins</h3>
-            <p>Fast routing, slippage caps, and alerting for volatile pairs.</p>
-          </article>
-          <article class="market-card">
-            <h3>RWAs</h3>
-            <p>Bridge to issuer networks, monitor yields, and stage redemptions.</p>
-          </article>
-          <article class="market-card">
-            <h3>Yield</h3>
-            <p>Autotune LP routes, fee/IL sims, and reinvest guardrails.</p>
-          </article>
-          <article class="market-card">
-            <h3>Perps</h3>
-            <p>Size with policy limits, slippage checks, and risk flags.</p>
-          </article>
-          <article class="market-card">
-            <h3>Sports & events</h3>
-            <p>Prop/pool routing with bankroll controls and alerts.</p>
-          </article>
-        </div>
-      </section>
-
-      <section class="section" id="stack">
-        <header class="section-header">
-          <p class="eyebrow">Agent stack</p>
-          <h2>What makes Sherpa different from wallets and chatbots.</h2>
-          <p>Agentic orchestration, executable quotes, and auditable outputs—without ever asking for your keys.</p>
-        </header>
-        <div class="grid highlight-grid">
-          <article class="stat-card">
-            <h3>Executable bridge/swap helpers</h3>
-            <p>Managers parse intent, validate wallet match, check expiry, and refresh quotes before you click “Bridge”.</p>
-          </article>
-          <article class="stat-card">
-            <h3>Wallet memory</h3>
-            <p>Conversation IDs keyed to your address keep panels, personas, and history in sync across sessions.</p>
-          </article>
-          <article class="stat-card">
-            <h3>History + exports</h3>
-            <p>90-day snapshots, comparisons, queued CSV/JSON exports, and cache metadata built in.</p>
-          </article>
-          <article class="stat-card">
-            <h3>Strategy builder</h3>
-            <p>Natural language → spec → code → platform/risk validation, surfaced as panels/tasks.</p>
-          </article>
-          <article class="stat-card">
-            <h3>Safety rails</h3>
-            <p>Wallet mismatch detection, expiry guards, and “needs address/chain/amount” fallbacks keep you from misfiring.</p>
-          </article>
-          <article class="stat-card">
-            <h3>Workspace-native UI</h3>
-            <p>Panels stream from the FastAPI responses into React PanelHost—no fragile marketing mockups.</p>
-          </article>
-        </div>
-      </section>
-
-      <section class="section section-live" id="live">
-        <header class="section-header">
-          <p class="eyebrow">Live panels</p>
-          <h2>Pull real signals into your landing—straight from the app.</h2>
-        </header>
-        <div class="live-grid">
-          <article class="live-card">
-            <div class="card-head">
-              <span>Portfolio overview</span>
-              <span class="pill">Docked</span>
-            </div>
-            <p class="value">$124,380</p>
-            <p class="helper">Top holdings: SOL, ETH, USDC · Dust hidden</p>
-          </article>
-          <article class="live-card">
-            <div class="card-head">
-              <span>History summary</span>
-              <span class="pill">Exports</span>
-            </div>
-            <p class="helper">CSV ready · JSON queued · 90d window</p>
-            <div class="chips-inline">
-              <span class="chip">Inflow $42k</span>
-              <span class="chip">Fees $620</span>
-              <span class="chip">Highlights 3</span>
-            </div>
-          </article>
-          <article class="live-card">
-            <div class="card-head">
-              <span>Swap quote</span>
-              <span class="pill pill-warn">Guarded</span>
-            </div>
-            <p class="helper">Expiry in 01:18 · wallet match required</p>
-            <div class="chip-row">
-              <span class="chip">ETH → USDC</span>
-              <span class="chip">Fee est. $4.20</span>
-              <span class="chip">Slippage 50 bps</span>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <section class="section section-playbook" id="trust">
-        <header class="section-header">
-          <p class="eyebrow">Trust & ops</p>
-          <h2>Built for teams who need receipts, not vibes.</h2>
-        </header>
-        <div class="timeline">
-          <div class="timeline-step">
-            <div>
-              <h4>Address-only context</h4>
-              <p>No private keys. Wallet address + onchain fetch for portfolio, prices, history.</p>
-            </div>
-          </div>
-          <div class="timeline-step">
-            <div>
-              <h4>Exports + comparisons</h4>
-              <p>CSV/JSON exports with queue metadata and 90d clamp rules for speed.</p>
-            </div>
-          </div>
-          <div class="timeline-step">
-            <div>
-              <h4>Execution guardrails</h4>
-              <p>Bridge/swap quotes checked for expiry, wallet mismatch, and missing params before prompting a wallet.</p>
-            </div>
-          </div>
-          <div class="timeline-step">
-            <div>
-              <h4>Persona + Pro gating</h4>
-              <p>Friendly/Technical/Professional voices; Pro token gating when required.</p>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="section section-proof">
-        <div class="proof-panel">
+      <!-- Social Proof Strip -->
+      <section class="proof-strip">
+        <div class="proof-inner">
+          <div class="proof-stat">
+            <p class="proof-stat-value">+42%</p>
+            <p class="proof-stat-label">lift in funded actions</p>
+          </div>
+          <div class="proof-stat">
+            <p class="proof-stat-value">&lt;30s</p>
+            <p class="proof-stat-label">to strategy preview</p>
+          </div>
+          <div class="proof-stat">
+            <p class="proof-stat-value">100%</p>
+            <p class="proof-stat-label">beta retention</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Features Section -->
+      <section class="section" id="features">
+        <header class="section-header">
+          <h2>Everything you need to trade smarter</h2>
+          <p>Sherpa combines wallet awareness, execution guardrails, and AI intelligence in one seamless experience.</p>
+        </header>
+
+        <div class="features-grid">
+          <article class="feature-card">
+            <div class="feature-icon">🧠</div>
+            <h3>Wallet-Aware Intelligence</h3>
+            <p>Sherpa knows your holdings, history, and preferences. Get personalized insights without explaining your portfolio every time.</p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">🛡️</div>
+            <h3>Execution Guardrails</h3>
+            <p>Every transaction is checked for expiry, wallet match, and slippage before you sign. No more costly mistakes.</p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">🔄</div>
+            <h3>Bridge & Swap Quotes</h3>
+            <p>Get live quotes across chains with automatic refresh. Execute when you're ready, cancel when you're not.</p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">📊</div>
+            <h3>Strategy Builder</h3>
+            <p>Describe what you want in plain English. Sherpa turns it into a validated strategy with risk checks built in.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- How It Works -->
+      <section class="section" id="how">
+        <header class="section-header">
+          <h2>How it works</h2>
+          <p>Three simple steps to smarter trading.</p>
+        </header>
+
+        <div class="steps-grid">
+          <div class="step">
+            <div class="step-number">1</div>
+            <h3>Connect your wallet</h3>
+            <p>Sherpa reads your on-chain data. No private keys needed, ever.</p>
+          </div>
+
+          <div class="step">
+            <div class="step-number">2</div>
+            <h3>Describe your intent</h3>
+            <p>Tell Sherpa what you want to do in plain language.</p>
+          </div>
+
+          <div class="step">
+            <div class="step-number">3</div>
+            <h3>Execute with guardrails</h3>
+            <p>Review the plan, then sign. Sherpa handles the complexity.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Testimonial -->
+      <section class="testimonial">
+        <div class="testimonial-inner">
           <blockquote>
-            “Sherpa finally made our playbooks feel personal. Wallet-aware panels, execution-ready quotes, and exports all show up
-            without us wiring brittle frontends.”
+            "Sherpa finally made our playbooks feel personal. Wallet-aware panels, execution-ready quotes, and exports all show up without us wiring brittle frontends."
           </blockquote>
           <cite>Head of Product, stealth consumer exchange</cite>
-          <div class="proof-stats">
-            <article>
-              <h3>+42%</h3>
-              <p>lift in funded actions across beta wallets.</p>
-            </article>
-            <article>
-              <h3>&lt;30s</h3>
-              <p>avg time from question to strategy preview.</p>
-            </article>
-            <article>
-              <h3>100%</h3>
-              <p>beta teams kept Sherpa live after month one.</p>
-            </article>
-          </div>
         </div>
       </section>
 
-      <section class="section cta-section" id="cta">
+      <!-- CTA Section -->
+      <section class="cta-section" id="cta">
         <div class="cta-panel">
-          <header class="section-header">
-            <p class="eyebrow">Early access</p>
-            <h2>Ready to ship Sherpa?</h2>
-            <p>Answer a few quick questions and we’ll invite you as soon as a new slot opens.</p>
-          </header>
-          <form id="request-access" class="grid grid-2" aria-label="Request early access">
-            <label>
-              <span>Name</span>
-              <input type="text" name="name" placeholder="Ada Lovelace" required />
-            </label>
-            <label>
-              <span>Email</span>
-              <input type="email" name="email" placeholder="ada@example.com" required />
-            </label>
-            <label>
-              <span>Main wallet / handle</span>
-              <input type="text" name="wallet" placeholder="0xABCD… · @ensname" />
-            </label>
-            <label>
-              <span>Experience level</span>
-              <select name="experience">
-                <option value="new">New to trading</option>
-                <option value="growing">Leveling up my flows</option>
-                <option value="pro">Seasoned/Pro</option>
-              </select>
-            </label>
-            <label>
-              <span>What’s the priority?</span>
-              <select name="priority">
-                <option value="discover">Spot new opportunities faster</option>
-                <option value="confidence">Get second-opinion research</option>
-                <option value="automation">Automate playbooks</option>
-                <option value="history">Keep a clean transaction trail</option>
-              </select>
-            </label>
-            <label class="full">
-              <span>What should Sherpa solve first?</span>
-              <textarea name="notes" rows="4" placeholder="Share your goals, chains you trade on, and biggest blocker."></textarea>
-            </label>
-            <button class="btn btn-primary" type="submit">Request invite</button>
+          <h2>Ready to try Sherpa?</h2>
+          <p>Join the waitlist and we'll reach out when a spot opens.</p>
+          <form class="cta-form" id="signup-form">
+            <input type="email" name="email" placeholder="Enter your email" required />
+            <button type="submit" class="btn btn-primary">Get Access</button>
           </form>
+          <p class="cta-note">No spam. Unsubscribe anytime.</p>
         </div>
       </section>
     </main>
 
+    <!-- Footer -->
     <footer class="footer">
       <div class="footer-inner">
-        <div>
+        <div class="footer-brand">
           <div class="brand">
             <div class="brand-mark">S</div>
             <span>Sherpa</span>
           </div>
-          <p>Agentic wallet intelligence with execution and auditable history.</p>
+          <p>AI-powered wallet intelligence with execution guardrails.</p>
         </div>
+
         <div>
-          <h4>Explore</h4>
+          <h4>Product</h4>
           <div class="footer-links">
-            <a href="#stack">Agent stack</a>
-            <a href="#live">Live panels</a>
-            <a href="#trust">Trust</a>
+            <a href="#features">Features</a>
+            <a href="#how">How it works</a>
+            <a href="#cta">Get access</a>
           </div>
         </div>
+
         <div>
-          <h4>Docs</h4>
+          <h4>Company</h4>
           <div class="footer-links">
-            <a href="../prd.md">Technical brief</a>
-            <a href="../productbrief.md">Product brief</a>
-            <a href="../specs/001-wallet-history-summary/tasks.md">Wallet history plan</a>
-          </div>
-        </div>
-        <div>
-          <h4>Contact</h4>
-          <div class="footer-links">
-            <a href="#cta">Join beta</a>
+            <a href="#">About</a>
             <a href="#">Security</a>
-            <a href="#">Press</a>
+            <a href="#">Contact</a>
           </div>
         </div>
       </div>
-      <div class="footer-bottom">© 2025 Sherpa Labs. All rights reserved.</div>
+
+      <div class="footer-bottom">
+        &copy; 2025 Sherpa Labs. All rights reserved.
+      </div>
     </footer>
 
-    <a class="floating-cta" href="#cta">
-      <span>Invite Sherpa</span>
-    </a>
-
     <script>
-      const form = document.querySelector('#request-access');
-      const floatingCta = document.querySelector('.floating-cta');
-      form?.addEventListener('submit', (event) => {
-        event.preventDefault();
-        const data = Object.fromEntries(new FormData(form));
-        const summary = [
-          `Name: ${data.name || '—'}`,
-          `Email: ${data.email || '—'}`,
-          `Wallet/Handle: ${data.wallet || '—'}`,
-          `Experience: ${data.experience || '—'}`,
-          `Priority: ${data.priority || '—'}`,
-          `Notes: ${data.notes || '—'}`,
-        ].join('\n');
-        console.log('Sherpa invite request', summary);
-        form.reset();
-        form.insertAdjacentHTML('beforeend', '<p class="form-success">Thanks! We’ll be in touch shortly.</p>');
-        setTimeout(() => form.querySelector('.form-success')?.remove(), 4000);
+      // Mobile menu toggle
+      const menuToggle = document.querySelector('.menu-toggle');
+      const navLinks = document.querySelector('.nav-links');
+
+      menuToggle?.addEventListener('click', () => {
+        navLinks.classList.toggle('open');
       });
-      window.addEventListener('scroll', () => {
-        if (!floatingCta) return;
-        floatingCta.classList.toggle('floating-visible', window.scrollY > 320);
+
+      // Form submission
+      const form = document.querySelector('#signup-form');
+      form?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const email = form.querySelector('input[name="email"]').value;
+        console.log('Signup:', email);
+        form.innerHTML = '<p class="form-success">Thanks! We\'ll be in touch soon.</p>';
       });
     </script>
   </body>
