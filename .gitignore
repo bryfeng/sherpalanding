@@ -1,0 +1,44 @@
+# Universal
+.DS_Store
+Thumbs.db
+*.swp
+*.tmp
+.vscode/
+.idea/
+.env*
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+ENV/
+
+# Node/TypeScript
+node_modules/
+dist/
+build/
+coverage/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Frontend tooling
+.pnpm-store/
+.cache/
+.next/
+
+# Redis/Docker artifacts
+*.rdb
+*.redis
+Dockerfile.local
+
+# macOS
+Icon?
