@@ -1332,7 +1332,7 @@ class StrategyMarketplace:
 | **Phase 4** | Observability, Event System | 🔲 Pending | Operations and monitoring |
 | **Phase 5** | Scaling, Circuit Breakers, Multi-tenancy | 🔲 Pending | Growth and resilience |
 | **Phase 6** | Backtesting, Notifications, Polish | 🔲 Pending | User experience |
-| **Phase 7** | Token Intelligence & Personalized News | 🔲 Pending | Wallet personalization |
+| **Phase 7** | Token Intelligence & Personalized News | ✅ **COMPLETE** | Wallet personalization |
 
 ### Phase 1 Completion Details (2025-12-26)
 
@@ -1749,6 +1749,54 @@ All Phase 3 components implemented:
 - [x] Strategy State Machine
 - [x] Error Recovery System
 - [x] Tests for all components
+
+---
+
+## Phase 7 Status: ✅ COMPLETE (2025-01-02)
+
+**Token Intelligence & Personalized News System:**
+
+All Phase 7 components implemented:
+- [x] Token Catalog Service (7.1) - CoinGecko integration, category taxonomy
+- [x] News Fetcher Service (7.2) - RSS feeds, CoinGecko trending, DefiLlama hacks/TVL
+- [x] Batch News Processor (7.3a) - Cost-efficient LLM batch processing with rule-based fallback
+- [x] News Processor Worker - Background worker for scheduled news processing
+- [x] Relevance Scoring (7.4) - Portfolio-aware news personalization
+- [x] Chat Integration (7.5) - News tools wired into agent (get_news, get_personalized_news, get_token_news)
+- [x] Tests for all components (37 tests passing)
+
+**Files Created:**
+
+| File | Description |
+|------|-------------|
+| `app/services/token_catalog/` | Token enrichment and categorization service |
+| `app/services/news_fetcher/` | Multi-source news fetching (RSS, CoinGecko, DefiLlama) |
+| `app/services/news_fetcher/batch_processor.py` | Cost-efficient batch LLM processing |
+| `app/services/news_fetcher/models.py` | NewsItem, ProcessedNews, Sentiment, Importance |
+| `app/services/relevance/` | Portfolio-aware relevance scoring |
+| `app/workers/news_processor_worker.py` | Background worker for news processing |
+| `app/core/agent/tools.py` | Added get_news, get_personalized_news, get_token_news tools |
+| `tests/services/test_batch_processor.py` | 24 tests for batch processor |
+| `tests/workers/test_news_processor_worker.py` | 13 tests for worker |
+
+**Key Features:**
+
+- **Batch Processing**: Process 10+ news items per LLM call (cost reduction ~10x)
+- **Daily Token Budget**: Configurable max_daily_tokens to control LLM costs
+- **Rule-Based Fallback**: Keyword classification when LLM unavailable or budget exceeded
+- **Multi-Source Fetching**: RSS (CoinDesk, Cointelegraph, TheBlock), CoinGecko trending, DefiLlama hacks
+- **Relevance Scoring**: Direct holdings, sector relevance, competitor impact, correlation factors
+- **LLM-Driven Tool Selection**: Agent decides when to fetch news based on user intent
+
+**Live Test Results:**
+- RSS feeds: CoinDesk (25), Cointelegraph (30), TheBlock (20) items
+- CoinGecko: 7 trending items
+- DefiLlama: 23 items (hacks + TVL changes)
+
+**Deferred (Optional):**
+- 7.3b Agent ensemble - adds cost/complexity, defer until needed
+- 7.6 Dashboard widgets - frontend work
+- 7.7 News alerts - notification system integration
 
 ---
 
@@ -2413,9 +2461,1143 @@ class NewsAlertService:
 
 ---
 
-## Next Steps
+---
 
-1. Register for Convex at https://dashboard.convex.dev
+## 🔵 Phase 8: Wallet Copy Trading
+
+**Goal:** Allow users to follow and automatically replicate trades from successful wallets.
+
+### 8.1 Wallet Monitoring Service
+
+**Problem:** No infrastructure to watch external wallets for transactions.
+
+**Files to Create:**
+
+| File | Description |
+|------|-------------|
+| `app/services/wallet_monitor/` | Wallet monitoring service directory |
+| `app/services/wallet_monitor/monitor.py` | Core monitoring with webhooks/polling |
+| `app/services/wallet_monitor/parser.py` | Transaction parsing and classification |
+| `app/services/wallet_monitor/models.py` | WatchedWallet, WalletActivity, TradeEvent |
+| `frontend/convex/watchedWallets.ts` | Watched wallet storage |
+| `frontend/convex/walletActivity.ts` | Activity log storage |
+
+**Key Classes:**
+
+```python
+class WalletMonitorService:
+    """Monitor wallets for on-chain activity."""
+
+    async def watch_wallet(
+        self,
+        address: str,
+        chain: str,
+        user_id: str,
+        label: Optional[str] = None,
+    ) -> WatchedWallet:
+        """Add a wallet to monitoring list."""
+        pass
+
+    async def process_webhook(self, payload: Dict) -> List[WalletActivity]:
+        """Process Alchemy/Helius webhook for tracked wallets."""
+        pass
+
+    async def poll_activity(self, address: str, chain: str) -> List[WalletActivity]:
+        """Fallback polling for chains without webhook support."""
+        pass
+
+
+class TransactionParser:
+    """Parse and classify blockchain transactions."""
+
+    async def parse_transaction(
+        self,
+        tx_hash: str,
+        chain: str,
+    ) -> ParsedTransaction:
+        """Parse transaction into structured format."""
+        pass
+
+    def classify_action(self, parsed: ParsedTransaction) -> ActionType:
+        """Classify as SWAP, BRIDGE, TRANSFER, LP_ADD, LP_REMOVE, STAKE, etc."""
+        pass
+
+    def extract_trade_details(self, parsed: ParsedTransaction) -> Optional[TradeEvent]:
+        """Extract swap/trade details if applicable."""
+        pass
+```
+
+**Webhook Integration:**
+
+```python
+# Alchemy Address Activity Webhooks
+# https://docs.alchemy.com/reference/address-activity-webhook
+
+class AlchemyWebhookHandler:
+    async def handle_address_activity(self, payload: Dict):
+        """Handle Alchemy address activity webhook."""
+        for activity in payload.get("event", {}).get("activity", []):
+            tx_hash = activity.get("hash")
+            from_address = activity.get("fromAddress")
+            to_address = activity.get("toAddress")
+
+            # Check if this is a watched wallet
+            if self.is_watched(from_address) or self.is_watched(to_address):
+                await self.process_activity(activity)
+```
+
+### 8.2 Copy Trading Engine
+
+**Files to Create:**
+
+| File | Description |
+|------|-------------|
+| `app/core/copy_trading/` | Copy trading module |
+| `app/core/copy_trading/models.py` | CopyConfig, CopyRelationship, CopyExecution |
+| `app/core/copy_trading/manager.py` | CopyTradingManager - orchestrates copy trades |
+| `app/core/copy_trading/executor.py` | CopyExecutor - executes replicated trades |
+| `app/core/copy_trading/sizing.py` | Position sizing strategies |
+| `frontend/convex/copyTrading.ts` | Copy relationship storage |
+| `frontend/convex/copyExecutions.ts` | Copy execution history |
+
+**Copy Configuration:**
+
+```python
+class CopyConfig(BaseModel):
+    """Configuration for following a wallet."""
+
+    # Target wallet
+    leader_address: str
+    leader_chain: str
+    leader_label: Optional[str] = None
+
+    # Sizing strategy
+    sizing_mode: Literal["percentage", "fixed", "proportional"] = "percentage"
+    size_value: Decimal  # % of portfolio, fixed USD, or proportional multiplier
+
+    # Filters
+    min_trade_usd: Decimal = Decimal("10")
+    max_trade_usd: Optional[Decimal] = None
+    token_whitelist: Optional[List[str]] = None
+    token_blacklist: Optional[List[str]] = None
+    allowed_actions: List[str] = ["swap"]  # swap, bridge, lp_add, stake
+
+    # Timing
+    delay_seconds: int = 0  # 0 = immediate, >0 = delayed execution
+    max_delay_seconds: int = 300  # Skip trade if older than this
+
+    # Risk controls
+    max_slippage_bps: int = 100  # 1%
+    max_daily_trades: int = 20
+    max_daily_volume_usd: Decimal = Decimal("10000")
+
+    # Session key
+    session_key_id: Optional[str] = None  # For autonomous execution
+
+
+class CopyTradingManager:
+    """Manages copy trading relationships and execution."""
+
+    async def start_copying(
+        self,
+        user_id: str,
+        config: CopyConfig,
+    ) -> CopyRelationship:
+        """Start copying a wallet."""
+        pass
+
+    async def handle_leader_trade(
+        self,
+        trade: TradeEvent,
+        relationship: CopyRelationship,
+    ) -> Optional[CopyExecution]:
+        """Process a trade from a followed wallet."""
+        # 1. Check filters (whitelist, blacklist, min/max size)
+        # 2. Calculate position size
+        # 3. Check daily limits
+        # 4. Queue or execute trade
+        pass
+
+    async def execute_copy(
+        self,
+        execution: CopyExecution,
+    ) -> CopyExecutionResult:
+        """Execute a copy trade."""
+        pass
+```
+
+**Position Sizing:**
+
+```python
+class SizingStrategy(ABC):
+    @abstractmethod
+    def calculate_size(
+        self,
+        leader_trade: TradeEvent,
+        follower_portfolio: Portfolio,
+        config: CopyConfig,
+    ) -> Decimal:
+        pass
+
+
+class PercentageSizing(SizingStrategy):
+    """Size as % of follower's portfolio."""
+
+    def calculate_size(self, leader_trade, follower_portfolio, config):
+        portfolio_value = follower_portfolio.total_value_usd
+        return portfolio_value * (config.size_value / 100)
+
+
+class ProportionalSizing(SizingStrategy):
+    """Size proportional to leader's trade relative to their portfolio."""
+
+    def calculate_size(self, leader_trade, follower_portfolio, config):
+        # If leader traded 5% of their portfolio, follower trades 5% * multiplier
+        leader_portfolio_value = self.get_leader_portfolio_value(leader_trade.address)
+        leader_trade_pct = leader_trade.value_usd / leader_portfolio_value
+        return follower_portfolio.total_value_usd * leader_trade_pct * config.size_value
+```
+
+### 8.3 Leader Discovery & Performance Tracking
+
+**Files to Create:**
+
+| File | Description |
+|------|-------------|
+| `app/services/leader_analytics/` | Leader performance tracking |
+| `app/services/leader_analytics/tracker.py` | LeaderTracker - tracks P&L, win rate |
+| `app/services/leader_analytics/rankings.py` | Leaderboard generation |
+| `frontend/convex/leaderProfiles.ts` | Leader performance storage |
+| `frontend/convex/leaderboards.ts` | Cached leaderboards |
+
+**Leader Profile:**
+
+```python
+class LeaderProfile(BaseModel):
+    """Performance profile for a copyable wallet."""
+
+    address: str
+    chain: str
+
+    # Performance metrics
+    total_trades: int
+    win_rate: float  # % of profitable trades
+    avg_trade_pnl_pct: float
+    total_pnl_usd: Decimal
+    sharpe_ratio: Optional[float]
+    max_drawdown_pct: float
+
+    # Activity metrics
+    avg_trades_per_day: float
+    avg_hold_time_hours: float
+    most_traded_tokens: List[str]
+    preferred_sectors: List[str]
+
+    # Risk metrics
+    avg_position_size_pct: float
+    max_position_size_pct: float
+    uses_leverage: bool
+
+    # Social proof
+    follower_count: int
+    total_copied_volume_usd: Decimal
+
+    # Metadata
+    first_seen: datetime
+    last_active: datetime
+    data_quality_score: float  # How much history we have
+```
+
+### 8.4 Session Key Permissions for Copy Trading
+
+```python
+# Add to app/core/wallet/models.py
+
+class Permission(str, Enum):
+    # ... existing permissions ...
+
+    # Copy trading permissions
+    COPY_TRADE = "copy_trade"
+    MANAGE_COPY_RELATIONSHIPS = "manage_copy_relationships"
+```
+
+---
+
+## 🟣 Phase 9: Polymarket Integration
+
+**Goal:** Enable trading on Polymarket prediction markets.
+
+### 9.1 Polymarket API Client
+
+**Files to Create:**
+
+| File | Description |
+|------|-------------|
+| `app/providers/polymarket/` | Polymarket provider directory |
+| `app/providers/polymarket/client.py` | PolymarketClient - API wrapper |
+| `app/providers/polymarket/models.py` | Market, Position, Order, Outcome |
+| `app/providers/polymarket/auth.py` | API key / wallet auth handling |
+
+**Polymarket Client:**
+
+```python
+class PolymarketClient:
+    """Client for Polymarket API (CLOB + REST)."""
+
+    BASE_URL = "https://clob.polymarket.com"
+    GAMMA_URL = "https://gamma-api.polymarket.com"
+
+    async def get_markets(
+        self,
+        active: bool = True,
+        limit: int = 100,
+        offset: int = 0,
+    ) -> List[Market]:
+        """Get list of markets."""
+        pass
+
+    async def get_market(self, condition_id: str) -> Market:
+        """Get single market details."""
+        pass
+
+    async def get_orderbook(
+        self,
+        token_id: str,
+    ) -> OrderBook:
+        """Get orderbook for a market outcome."""
+        pass
+
+    async def get_positions(
+        self,
+        address: str,
+    ) -> List[Position]:
+        """Get user's positions."""
+        pass
+
+    async def place_order(
+        self,
+        order: OrderRequest,
+        signature: str,
+    ) -> OrderResult:
+        """Place a limit order."""
+        pass
+
+    async def cancel_order(
+        self,
+        order_id: str,
+        signature: str,
+    ) -> bool:
+        """Cancel an open order."""
+        pass
+
+
+class Market(BaseModel):
+    """Polymarket market."""
+
+    condition_id: str
+    question: str
+    description: str
+    end_date: datetime
+
+    outcomes: List[Outcome]
+
+    # Market state
+    volume_usd: Decimal
+    liquidity_usd: Decimal
+    is_active: bool
+    is_resolved: bool
+    winning_outcome: Optional[str]
+
+    # Metadata
+    category: str
+    tags: List[str]
+    image_url: Optional[str]
+
+
+class Outcome(BaseModel):
+    """Market outcome (e.g., "Yes" or "No")."""
+
+    token_id: str
+    name: str
+    price: Decimal  # 0.00 to 1.00
+
+    # For display
+    implied_probability: float  # price as percentage
+```
+
+### 9.2 Polymarket Trading Service
+
+**Files to Create:**
+
+| File | Description |
+|------|-------------|
+| `app/core/polymarket/` | Polymarket trading module |
+| `app/core/polymarket/trading.py` | PolymarketTradingService |
+| `app/core/polymarket/positions.py` | Position tracking and P&L |
+| `frontend/convex/polymarketPositions.ts` | Position storage |
+| `frontend/convex/polymarketOrders.ts` | Order history |
+
+**Trading Service:**
+
+```python
+class PolymarketTradingService:
+    """Service for trading on Polymarket."""
+
+    async def buy_outcome(
+        self,
+        market_id: str,
+        outcome: str,  # "Yes" or "No" or custom
+        amount_usd: Decimal,
+        max_price: Optional[Decimal] = None,
+        session_key: Optional[SessionKey] = None,
+    ) -> TradeResult:
+        """Buy shares of an outcome."""
+        pass
+
+    async def sell_position(
+        self,
+        position_id: str,
+        amount_shares: Optional[Decimal] = None,  # None = sell all
+        min_price: Optional[Decimal] = None,
+        session_key: Optional[SessionKey] = None,
+    ) -> TradeResult:
+        """Sell shares of a position."""
+        pass
+
+    async def get_portfolio(
+        self,
+        address: str,
+    ) -> PolymarketPortfolio:
+        """Get user's Polymarket portfolio with P&L."""
+        pass
+
+    async def get_market_analysis(
+        self,
+        market_id: str,
+    ) -> MarketAnalysis:
+        """Get AI analysis of a market."""
+        # Use LLM to analyze market question, news, sentiment
+        pass
+```
+
+### 9.3 Market Discovery & Categories
+
+```python
+class MarketDiscoveryService:
+    """Discover and categorize Polymarket markets."""
+
+    CATEGORIES = [
+        "politics",
+        "crypto",
+        "sports",
+        "entertainment",
+        "science",
+        "economics",
+        "weather",
+        "current_events",
+    ]
+
+    async def get_trending_markets(
+        self,
+        category: Optional[str] = None,
+        limit: int = 20,
+    ) -> List[Market]:
+        """Get trending markets by volume."""
+        pass
+
+    async def get_closing_soon(
+        self,
+        hours: int = 24,
+    ) -> List[Market]:
+        """Get markets closing within timeframe."""
+        pass
+
+    async def search_markets(
+        self,
+        query: str,
+    ) -> List[Market]:
+        """Search markets by question text."""
+        pass
+```
+
+### 9.4 Agent Tools for Polymarket
+
+```python
+# Add to app/core/agent/tools.py
+
+POLYMARKET_TOOLS = [
+    ToolDefinition(
+        name="get_polymarket_markets",
+        description="Get prediction markets from Polymarket. Can filter by category (politics, crypto, sports, etc.) or search by query.",
+        parameters=[
+            ToolParameter(name="category", type=ToolParameterType.STRING, required=False),
+            ToolParameter(name="query", type=ToolParameterType.STRING, required=False),
+            ToolParameter(name="limit", type=ToolParameterType.INTEGER, required=False, default=10),
+        ]
+    ),
+    ToolDefinition(
+        name="get_polymarket_positions",
+        description="Get user's Polymarket positions and P&L.",
+        parameters=[]
+    ),
+    ToolDefinition(
+        name="analyze_polymarket",
+        description="Get AI analysis of a specific Polymarket question including relevant news and sentiment.",
+        parameters=[
+            ToolParameter(name="market_id", type=ToolParameterType.STRING, required=True),
+        ]
+    ),
+]
+```
+
+---
+
+## 🟠 Phase 10: Polymarket Copy Trading
+
+**Goal:** Follow and copy successful Polymarket traders.
+
+### 10.1 Polymarket Trader Tracking
+
+**Files to Create:**
+
+| File | Description |
+|------|-------------|
+| `app/services/polymarket_analytics/` | PM trader analytics |
+| `app/services/polymarket_analytics/tracker.py` | Track PM trader positions |
+| `app/services/polymarket_analytics/leaderboard.py` | PM trader leaderboards |
+| `frontend/convex/polymarketTraders.ts` | Trader profiles |
+
+**Trader Analytics:**
+
+```python
+class PolymarketTraderTracker:
+    """Track Polymarket trader performance."""
+
+    async def get_trader_profile(
+        self,
+        address: str,
+    ) -> PolymarketTraderProfile:
+        """Get comprehensive trader profile."""
+        pass
+
+    async def get_trader_positions(
+        self,
+        address: str,
+    ) -> List[Position]:
+        """Get trader's current positions."""
+        pass
+
+    async def get_trader_history(
+        self,
+        address: str,
+        days: int = 30,
+    ) -> List[HistoricalTrade]:
+        """Get trader's trade history."""
+        pass
+
+    async def calculate_performance(
+        self,
+        address: str,
+    ) -> PerformanceMetrics:
+        """Calculate ROI, win rate, Brier score."""
+        pass
+
+
+class PolymarketTraderProfile(BaseModel):
+    """Profile of a Polymarket trader."""
+
+    address: str
+
+    # Performance
+    total_volume_usd: Decimal
+    total_pnl_usd: Decimal
+    roi_pct: float
+    win_rate: float  # % of positions that were profitable
+
+    # Prediction quality
+    brier_score: float  # Lower is better (0-1)
+    calibration_score: float
+
+    # Activity
+    active_positions: int
+    avg_position_size_usd: Decimal
+    preferred_categories: List[str]
+    avg_hold_time_days: float
+
+    # Risk
+    max_single_bet_pct: float
+    uses_leverage: bool
+    diversification_score: float
+```
+
+### 10.2 Polymarket Copy Engine
+
+**Files to Create:**
+
+| File | Description |
+|------|-------------|
+| `app/core/polymarket/copy_trading.py` | PM copy trading logic |
+| `frontend/convex/polymarketCopyConfig.ts` | Copy config storage |
+
+**Copy Logic:**
+
+```python
+class PolymarketCopyManager:
+    """Manage Polymarket copy trading."""
+
+    async def start_copying(
+        self,
+        user_id: str,
+        leader_address: str,
+        config: PolymarketCopyConfig,
+    ) -> CopyRelationship:
+        """Start copying a Polymarket trader."""
+        pass
+
+    async def sync_positions(
+        self,
+        relationship: CopyRelationship,
+    ) -> List[CopyExecution]:
+        """Sync positions with leader (for new followers)."""
+        pass
+
+    async def handle_leader_trade(
+        self,
+        trade: PolymarketTrade,
+        relationship: CopyRelationship,
+    ) -> Optional[CopyExecution]:
+        """Copy a trade from the leader."""
+        pass
+
+
+class PolymarketCopyConfig(BaseModel):
+    """Config for copying a Polymarket trader."""
+
+    leader_address: str
+
+    # Sizing
+    sizing_mode: Literal["percentage", "fixed", "proportional"]
+    size_value: Decimal
+
+    # Filters
+    min_position_usd: Decimal = Decimal("5")
+    max_position_usd: Optional[Decimal] = None
+    category_whitelist: Optional[List[str]] = None
+    category_blacklist: Optional[List[str]] = None
+
+    # Timing
+    copy_new_positions: bool = True
+    copy_exits: bool = True
+    sync_existing: bool = False  # Copy existing positions on start
+
+    # Risk
+    max_positions: int = 20
+    max_exposure_usd: Decimal = Decimal("1000")
+```
+
+---
+
+## 🟢 Phase 11: Yield Earning (DeFi Yield Strategies)
+
+**Goal:** Enable users to earn yield through DeFi protocols with automated strategies.
+
+### 11.1 Protocol Adapter Framework
+
+**Files to Create:**
+
+| File | Description |
+|------|-------------|
+| `app/providers/yield/` | Yield protocol adapters |
+| `app/providers/yield/base.py` | Abstract YieldProtocol interface |
+| `app/providers/yield/aave.py` | Aave adapter |
+| `app/providers/yield/compound.py` | Compound adapter |
+| `app/providers/yield/lido.py` | Lido staking adapter |
+| `app/providers/yield/yearn.py` | Yearn vaults adapter |
+| `app/providers/yield/pendle.py` | Pendle yield trading |
+
+**Protocol Interface:**
+
+```python
+class YieldProtocol(ABC):
+    """Abstract interface for yield protocols."""
+
+    @property
+    @abstractmethod
+    def name(self) -> str:
+        pass
+
+    @property
+    @abstractmethod
+    def supported_chains(self) -> List[str]:
+        pass
+
+    @abstractmethod
+    async def get_opportunities(
+        self,
+        chain: str,
+    ) -> List[YieldOpportunity]:
+        """Get available yield opportunities."""
+        pass
+
+    @abstractmethod
+    async def get_position(
+        self,
+        address: str,
+        chain: str,
+    ) -> Optional[YieldPosition]:
+        """Get user's position in this protocol."""
+        pass
+
+    @abstractmethod
+    async def deposit(
+        self,
+        opportunity_id: str,
+        amount: Decimal,
+        address: str,
+        session_key: Optional[SessionKey] = None,
+    ) -> TransactionResult:
+        """Deposit into a yield opportunity."""
+        pass
+
+    @abstractmethod
+    async def withdraw(
+        self,
+        position_id: str,
+        amount: Optional[Decimal] = None,  # None = withdraw all
+        address: str = None,
+        session_key: Optional[SessionKey] = None,
+    ) -> TransactionResult:
+        """Withdraw from a position."""
+        pass
+
+    @abstractmethod
+    async def claim_rewards(
+        self,
+        position_id: str,
+        address: str,
+        session_key: Optional[SessionKey] = None,
+    ) -> TransactionResult:
+        """Claim pending rewards."""
+        pass
+
+
+class YieldOpportunity(BaseModel):
+    """A yield-earning opportunity."""
+
+    id: str
+    protocol: str
+    chain: str
+
+    # Asset info
+    deposit_token: str  # Token to deposit
+    deposit_token_address: str
+    reward_tokens: List[str]  # Tokens earned as rewards
+
+    # Yield info
+    apy: float  # Current APY
+    apy_base: float  # Base APY (from protocol)
+    apy_reward: float  # Reward APY (from incentives)
+    apy_7d_avg: float
+    apy_30d_avg: float
+
+    # Risk info
+    tvl_usd: Decimal
+    utilization_rate: Optional[float]
+    risk_score: float  # 0 (safe) to 1 (risky)
+    is_audited: bool
+
+    # Type
+    opportunity_type: Literal["lending", "staking", "lp", "vault", "fixed"]
+
+    # Liquidity
+    available_liquidity_usd: Decimal
+    min_deposit_usd: Decimal
+    withdrawal_delay_hours: Optional[float]  # Unstaking period
+
+
+class YieldPosition(BaseModel):
+    """User's position in a yield protocol."""
+
+    id: str
+    opportunity_id: str
+    protocol: str
+    chain: str
+
+    # Position
+    deposited_amount: Decimal
+    deposited_token: str
+    deposited_value_usd: Decimal
+
+    # Earnings
+    pending_rewards: List[RewardBalance]
+    total_earned_usd: Decimal
+    realized_apy: float  # Actual APY earned
+
+    # Timing
+    deposited_at: datetime
+    last_harvest_at: Optional[datetime]
+```
+
+### 11.2 Yield Aggregation Service
+
+**Files to Create:**
+
+| File | Description |
+|------|-------------|
+| `app/services/yield/` | Yield aggregation service |
+| `app/services/yield/aggregator.py` | YieldAggregator - unified view |
+| `app/services/yield/optimizer.py` | YieldOptimizer - find best yields |
+| `app/services/yield/risk_scorer.py` | Protocol risk assessment |
+
+**Aggregator:**
+
+```python
+class YieldAggregator:
+    """Aggregate yield opportunities across protocols."""
+
+    def __init__(self):
+        self.protocols: Dict[str, YieldProtocol] = {
+            "aave": AaveAdapter(),
+            "compound": CompoundAdapter(),
+            "lido": LidoAdapter(),
+            "yearn": YearnAdapter(),
+            "pendle": PendleAdapter(),
+        }
+
+    async def get_all_opportunities(
+        self,
+        chains: Optional[List[str]] = None,
+        min_apy: Optional[float] = None,
+        max_risk: Optional[float] = None,
+        deposit_token: Optional[str] = None,
+    ) -> List[YieldOpportunity]:
+        """Get all yield opportunities with filters."""
+        pass
+
+    async def get_best_yield(
+        self,
+        token: str,
+        chain: str,
+        amount_usd: Decimal,
+    ) -> List[YieldOpportunity]:
+        """Find best yield for a specific token."""
+        pass
+
+    async def get_user_positions(
+        self,
+        address: str,
+    ) -> List[YieldPosition]:
+        """Get all yield positions for a user."""
+        pass
+
+    async def get_total_yield_earned(
+        self,
+        address: str,
+        since: Optional[datetime] = None,
+    ) -> YieldSummary:
+        """Calculate total yield earned across all protocols."""
+        pass
+
+
+class YieldOptimizer:
+    """Optimize yield across protocols."""
+
+    async def suggest_rebalance(
+        self,
+        current_positions: List[YieldPosition],
+        available_capital: Decimal,
+        risk_tolerance: float,
+    ) -> List[RebalanceAction]:
+        """Suggest rebalancing for better yield."""
+        pass
+
+    async def find_arbitrage(
+        self,
+        token: str,
+    ) -> List[YieldArbitrage]:
+        """Find yield arbitrage opportunities."""
+        pass
+```
+
+### 11.3 Yield Strategies
+
+**Files to Create:**
+
+| File | Description |
+|------|-------------|
+| `app/core/strategies/yield/` | Yield strategy implementations |
+| `app/core/strategies/yield/auto_compound.py` | Auto-compounding strategy |
+| `app/core/strategies/yield/yield_farming.py` | Multi-protocol farming |
+| `app/core/strategies/yield/lsd_strategy.py` | Liquid staking derivatives |
+
+**Auto-Compound Strategy:**
+
+```python
+class AutoCompoundStrategy:
+    """Automatically compound yield rewards."""
+
+    async def check_and_compound(
+        self,
+        position: YieldPosition,
+        min_reward_usd: Decimal = Decimal("10"),
+    ) -> Optional[CompoundResult]:
+        """Check if rewards should be compounded and execute."""
+        # 1. Check pending rewards value
+        # 2. Estimate gas cost
+        # 3. Only compound if reward > gas + min threshold
+        # 4. Claim and reinvest
+        pass
+
+    async def estimate_optimal_frequency(
+        self,
+        position: YieldPosition,
+    ) -> timedelta:
+        """Calculate optimal compounding frequency."""
+        # Balance gas costs vs compound gains
+        pass
+
+
+class LSDStrategy:
+    """Liquid staking derivative strategy."""
+
+    async def stake_eth(
+        self,
+        amount: Decimal,
+        protocol: Literal["lido", "rocketpool", "frax"] = "lido",
+        session_key: Optional[SessionKey] = None,
+    ) -> StakeResult:
+        """Stake ETH and receive LST."""
+        pass
+
+    async def unstake(
+        self,
+        amount: Decimal,
+        protocol: str,
+        session_key: Optional[SessionKey] = None,
+    ) -> UnstakeResult:
+        """Unstake LST back to ETH."""
+        pass
+
+    async def get_best_lst_yield(self) -> List[LSTOpportunity]:
+        """Compare yields across LST protocols."""
+        pass
+```
+
+### 11.4 Session Key Permissions for Yield
+
+```python
+# Add to app/core/wallet/models.py
+
+class Permission(str, Enum):
+    # ... existing permissions ...
+
+    # Yield permissions
+    YIELD_DEPOSIT = "yield_deposit"
+    YIELD_WITHDRAW = "yield_withdraw"
+    YIELD_CLAIM = "yield_claim"
+    YIELD_COMPOUND = "yield_compound"
+```
+
+### 11.5 Agent Tools for Yield
+
+```python
+# Add to app/core/agent/tools.py
+
+YIELD_TOOLS = [
+    ToolDefinition(
+        name="get_yield_opportunities",
+        description="Find yield earning opportunities across DeFi protocols. Can filter by token, chain, minimum APY, or risk level.",
+        parameters=[
+            ToolParameter(name="token", type=ToolParameterType.STRING, required=False),
+            ToolParameter(name="chain", type=ToolParameterType.STRING, required=False),
+            ToolParameter(name="min_apy", type=ToolParameterType.NUMBER, required=False),
+            ToolParameter(name="max_risk", type=ToolParameterType.NUMBER, required=False),
+        ]
+    ),
+    ToolDefinition(
+        name="get_yield_positions",
+        description="Get user's current yield positions across all protocols with earnings.",
+        parameters=[]
+    ),
+    ToolDefinition(
+        name="analyze_yield_protocol",
+        description="Get detailed analysis of a yield protocol including risks, historical APY, and TVL trends.",
+        parameters=[
+            ToolParameter(name="protocol", type=ToolParameterType.STRING, required=True),
+            ToolParameter(name="opportunity_id", type=ToolParameterType.STRING, required=False),
+        ]
+    ),
+]
+```
+
+---
+
+## 🔶 Phase 12: Shared Infrastructure Enhancements
+
+**Goal:** Build common infrastructure needed by copy trading, Polymarket, and yield features.
+
+### 12.1 Enhanced Event Monitoring
+
+**Files to Create:**
+
+| File | Description |
+|------|-------------|
+| `app/services/events/` | Event monitoring service |
+| `app/services/events/webhook_handler.py` | Unified webhook handler |
+| `app/services/events/event_processor.py` | Event classification and routing |
+
+**Unified Event System:**
+
+```python
+class EventMonitoringService:
+    """Unified event monitoring across chains and protocols."""
+
+    async def subscribe_address(
+        self,
+        address: str,
+        chain: str,
+        event_types: List[EventType],
+        callback: Callable,
+    ) -> Subscription:
+        """Subscribe to events for an address."""
+        pass
+
+    async def subscribe_contract(
+        self,
+        contract: str,
+        chain: str,
+        event_signatures: List[str],
+        callback: Callable,
+    ) -> Subscription:
+        """Subscribe to contract events."""
+        pass
+
+
+class EventType(str, Enum):
+    # Wallet events
+    TRANSFER_IN = "transfer_in"
+    TRANSFER_OUT = "transfer_out"
+    SWAP = "swap"
+
+    # DeFi events
+    DEPOSIT = "deposit"
+    WITHDRAW = "withdraw"
+    BORROW = "borrow"
+    REPAY = "repay"
+    LIQUIDATION = "liquidation"
+
+    # Polymarket events
+    ORDER_PLACED = "order_placed"
+    ORDER_FILLED = "order_filled"
+    POSITION_OPENED = "position_opened"
+    POSITION_CLOSED = "position_closed"
+    MARKET_RESOLVED = "market_resolved"
+```
+
+### 12.2 Performance Analytics
+
+**Files to Create:**
+
+| File | Description |
+|------|-------------|
+| `app/services/analytics/` | Performance analytics |
+| `app/services/analytics/pnl_calculator.py` | P&L calculation |
+| `app/services/analytics/metrics.py` | ROI, Sharpe, drawdown |
+
+**Analytics Service:**
+
+```python
+class PerformanceAnalytics:
+    """Calculate performance metrics across all activity types."""
+
+    async def calculate_pnl(
+        self,
+        address: str,
+        activity_type: Literal["trading", "copy_trading", "polymarket", "yield"],
+        period: timedelta,
+    ) -> PnLReport:
+        """Calculate P&L for a specific activity type."""
+        pass
+
+    async def get_portfolio_metrics(
+        self,
+        address: str,
+    ) -> PortfolioMetrics:
+        """Get comprehensive portfolio metrics."""
+        return PortfolioMetrics(
+            total_value_usd=...,
+            daily_pnl_usd=...,
+            weekly_pnl_usd=...,
+            monthly_pnl_usd=...,
+            roi_pct=...,
+            sharpe_ratio=...,
+            max_drawdown_pct=...,
+            win_rate=...,
+            # Breakdown by source
+            trading_pnl=...,
+            copy_trading_pnl=...,
+            polymarket_pnl=...,
+            yield_earned=...,
+        )
+```
+
+### 12.3 Enhanced Notifications
+
+```python
+# Add notification types for new features
+
+class NotificationType(str, Enum):
+    # ... existing types ...
+
+    # Copy trading
+    COPY_TRADE_EXECUTED = "copy_trade_executed"
+    LEADER_TRADE_SKIPPED = "leader_trade_skipped"
+    COPY_LIMIT_REACHED = "copy_limit_reached"
+
+    # Polymarket
+    PM_ORDER_FILLED = "pm_order_filled"
+    PM_MARKET_RESOLVING = "pm_market_resolving"
+    PM_POSITION_SETTLED = "pm_position_settled"
+
+    # Yield
+    YIELD_REWARDS_READY = "yield_rewards_ready"
+    YIELD_APY_CHANGED = "yield_apy_changed"
+    YIELD_COMPOUNDED = "yield_compounded"
+```
+
+---
+
+## Updated Implementation Order
+
+| Phase | Focus | Status | Dependencies |
+|-------|-------|--------|--------------|
+| **Phase 1** | Database, Auth, Rate Limiting | ✅ Complete | - |
+| **Phase 2.1-2.4** | Transaction Execution, Session Keys, Jupiter, LLM Tools | ✅ Complete | Phase 1 |
+| **Phase 3** | Policy Engine, State Machine, Error Recovery | ✅ Complete | Phase 2 |
+| **Phase 4** | Observability, Event System | 🔲 Pending | Phase 3 |
+| **Phase 5** | Scaling, Circuit Breakers | 🔲 Pending | Phase 4 |
+| **Phase 6** | Backtesting, Notifications | 🔲 Pending | Phase 5 |
+| **Phase 7** | Token Intelligence, News | ✅ Complete | Phase 1 |
+| **Phase 8** | Wallet Copy Trading | 🔲 Pending | Phase 3, 12.1 |
+| **Phase 9** | Polymarket Integration | 🔲 Pending | Phase 3 |
+| **Phase 10** | Polymarket Copy Trading | 🔲 Pending | Phase 8, 9 |
+| **Phase 11** | Yield Earning | 🔲 Pending | Phase 3 |
+| **Phase 12** | Shared Infrastructure | 🔲 Pending | - |
+
+**Recommended Build Order for New Features:**
+
+1. **Phase 12.1** - Event Monitoring (foundation for copy trading)
+2. **Phase 8.1-8.2** - Wallet Monitoring + Copy Engine
+3. **Phase 9.1-9.2** - Polymarket API + Trading
+4. **Phase 11.1-11.2** - Yield Protocol Adapters
+5. **Phase 8.3** - Leader Discovery
+6. **Phase 10** - Polymarket Copy Trading
+7. **Phase 11.3** - Yield Strategies
+8. **Phase 12.2-12.3** - Analytics + Enhanced Notifications
+
+---
+
+## Next Steps
 2. Create a new Convex project and initialize in your repo
 3. Set up the Convex schema (convex/schema.ts)
 4. Create the Python client for FastAPI integration
