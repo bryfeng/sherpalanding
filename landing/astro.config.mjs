@@ -1,8 +1,7 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  site: 'https://bryfeng.github.io',
-  base: '/sherpalanding',
+  site: 'https://runsherpa.ai',
   output: 'static',
   build: {
     assets: '_assets'
