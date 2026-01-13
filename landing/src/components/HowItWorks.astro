@@ -1,0 +1,190 @@
+---
+// How it works - 3 step flow
+---
+
+<section class="section how-it-works" id="how">
+  <div class="container">
+    <header class="section-header">
+      <span class="eyebrow">Simple Process</span>
+      <h2>How it works</h2>
+      <p class="section-subtitle">Three steps to automated DeFi execution.</p>
+    </header>
+
+    <div class="steps-grid">
+      <div class="step">
+        <div class="step-number">1</div>
+        <div class="step-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a2.25 2.25 0 00-2.25-2.25H15a3 3 0 11-6 0H5.25A2.25 2.25 0 003 12m18 0v6a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 18v-6m18 0V9M3 12V9m18 0a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 9m18 0V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v3" />
+          </svg>
+        </div>
+        <h3>Connect</h3>
+        <p>Link your wallet. Sherpa reads on-chain data to understand your portfolio. No private keys needed, ever.</p>
+      </div>
+
+      <div class="step-connector">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+        </svg>
+      </div>
+
+      <div class="step">
+        <div class="step-number">2</div>
+        <div class="step-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75" />
+          </svg>
+        </div>
+        <h3>Configure</h3>
+        <p>Set up strategies, policies, and preferences. Use natural language or choose from templates. Define your guardrails.</p>
+      </div>
+
+      <div class="step-connector">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+        </svg>
+      </div>
+
+      <div class="step">
+        <div class="step-number">3</div>
+        <div class="step-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" />
+          </svg>
+        </div>
+        <h3>Execute</h3>
+        <p>Sherpa monitors conditions and executes when ready. Review transactions before signing. Stay in control.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .how-it-works {
+    background: var(--bg-elevated);
+  }
+
+  .section-header {
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto var(--space-16);
+  }
+
+  .eyebrow {
+    display: inline-block;
+    font-size: var(--text-xs);
+    font-weight: 600;
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: var(--space-3);
+  }
+
+  .section-subtitle {
+    font-size: var(--text-lg);
+    color: var(--text-muted);
+    line-height: var(--leading-relaxed);
+  }
+
+  .steps-grid {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: var(--space-4);
+  }
+
+  .step {
+    flex: 1;
+    max-width: 280px;
+    text-align: center;
+    padding: var(--space-6);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-xl);
+    position: relative;
+    transition: all var(--duration-normal) var(--ease-out);
+  }
+
+  .step:hover {
+    border-color: var(--accent);
+    box-shadow: var(--shadow-glow);
+    transform: translateY(-4px);
+  }
+
+  .step-number {
+    position: absolute;
+    top: calc(var(--space-3) * -1);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--accent);
+    color: var(--color-text-inverse);
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    border-radius: var(--radius-full);
+  }
+
+  .step-icon {
+    width: 48px;
+    height: 48px;
+    margin: var(--space-4) auto var(--space-4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--accent-muted);
+    border-radius: var(--radius-lg);
+    color: var(--accent);
+  }
+
+  .step-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .step h3 {
+    font-size: var(--text-lg);
+    font-weight: 600;
+    margin-bottom: var(--space-2);
+  }
+
+  .step p {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    line-height: var(--leading-relaxed);
+  }
+
+  .step-connector {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: var(--space-16);
+    color: var(--text-subtle);
+  }
+
+  .step-connector svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  @media (max-width: 968px) {
+    .steps-grid {
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-8);
+    }
+
+    .step {
+      max-width: 360px;
+    }
+
+    .step-connector {
+      padding-top: 0;
+      transform: rotate(90deg);
+    }
+  }
+</style>

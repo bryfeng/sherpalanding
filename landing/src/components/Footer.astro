@@ -1,0 +1,155 @@
+---
+// Footer component
+---
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a class="brand" href="#">
+          <div class="brand-mark">S</div>
+          <span>Sherpa</span>
+        </a>
+        <p>DeFi execution engine with AI-powered automation and risk guardrails.</p>
+      </div>
+
+      <div class="footer-links-group">
+        <h4>Product</h4>
+        <nav class="footer-links">
+          <a href="#features">Features</a>
+          <a href="#how">How it works</a>
+          <a href="https://app.runsherpa.ai">Launch App</a>
+        </nav>
+      </div>
+
+      <div class="footer-links-group">
+        <h4>Company</h4>
+        <nav class="footer-links">
+          <a href="#">About</a>
+          <a href="#">Security</a>
+          <a href="mailto:team@runsherpa.ai">Contact</a>
+        </nav>
+      </div>
+
+      <div class="footer-links-group">
+        <h4>Legal</h4>
+        <nav class="footer-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2025 Sherpa Labs. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--bg-elevated);
+    border-top: 1px solid var(--line);
+    padding: var(--space-16) var(--space-6) var(--space-8);
+  }
+
+  .footer-inner {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: var(--space-12);
+    margin-bottom: var(--space-12);
+  }
+
+  .footer-brand {
+    max-width: 280px;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: 600;
+    color: var(--text);
+    text-decoration: none;
+    margin-bottom: var(--space-4);
+  }
+
+  .brand-mark {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--accent);
+    color: var(--color-text-inverse);
+    font-weight: 700;
+    font-size: var(--text-base);
+    border-radius: var(--radius-md);
+  }
+
+  .footer-brand p {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    line-height: var(--leading-relaxed);
+  }
+
+  .footer-links-group h4 {
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: var(--space-4);
+  }
+
+  .footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .footer-links a {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+
+  .footer-links a:hover {
+    color: var(--text);
+  }
+
+  .footer-bottom {
+    padding-top: var(--space-8);
+    border-top: 1px solid var(--line);
+    text-align: center;
+  }
+
+  .footer-bottom p {
+    font-size: var(--text-sm);
+    color: var(--text-subtle);
+  }
+
+  @media (max-width: 768px) {
+    .footer {
+      padding: var(--space-12) var(--space-4) var(--space-6);
+    }
+
+    .footer-inner {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-8);
+    }
+
+    .footer-brand {
+      grid-column: 1 / -1;
+      max-width: none;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .footer-inner {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

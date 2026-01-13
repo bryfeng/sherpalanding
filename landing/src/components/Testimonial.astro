@@ -1,0 +1,106 @@
+---
+// Testimonial section
+---
+
+<section class="testimonial">
+  <div class="container">
+    <div class="testimonial-inner">
+      <svg class="quote-mark" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+      </svg>
+      <blockquote>
+        "Sherpa finally made our playbooks feel personal. Wallet-aware panels, execution-ready quotes, and exports all show up without us wiring brittle frontends."
+      </blockquote>
+      <div class="testimonial-author">
+        <div class="author-avatar">
+          <span>HP</span>
+        </div>
+        <div class="author-info">
+          <cite>Head of Product</cite>
+          <span>Stealth Consumer Exchange</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .testimonial {
+    padding: var(--section-spacing) var(--space-6);
+    background: var(--bg-elevated);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .testimonial-inner {
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .quote-mark {
+    width: 48px;
+    height: 48px;
+    color: var(--accent);
+    opacity: 0.3;
+    margin-bottom: var(--space-6);
+  }
+
+  blockquote {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    font-weight: 500;
+    line-height: var(--leading-relaxed);
+    color: var(--text);
+    margin-bottom: var(--space-8);
+  }
+
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-4);
+  }
+
+  .author-avatar {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--accent-muted);
+    color: var(--accent);
+    font-weight: 600;
+    font-size: var(--text-sm);
+    border-radius: var(--radius-full);
+  }
+
+  .author-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .author-info cite {
+    font-style: normal;
+    font-weight: 600;
+    color: var(--text);
+    font-size: var(--text-base);
+  }
+
+  .author-info span {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+  }
+
+  @media (max-width: 768px) {
+    .testimonial {
+      padding: var(--section-spacing-mobile) var(--space-4);
+    }
+
+    blockquote {
+      font-size: var(--text-xl);
+    }
+  }
+</style>

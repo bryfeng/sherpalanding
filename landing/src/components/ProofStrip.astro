@@ -1,0 +1,93 @@
+---
+// Social proof metrics strip
+---
+
+<section class="proof-strip">
+  <div class="proof-inner">
+    <div class="proof-stat">
+      <p class="proof-stat-value">$2.4M+</p>
+      <p class="proof-stat-label">Volume Executed</p>
+    </div>
+    <div class="proof-divider"></div>
+    <div class="proof-stat">
+      <p class="proof-stat-value">1,200+</p>
+      <p class="proof-stat-label">Active Strategies</p>
+    </div>
+    <div class="proof-divider"></div>
+    <div class="proof-stat">
+      <p class="proof-stat-value">99.9%</p>
+      <p class="proof-stat-label">Success Rate</p>
+    </div>
+    <div class="proof-divider"></div>
+    <div class="proof-stat">
+      <p class="proof-stat-value">&lt;30s</p>
+      <p class="proof-stat-label">Strategy to Live</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .proof-strip {
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    background: var(--bg-elevated);
+    padding: var(--space-10) var(--space-6);
+  }
+
+  .proof-inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-12);
+    max-width: var(--max-width);
+    margin: 0 auto;
+  }
+
+  .proof-stat {
+    text-align: center;
+  }
+
+  .proof-stat-value {
+    font-family: var(--font-mono);
+    font-size: var(--text-3xl);
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: var(--space-1);
+  }
+
+  .proof-stat-label {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+  }
+
+  .proof-divider {
+    width: 1px;
+    height: 48px;
+    background: var(--line);
+  }
+
+  @media (max-width: 768px) {
+    .proof-inner {
+      flex-wrap: wrap;
+      gap: var(--space-8) var(--space-10);
+    }
+
+    .proof-divider {
+      display: none;
+    }
+
+    .proof-stat {
+      flex: 1 1 40%;
+    }
+
+    .proof-stat-value {
+      font-size: var(--text-2xl);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .proof-stat {
+      flex: 1 1 100%;
+    }
+  }
+</style>

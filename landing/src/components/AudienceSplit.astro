@@ -1,0 +1,170 @@
+---
+// Audience split - Traders vs B2B teams
+---
+
+<section class="section audience-split">
+  <div class="container">
+    <div class="audience-grid">
+      <!-- For Traders -->
+      <div class="audience-card audience-primary">
+        <span class="audience-badge badge badge-accent">For Traders</span>
+        <h3>Automate Your DeFi Strategy</h3>
+        <p>Stop managing spreadsheets and setting alarms. Let Sherpa execute your strategies automatically with the guardrails you set.</p>
+        <ul class="audience-list">
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+            </svg>
+            <span>Set up DCA without spreadsheets</span>
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+            </svg>
+            <span>Execute complex strategies with one approval</span>
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+            </svg>
+            <span>Track performance across all positions</span>
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+            </svg>
+            <span>Built-in risk guardrails protect your trades</span>
+          </li>
+        </ul>
+        <a href="https://app.runsherpa.ai" class="btn btn-primary">Start Trading</a>
+      </div>
+
+      <!-- For Teams -->
+      <div class="audience-card audience-secondary">
+        <span class="audience-badge badge badge-secondary">For Teams</span>
+        <h3>Build on Sherpa</h3>
+        <p>Integrate intelligent wallet management into your product. Give your users the execution layer they deserve.</p>
+        <ul class="audience-list">
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+            </svg>
+            <span>Treasury management playbooks</span>
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+            </svg>
+            <span>API access for workflow integration</span>
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+            </svg>
+            <span>White-label AI assistant capabilities</span>
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+            </svg>
+            <span>Custom policy and guardrail configuration</span>
+          </li>
+        </ul>
+        <a href="mailto:team@runsherpa.ai" class="btn btn-secondary">Contact Sales</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .audience-split {
+    background: var(--bg);
+  }
+
+  .audience-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-8);
+  }
+
+  .audience-card {
+    padding: var(--space-8);
+    border-radius: var(--radius-2xl);
+    border: 1px solid var(--line);
+    transition: all var(--duration-normal) var(--ease-out);
+  }
+
+  .audience-primary {
+    background: var(--surface);
+  }
+
+  .audience-primary:hover {
+    border-color: var(--accent);
+    box-shadow: var(--shadow-glow);
+  }
+
+  .audience-secondary {
+    background: var(--bg-elevated);
+  }
+
+  .audience-secondary:hover {
+    border-color: var(--color-secondary);
+    box-shadow: var(--shadow-glow-blue);
+  }
+
+  .audience-badge {
+    margin-bottom: var(--space-4);
+  }
+
+  .audience-card h3 {
+    font-size: var(--text-2xl);
+    margin-bottom: var(--space-3);
+  }
+
+  .audience-card > p {
+    font-size: var(--text-base);
+    color: var(--text-muted);
+    line-height: var(--leading-relaxed);
+    margin-bottom: var(--space-6);
+  }
+
+  .audience-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    margin-bottom: var(--space-8);
+  }
+
+  .audience-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+  }
+
+  .audience-list svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .audience-primary .audience-list svg {
+    color: var(--accent);
+  }
+
+  .audience-secondary .audience-list svg {
+    color: var(--color-secondary);
+  }
+
+  @media (max-width: 768px) {
+    .audience-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .audience-card {
+      padding: var(--space-6);
+    }
+  }
+</style>

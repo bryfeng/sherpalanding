@@ -1,0 +1,409 @@
+---
+// Feature showcase with 3 main features
+---
+
+<section class="section features" id="features">
+  <div class="container">
+    <header class="section-header">
+      <span class="eyebrow">Powerful Features</span>
+      <h2>Everything you need to execute smarter</h2>
+      <p class="section-subtitle">
+        Sherpa combines strategy automation, AI assistance, and portfolio awareness in one seamless experience.
+      </p>
+    </header>
+
+    <div class="features-showcase">
+      <!-- Feature 1: Strategy Builder -->
+      <div class="feature-row">
+        <div class="feature-content">
+          <div class="feature-badge badge badge-accent">Strategy</div>
+          <h3>Build Strategies in Natural Language</h3>
+          <p>
+            Create DCA schedules, limit orders, and automated rebalancing. Sherpa validates your strategy and executes with built-in guardrails.
+          </p>
+          <div class="feature-chips">
+            <span class="chip">DCA</span>
+            <span class="chip">Limit Orders</span>
+            <span class="chip">Rebalancing</span>
+            <span class="chip">Stop-Loss</span>
+          </div>
+        </div>
+        <div class="feature-visual">
+          <div class="feature-demo card">
+            <div class="demo-header">
+              <span class="demo-title">New Strategy</span>
+              <span class="demo-status badge badge-success">Preview</span>
+            </div>
+            <div class="demo-input">
+              <span class="demo-label">Strategy</span>
+              <p class="demo-text">"Buy $100 of ETH every Monday using USDC"</p>
+            </div>
+            <div class="demo-settings">
+              <div class="demo-setting">
+                <span>Frequency</span>
+                <span class="demo-value">Weekly</span>
+              </div>
+              <div class="demo-setting">
+                <span>Amount</span>
+                <span class="demo-value">$100</span>
+              </div>
+              <div class="demo-setting">
+                <span>Max Slippage</span>
+                <span class="demo-value">1.5%</span>
+              </div>
+            </div>
+            <button class="btn btn-primary btn-sm" style="width: 100%;">Create Strategy</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature 2: Chat Interface -->
+      <div class="feature-row feature-row-reverse">
+        <div class="feature-content">
+          <div class="feature-badge badge badge-secondary">AI Assistant</div>
+          <h3>Chat-First Execution</h3>
+          <p>
+            Describe what you want to do. Sherpa understands your portfolio, suggests optimal routes, and prepares transactions for your approval.
+          </p>
+          <div class="feature-chips">
+            <span class="chip">AI Personas</span>
+            <span class="chip">Quote Preview</span>
+            <span class="chip">Approval Flow</span>
+          </div>
+        </div>
+        <div class="feature-visual">
+          <div class="feature-demo card chat-demo">
+            <div class="chat-message chat-user">
+              <p>Swap 1 ETH for USDC on the best route</p>
+            </div>
+            <div class="chat-message chat-assistant">
+              <p>I found the best route via Uniswap V3. You'll receive approximately <strong>3,142 USDC</strong> with 0.3% slippage.</p>
+              <div class="chat-quote">
+                <div class="quote-row">
+                  <span>Rate</span>
+                  <span class="font-mono">1 ETH = 3,142 USDC</span>
+                </div>
+                <div class="quote-row">
+                  <span>Fee</span>
+                  <span class="font-mono">$4.20</span>
+                </div>
+              </div>
+              <button class="btn btn-primary btn-sm">Approve Swap</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature 3: Wallet Integration -->
+      <div class="feature-row">
+        <div class="feature-content">
+          <div class="feature-badge badge badge-accent">Portfolio</div>
+          <h3>Full Portfolio Awareness</h3>
+          <p>
+            Connect your wallet once. Sherpa tracks holdings, history, and performance across chains. See your complete DeFi picture.
+          </p>
+          <div class="feature-chips">
+            <span class="chip">Multi-chain</span>
+            <span class="chip">Transaction History</span>
+            <span class="chip">Analytics</span>
+          </div>
+        </div>
+        <div class="feature-visual">
+          <div class="feature-demo card">
+            <div class="demo-header">
+              <span class="demo-title">Portfolio</span>
+              <span class="demo-status badge badge-success">Live</span>
+            </div>
+            <p class="portfolio-value">$124,380</p>
+            <p class="portfolio-change">+$2,340 (1.92%) today</p>
+            <div class="portfolio-breakdown">
+              <div class="portfolio-asset">
+                <span class="asset-name">ETH</span>
+                <span class="asset-percent">32%</span>
+                <div class="asset-bar" style="width: 32%;"></div>
+              </div>
+              <div class="portfolio-asset">
+                <span class="asset-name">SOL</span>
+                <span class="asset-percent">28%</span>
+                <div class="asset-bar asset-bar-blue" style="width: 28%;"></div>
+              </div>
+              <div class="portfolio-asset">
+                <span class="asset-name">USDC</span>
+                <span class="asset-percent">18%</span>
+                <div class="asset-bar asset-bar-green" style="width: 18%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .features {
+    background: var(--bg);
+  }
+
+  .section-header {
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto var(--space-16);
+  }
+
+  .eyebrow {
+    display: inline-block;
+    font-size: var(--text-xs);
+    font-weight: 600;
+    letter-spacing: var(--tracking-wider);
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: var(--space-3);
+  }
+
+  .section-header h2 {
+    margin-bottom: var(--space-4);
+  }
+
+  .section-subtitle {
+    font-size: var(--text-lg);
+    color: var(--text-muted);
+    line-height: var(--leading-relaxed);
+  }
+
+  .features-showcase {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-24);
+  }
+
+  .feature-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-16);
+    align-items: center;
+  }
+
+  .feature-row-reverse {
+    direction: rtl;
+  }
+
+  .feature-row-reverse > * {
+    direction: ltr;
+  }
+
+  .feature-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .feature-badge {
+    width: fit-content;
+  }
+
+  .feature-content h3 {
+    font-size: var(--text-2xl);
+    font-weight: 600;
+  }
+
+  .feature-content p {
+    font-size: var(--text-base);
+    color: var(--text-muted);
+    line-height: var(--leading-relaxed);
+  }
+
+  .feature-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-top: var(--space-2);
+  }
+
+  .feature-visual {
+    display: flex;
+    justify-content: center;
+  }
+
+  .feature-demo {
+    width: 100%;
+    max-width: 380px;
+    padding: var(--space-5);
+    transition: all var(--duration-normal) var(--ease-out);
+  }
+
+  .feature-demo:hover {
+    border-color: var(--accent);
+    box-shadow: var(--shadow-glow);
+  }
+
+  .demo-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-4);
+  }
+
+  .demo-title {
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--text-muted);
+  }
+
+  .demo-input {
+    background: var(--surface-2);
+    border-radius: var(--radius-md);
+    padding: var(--space-3);
+    margin-bottom: var(--space-4);
+  }
+
+  .demo-label {
+    font-size: var(--text-xs);
+    color: var(--text-subtle);
+    margin-bottom: var(--space-1);
+    display: block;
+  }
+
+  .demo-text {
+    font-size: var(--text-sm);
+    color: var(--text);
+    font-style: italic;
+  }
+
+  .demo-settings {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    margin-bottom: var(--space-4);
+  }
+
+  .demo-setting {
+    display: flex;
+    justify-content: space-between;
+    font-size: var(--text-sm);
+  }
+
+  .demo-setting span:first-child {
+    color: var(--text-muted);
+  }
+
+  .demo-value {
+    font-family: var(--font-mono);
+    color: var(--text);
+  }
+
+  /* Chat Demo */
+  .chat-demo {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .chat-message {
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-lg);
+    font-size: var(--text-sm);
+  }
+
+  .chat-user {
+    background: var(--accent-muted);
+    color: var(--text);
+    margin-left: var(--space-8);
+  }
+
+  .chat-assistant {
+    background: var(--surface-2);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .chat-quote {
+    background: var(--surface-3);
+    border-radius: var(--radius-md);
+    padding: var(--space-3);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .quote-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: var(--text-xs);
+  }
+
+  .quote-row span:first-child {
+    color: var(--text-muted);
+  }
+
+  /* Portfolio Demo */
+  .portfolio-value {
+    font-family: var(--font-display);
+    font-size: var(--text-3xl);
+    font-weight: 600;
+    margin-bottom: var(--space-1);
+  }
+
+  .portfolio-change {
+    font-size: var(--text-sm);
+    color: var(--color-success);
+    margin-bottom: var(--space-5);
+  }
+
+  .portfolio-breakdown {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .portfolio-asset {
+    display: grid;
+    grid-template-columns: 60px 40px 1fr;
+    align-items: center;
+    gap: var(--space-3);
+    font-size: var(--text-sm);
+  }
+
+  .asset-name {
+    font-weight: 500;
+  }
+
+  .asset-percent {
+    font-family: var(--font-mono);
+    color: var(--text-muted);
+    text-align: right;
+  }
+
+  .asset-bar {
+    height: 8px;
+    background: var(--accent);
+    border-radius: var(--radius-full);
+  }
+
+  .asset-bar-blue {
+    background: var(--color-secondary);
+  }
+
+  .asset-bar-green {
+    background: var(--color-success);
+  }
+
+  @media (max-width: 968px) {
+    .feature-row,
+    .feature-row-reverse {
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+      direction: ltr;
+    }
+
+    .feature-content {
+      text-align: center;
+      align-items: center;
+    }
+
+    .feature-chips {
+      justify-content: center;
+    }
+  }
+</style>
