@@ -1,0 +1,93 @@
+<section class="trust-bar" aria-label="Sherpa product principles">
+  <div class="container trust-grid">
+    <article>
+      <span>01</span>
+      <div>
+        <h2>Agent context</h2>
+        <p>Give agents the portfolio context they need across chains.</p>
+      </div>
+    </article>
+    <article>
+      <span>02</span>
+      <div>
+        <h2>Non-custodial</h2>
+        <p>Keys and transaction authorization stay with you.</p>
+      </div>
+    </article>
+    <article>
+      <span>03</span>
+      <div>
+        <h2>Policy layer</h2>
+        <p>Set the assets, networks, sizing, and conditions agents can use.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<style>
+  .trust-bar {
+    border-bottom: 1px solid var(--line);
+    background: #0b1512;
+  }
+
+  .trust-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  article {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--space-4);
+    min-height: 9.5rem;
+    align-items: center;
+    padding: var(--space-6) clamp(1rem, 3vw, 2.25rem);
+    border-right: 1px solid var(--line);
+  }
+
+  article:first-child {
+    padding-left: 0;
+  }
+
+  article:last-child {
+    padding-right: 0;
+    border-right: 0;
+  }
+
+  article > span {
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+  }
+
+  h2 {
+    font-size: var(--text-base);
+    letter-spacing: -0.02em;
+  }
+
+  p {
+    margin-top: 0.3rem;
+    color: var(--text-muted);
+    font-size: var(--text-sm);
+    line-height: 1.5;
+  }
+
+  @media (max-width: 840px) {
+    .trust-grid {
+      grid-template-columns: 1fr;
+    }
+
+    article,
+    article:first-child,
+    article:last-child {
+      min-height: auto;
+      padding: 1.3rem 0;
+      border-right: 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    article:last-child {
+      border-bottom: 0;
+    }
+  }
+</style>

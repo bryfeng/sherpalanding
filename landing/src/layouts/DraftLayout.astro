@@ -1,0 +1,127 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  themeColor?: string;
+}
+
+const {
+  title,
+  description,
+  themeColor = '#f3f0e8'
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content={themeColor} />
+    <meta name="color-scheme" content="light" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <a class="draft-skip" href="#draft-main">Skip to draft</a>
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    min-width: 320px;
+    scroll-behavior: smooth;
+    background: var(--draft-paper, #f3f0e8);
+  }
+
+  body {
+    min-width: 320px;
+    min-height: 100vh;
+    margin: 0;
+    overflow-x: hidden;
+    background: var(--draft-paper, #f3f0e8);
+    color: var(--draft-ink, #17251d);
+    font-family: var(--draft-sans, "Avenir Next", Avenir, "Segoe UI", Helvetica, Arial, sans-serif);
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  p {
+    margin: 0;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  button,
+  a {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  ul,
+  ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .draft-skip {
+    position: fixed;
+    z-index: 1000;
+    top: 0.75rem;
+    left: 0.75rem;
+    padding: 0.7rem 1rem;
+    transform: translateY(-180%);
+    border-radius: 999px;
+    background: var(--draft-ink, #17251d);
+    color: var(--draft-paper, #f3f0e8);
+    font-size: 0.82rem;
+    font-weight: 700;
+    transition: transform 160ms ease;
+  }
+
+  .draft-skip:focus {
+    transform: translateY(0);
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--draft-focus, #b27d51);
+    outline-offset: 4px;
+  }
+
+  ::selection {
+    background: var(--draft-accent, #758c75);
+    color: #fff;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      scroll-behavior: auto !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+</style>

@@ -1,0 +1,571 @@
+---
+import DraftLayout from '../../layouts/DraftLayout.astro';
+import DraftNav from '../../components/drafts/DraftNav.astro';
+
+const gates = [
+  { number: '01', label: 'Strategy', detail: 'DCA or copy-trading rules' },
+  { number: '02', label: 'Limits', detail: 'Amount and frequency controls' },
+  { number: '03', label: 'Permissions', detail: 'Allowed chains and activity' },
+  { number: '04', label: 'Review', detail: 'Readable transaction plan' },
+  { number: '05', label: 'Wallet', detail: 'Your final signature' }
+];
+---
+
+<DraftLayout
+  title="Policy Route — Sherpa design study"
+  description="A precise, security-forward redesign direction for Sherpa."
+  themeColor="#eeece4"
+>
+  <div class="policy-page">
+    <DraftNav current="policy" />
+
+    <main id="draft-main">
+      <section class="hero" aria-labelledby="policy-title">
+        <div class="hero-copy">
+          <div class="status-line">
+            <span aria-hidden="true"></span>
+            <p>Non-custodial by design</p>
+          </div>
+          <h1 id="policy-title">Automate the plan. Keep control of every execution.</h1>
+          <p class="hero-intro">
+            Set strategy rules and transaction policies. Sherpa prepares eligible actions across supported chains; your wallet keeps custody and final approval.
+          </p>
+          <div class="actions" aria-label="Try the Policy Route direction">
+            <a class="primary-action" href="#policy-gates">See policy controls <span aria-hidden="true">↓</span></a>
+            <a class="secondary-action" href="https://app.runsherpa.ai">Open Sherpa <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+
+        <aside class="route-instrument" aria-labelledby="instrument-title">
+          <div class="instrument-header">
+            <div>
+              <span>Execution route</span>
+              <h2 id="instrument-title">Five visible gates</h2>
+            </div>
+            <span class="instrument-state"><i aria-hidden="true"></i>User controlled</span>
+          </div>
+
+          <ol>
+            {gates.map((gate, index) => (
+              <li class:list={{ final: index === gates.length - 1 }}>
+                <span class="gate-number">{gate.number}</span>
+                <div>
+                  <strong>{gate.label}</strong>
+                  <p>{gate.detail}</p>
+                </div>
+                <span class="gate-state">{index === gates.length - 1 ? 'Sign' : 'Check'}</span>
+              </li>
+            ))}
+          </ol>
+
+          <p class="instrument-note">If an action falls outside a policy, the route stops before wallet review.</p>
+        </aside>
+      </section>
+
+      <section class="policy-gates" id="policy-gates" aria-labelledby="gates-title">
+        <div class="section-heading">
+          <p>Policy-controlled execution</p>
+          <h2 id="gates-title">Automation should be legible.</h2>
+          <span>Rules are part of the product—not buried in settings.</span>
+        </div>
+
+        <div class="gate-grid">
+          <article>
+            <span>01 / Strategy</span>
+            <h3>Choose the behavior.</h3>
+            <p>Define a recurring buy or copy-trading approach without surrendering custody.</p>
+          </article>
+          <article>
+            <span>02 / Policy</span>
+            <h3>Set the boundaries.</h3>
+            <p>Specify limits and permitted activity before Sherpa prepares transactions.</p>
+          </article>
+          <article>
+            <span>03 / Execution</span>
+            <h3>Approve the action.</h3>
+            <p>Review the plan and provide the final signature from your wallet.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="capabilities" aria-label="Sherpa system capabilities">
+        <div class="capability-intro">
+          <span>One system</span>
+          <h2>Intelligence, strategy, and execution share the same controls.</h2>
+        </div>
+        <dl>
+          <div>
+            <dt>Portfolio context</dt>
+            <dd>Connected wallets and multi-chain positions</dd>
+          </div>
+          <div>
+            <dt>Conversation</dt>
+            <dd>Plain-language analysis and explanations</dd>
+          </div>
+          <div>
+            <dt>Automation</dt>
+            <dd>DCA and copy-trading strategy rules</dd>
+          </div>
+          <div>
+            <dt>Approval</dt>
+            <dd>Policy checks followed by wallet signature</dd>
+          </div>
+        </dl>
+      </section>
+
+      <footer class="draft-footer">
+        <div>
+          <span>Risk / 01</span>
+          <p>Crypto assets and automated strategies involve market, protocol, and smart-contract risk. Policy controls reduce unintended actions; they do not remove investment risk or guarantee outcomes.</p>
+        </div>
+        <a href="/drafts/">Compare all directions <span aria-hidden="true">↗</span></a>
+      </footer>
+    </main>
+  </div>
+</DraftLayout>
+
+<style is:global>
+  .policy-page {
+    --draft-paper: #eeece4;
+    --draft-paper-bright: #f7f5ef;
+    --draft-ink: #292d2b;
+    --draft-muted: #626863;
+    --draft-rule: #bbb8ae;
+    --draft-accent: #24463a;
+    --draft-accent-dark: #18342b;
+    --draft-blue: #617985;
+    --draft-amber: #a9763c;
+    --draft-focus: #9a611f;
+    min-height: 100vh;
+    background: var(--draft-paper);
+  }
+</style>
+
+<style>
+  main {
+    overflow: hidden;
+  }
+
+  .hero {
+    display: grid;
+    width: min(calc(100% - 4rem), 1180px);
+    min-height: min(830px, calc(100svh - 68px));
+    margin-inline: auto;
+    grid-template-columns: minmax(0, 1.05fr) minmax(430px, 0.95fr);
+    align-items: center;
+    gap: clamp(3rem, 7vw, 7rem);
+    padding: clamp(5rem, 9vw, 8rem) 0;
+  }
+
+  .hero-copy {
+    max-width: 670px;
+  }
+
+  .status-line {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    color: var(--draft-accent);
+    font-size: 0.69rem;
+    font-weight: 750;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .status-line > span {
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 50%;
+    background: var(--draft-accent);
+    box-shadow: 0 0 0 5px rgba(36, 70, 58, 0.09);
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+    font-weight: 400;
+  }
+
+  h1 {
+    margin-top: 1.4rem;
+    font-size: clamp(3.35rem, 6.2vw, 6.15rem);
+    letter-spacing: -0.062em;
+    line-height: 0.96;
+    text-wrap: balance;
+  }
+
+  .hero-intro {
+    max-width: 610px;
+    margin-top: 2rem;
+    color: var(--draft-muted);
+    font-size: clamp(1rem, 1.4vw, 1.12rem);
+    line-height: 1.72;
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+    margin-top: 2.2rem;
+  }
+
+  .primary-action,
+  .secondary-action {
+    display: inline-flex;
+    min-height: 3.2rem;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 0.8rem 1.25rem;
+    border: 1px solid var(--draft-accent);
+    border-radius: 8px;
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.055em;
+    transition: background-color 180ms ease, color 180ms ease, transform 180ms ease;
+  }
+
+  .primary-action {
+    background: var(--draft-accent);
+    color: var(--draft-paper-bright);
+  }
+
+  .primary-action:hover {
+    transform: translateY(-2px);
+    background: var(--draft-accent-dark);
+  }
+
+  .secondary-action:hover {
+    background: rgba(36, 70, 58, 0.06);
+  }
+
+  .route-instrument {
+    border: 1px solid var(--draft-rule);
+    background: var(--draft-paper-bright);
+  }
+
+  .instrument-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: 1.35rem;
+    border-bottom: 1px solid var(--draft-rule);
+  }
+
+  .instrument-header span,
+  .gate-state,
+  .section-heading > p,
+  .gate-grid article > span,
+  .capability-intro > span,
+  .draft-footer span {
+    color: var(--draft-muted);
+    font-size: 0.62rem;
+    font-weight: 750;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+  }
+
+  .instrument-header h2 {
+    margin-top: 0.4rem;
+    font-size: 1.55rem;
+  }
+
+  .instrument-state {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    white-space: nowrap;
+  }
+
+  .instrument-state i {
+    width: 0.43rem;
+    height: 0.43rem;
+    border-radius: 50%;
+    background: var(--draft-accent);
+  }
+
+  .route-instrument ol {
+    position: relative;
+    padding: 0 1.35rem;
+  }
+
+  .route-instrument ol::before {
+    position: absolute;
+    top: 2.2rem;
+    bottom: 2.2rem;
+    left: 2.35rem;
+    width: 1px;
+    background: var(--draft-rule);
+    content: '';
+  }
+
+  .route-instrument li {
+    position: relative;
+    display: grid;
+    min-height: 78px;
+    border-bottom: 1px solid var(--draft-rule);
+    grid-template-columns: 2rem 1fr auto;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .gate-number {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    width: 2rem;
+    height: 2rem;
+    place-items: center;
+    border: 1px solid var(--draft-rule);
+    border-radius: 50%;
+    background: var(--draft-paper-bright);
+    color: var(--draft-muted);
+    font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
+    font-size: 0.58rem;
+  }
+
+  .route-instrument li strong {
+    font-size: 0.88rem;
+  }
+
+  .route-instrument li p {
+    margin-top: 0.2rem;
+    color: var(--draft-muted);
+    font-size: 0.7rem;
+  }
+
+  .route-instrument li.final .gate-number,
+  .route-instrument li.final .gate-state {
+    background: var(--draft-accent);
+    color: var(--draft-paper-bright);
+  }
+
+  .route-instrument li.final .gate-number {
+    border-color: var(--draft-accent);
+  }
+
+  .gate-state {
+    min-width: 4.2rem;
+    padding: 0.4rem 0.55rem;
+    border: 1px solid var(--draft-rule);
+    border-radius: 999px;
+    text-align: center;
+  }
+
+  .instrument-note {
+    padding: 1rem 1.35rem;
+    color: var(--draft-muted);
+    font-size: 0.68rem;
+    line-height: 1.55;
+  }
+
+  .policy-gates {
+    padding: clamp(6rem, 10vw, 10rem) max(2rem, calc((100vw - 1180px) / 2));
+    border-top: 1px solid var(--draft-rule);
+    border-bottom: 1px solid var(--draft-rule);
+    background: var(--draft-paper-bright);
+  }
+
+  .section-heading {
+    display: grid;
+    grid-template-columns: 0.7fr 1.4fr 0.8fr;
+    align-items: end;
+    gap: 3rem;
+  }
+
+  .section-heading > p,
+  .gate-grid article > span,
+  .capability-intro > span {
+    color: var(--draft-accent);
+  }
+
+  .section-heading h2 {
+    max-width: 650px;
+    font-size: clamp(2.7rem, 5vw, 5rem);
+    letter-spacing: -0.055em;
+    line-height: 1;
+  }
+
+  .section-heading > span {
+    color: var(--draft-muted);
+    font-size: 0.84rem;
+    line-height: 1.65;
+  }
+
+  .gate-grid {
+    display: grid;
+    margin-top: clamp(4rem, 7vw, 7rem);
+    border-top: 1px solid var(--draft-rule);
+    border-left: 1px solid var(--draft-rule);
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .gate-grid article {
+    min-height: 340px;
+    padding: 1.6rem;
+    border-right: 1px solid var(--draft-rule);
+    border-bottom: 1px solid var(--draft-rule);
+  }
+
+  .gate-grid h3 {
+    margin-top: 8rem;
+    font-size: clamp(1.8rem, 3vw, 2.7rem);
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+  }
+
+  .gate-grid p {
+    max-width: 310px;
+    margin-top: 1rem;
+    color: var(--draft-muted);
+    font-size: 0.84rem;
+    line-height: 1.7;
+  }
+
+  .capabilities {
+    display: grid;
+    width: min(calc(100% - 4rem), 1180px);
+    margin-inline: auto;
+    padding: clamp(6rem, 10vw, 10rem) 0;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+  }
+
+  .capability-intro h2 {
+    max-width: 580px;
+    margin-top: 1.2rem;
+    font-size: clamp(2.5rem, 4.5vw, 4.4rem);
+    letter-spacing: -0.05em;
+    line-height: 1.02;
+  }
+
+  dl {
+    margin: 0;
+    border-top: 1px solid var(--draft-rule);
+  }
+
+  dl div {
+    display: grid;
+    padding: 1.4rem 0;
+    border-bottom: 1px solid var(--draft-rule);
+    grid-template-columns: 0.75fr 1fr;
+    gap: 1rem;
+  }
+
+  dt {
+    color: var(--draft-ink);
+    font-size: 0.78rem;
+    font-weight: 700;
+  }
+
+  dd {
+    margin: 0;
+    color: var(--draft-muted);
+    font-size: 0.78rem;
+  }
+
+  .draft-footer {
+    display: flex;
+    width: min(calc(100% - 4rem), 1180px);
+    margin-inline: auto;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 3rem;
+    padding: 2rem 0 3rem;
+    border-top: 1px solid var(--draft-rule);
+    color: var(--draft-muted);
+    font-size: 0.72rem;
+  }
+
+  .draft-footer div {
+    display: grid;
+    max-width: 800px;
+    grid-template-columns: 110px 1fr;
+    gap: 1rem;
+  }
+
+  .draft-footer a {
+    color: var(--draft-ink);
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 940px) {
+    .hero,
+    .capabilities,
+    .draft-footer {
+      width: min(calc(100% - 2rem), 1180px);
+    }
+
+    .hero {
+      min-height: auto;
+      grid-template-columns: 1fr;
+      gap: 3.5rem;
+      padding-block: 5rem;
+    }
+
+    .route-instrument {
+      max-width: 660px;
+    }
+
+    .policy-gates {
+      padding-inline: 1rem;
+    }
+
+    .section-heading,
+    .capabilities {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+
+  @media (max-width: 650px) {
+    h1 {
+      font-size: clamp(3.05rem, 14vw, 4.3rem);
+    }
+
+    .actions {
+      display: grid;
+    }
+
+    .primary-action,
+    .secondary-action {
+      width: 100%;
+    }
+
+    .instrument-header {
+      display: grid;
+    }
+
+    .route-instrument li {
+      grid-template-columns: 2rem 1fr;
+      padding-block: 0.8rem;
+    }
+
+    .gate-state {
+      grid-column: 2;
+      width: fit-content;
+    }
+
+    .gate-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .gate-grid article {
+      min-height: 280px;
+    }
+
+    .gate-grid h3 {
+      margin-top: 5rem;
+    }
+
+    dl div,
+    .draft-footer,
+    .draft-footer div {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

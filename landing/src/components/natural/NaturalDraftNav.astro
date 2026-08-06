@@ -1,0 +1,169 @@
+---
+interface Props {
+  current?: 'index' | 'signal' | 'prompt' | 'approval';
+}
+
+const { current = 'index' } = Astro.props;
+
+const links = [
+  { id: 'signal', href: '/drafts/natural/soft-signal/', number: '01', label: 'Soft signal' },
+  { id: 'prompt', href: '/drafts/natural/prompt-first/', number: '02', label: 'Prompt first' },
+  { id: 'approval', href: '/drafts/natural/approval-loop/', number: '03', label: 'Approval loop' }
+];
+---
+
+<header class="natural-header">
+  <nav class="natural-nav" aria-label="Natural-inspired redesign drafts">
+    <a class="natural-brand" href="/drafts/natural/" aria-label="Sherpa Natural-inspired redesign studies">
+      <span class="brand-dot" aria-hidden="true"></span>
+      Sherpa
+      <small>Natural studies</small>
+    </a>
+
+    <div class="natural-links" aria-label="Choose a Natural-inspired direction">
+      {links.map((link) => (
+        <a href={link.href} aria-current={current === link.id ? 'page' : undefined}>
+          <span>{link.number}</span>{link.label}
+        </a>
+      ))}
+    </div>
+
+    <a class="previous-drafts" href="/drafts/">Earlier studies <span aria-hidden="true">↗</span></a>
+  </nav>
+</header>
+
+<style>
+  .natural-header {
+    position: relative;
+    z-index: 20;
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+  }
+
+  .natural-nav {
+    display: grid;
+    width: min(calc(100% - 3rem), 1160px);
+    min-height: 64px;
+    margin-inline: auto;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .natural-brand,
+  .natural-links a,
+  .previous-drafts {
+    font-size: 0.69rem;
+    font-weight: 500;
+    letter-spacing: -0.035em;
+  }
+
+  .natural-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    width: fit-content;
+  }
+
+  .brand-dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: var(--natural-accent);
+  }
+
+  .natural-brand small {
+    margin-left: 0.2rem;
+    color: var(--natural-muted);
+    font-size: 0.58rem;
+    letter-spacing: -0.035em;
+  }
+
+  .natural-links {
+    display: flex;
+    align-items: center;
+    gap: 0.18rem;
+  }
+
+  .natural-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.32rem;
+    padding: 0.5rem 0.62rem;
+    border-radius: 8px;
+    color: var(--natural-muted);
+    transition: background-color 160ms ease, color 160ms ease;
+  }
+
+  .natural-links a span {
+    color: var(--natural-ink);
+    font-size: 0.54rem;
+    opacity: 0.48;
+  }
+
+  .natural-links a:hover,
+  .natural-links a[aria-current='page'] {
+    background: #f4f4f3;
+    color: var(--natural-ink);
+  }
+
+  .previous-drafts {
+    justify-self: end;
+    color: var(--natural-muted);
+  }
+
+  .previous-drafts:hover {
+    color: var(--natural-ink);
+  }
+
+  @media (max-width: 840px) {
+    .natural-nav {
+      width: min(calc(100% - 2rem), 1160px);
+      grid-template-columns: 1fr auto;
+      gap: 0.2rem 1rem;
+      padding-top: 0.55rem;
+    }
+
+    .natural-links {
+      grid-column: 1 / -1;
+      grid-row: 2;
+      margin-inline: -1rem;
+      padding: 0.45rem 1rem 0.7rem;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .natural-links::-webkit-scrollbar {
+      display: none;
+    }
+
+    .natural-links a {
+      white-space: nowrap;
+    }
+  }
+
+  @media (max-width: 500px) {
+    .natural-brand small {
+      display: none;
+    }
+
+    .natural-links {
+      display: grid;
+      overflow: visible;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.22rem;
+    }
+
+    .natural-links a {
+      display: grid;
+      padding: 0.48rem 0.15rem;
+      justify-items: center;
+      gap: 0.08rem;
+      font-size: 0.54rem;
+      line-height: 1.25;
+      text-align: center;
+      white-space: normal;
+    }
+  }
+</style>

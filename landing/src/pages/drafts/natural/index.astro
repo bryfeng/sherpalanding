@@ -1,0 +1,317 @@
+---
+import NaturalDraftLayout from '../../../layouts/NaturalDraftLayout.astro';
+import NaturalDraftNav from '../../../components/natural/NaturalDraftNav.astro';
+
+const directions = [
+  {
+    href: '/drafts/natural/soft-signal/',
+    number: '01',
+    name: 'Soft signal',
+    copy: 'A calm, centered portfolio prompt with one ambient object and a clear route to control.',
+    className: 'signal'
+  },
+  {
+    href: '/drafts/natural/prompt-first/',
+    number: '02',
+    name: 'Prompt first',
+    copy: 'An AI conversation direction that shows useful questions without inventing chat results.',
+    className: 'prompt'
+  },
+  {
+    href: '/drafts/natural/approval-loop/',
+    number: '03',
+    name: 'Approval loop',
+    copy: 'A light, tangible way to show policy checks and final wallet approval.',
+    className: 'approval'
+  }
+];
+---
+
+<NaturalDraftLayout
+  title="Natural-inspired Sherpa design studies"
+  description="Three clean, task-focused redesign studies for Sherpa inspired by Natural's interface language."
+>
+  <div class="natural-index">
+    <NaturalDraftNav current="index" />
+
+    <main id="draft-main">
+      <section class="intro" aria-labelledby="natural-title">
+        <div class="ambient ambient-one" aria-hidden="true"></div>
+        <div class="ambient ambient-two" aria-hidden="true"></div>
+        <p class="eyebrow">New reference study</p>
+        <h1 id="natural-title">A few quieter ways to introduce Sherpa.</h1>
+        <p class="intro-copy">Less landing-page theater. More space around the first helpful thing Sherpa can do for you.</p>
+      </section>
+
+      <section class="direction-list" aria-label="Natural-inspired design directions">
+        {directions.map((direction) => (
+          <a class:list={['direction', direction.className]} href={direction.href}>
+            <span class="direction-number">{direction.number}</span>
+            <div class="direction-art" aria-hidden="true"><i></i><i></i><i></i></div>
+            <div class="direction-copy">
+              <h2>{direction.name}</h2>
+              <p>{direction.copy}</p>
+            </div>
+            <span class="direction-link">View <b aria-hidden="true">↗</b></span>
+          </a>
+        ))}
+      </section>
+
+      <p class="note">Reference translated, not duplicated: no product screenshots, people, balances, returns, or payment claims.</p>
+    </main>
+  </div>
+</NaturalDraftLayout>
+
+<style is:global>
+  .natural-index {
+    --natural-ink: #161514;
+    --natural-muted: #696867;
+    --natural-accent: #85d4bf;
+    --natural-focus: #5da98f;
+    min-height: 100vh;
+    background: #fff;
+  }
+</style>
+
+<style>
+  main {
+    width: min(calc(100% - 3rem), 1060px);
+    margin-inline: auto;
+    padding-bottom: 4rem;
+  }
+
+  .intro {
+    position: relative;
+    display: grid;
+    min-height: 460px;
+    place-content: center;
+    justify-items: center;
+    overflow: hidden;
+    padding: 5rem 1.5rem 4rem;
+    text-align: center;
+  }
+
+  .ambient {
+    position: absolute;
+    width: 14rem;
+    height: 14rem;
+    border-radius: 2rem;
+    filter: blur(42px);
+    opacity: 0.34;
+    pointer-events: none;
+  }
+
+  .ambient-one {
+    top: 8%;
+    left: 17%;
+    background: #90d8c0;
+    animation: breathe-left 12s ease-in-out infinite;
+  }
+
+  .ambient-two {
+    right: 15%;
+    bottom: 8%;
+    width: 11rem;
+    height: 11rem;
+    background: #efdca7;
+    animation: breathe-right 13s ease-in-out infinite;
+  }
+
+  @keyframes breathe-left {
+    50% { transform: translate(22px, 12px) scale(1.06); }
+  }
+
+  @keyframes breathe-right {
+    50% { transform: translate(-18px, -10px) scale(0.96); }
+  }
+
+  .eyebrow,
+  .direction-number,
+  .direction-link,
+  .note {
+    position: relative;
+    z-index: 1;
+    color: var(--natural-muted);
+    font-size: 0.66rem;
+    letter-spacing: -0.04em;
+  }
+
+  h1,
+  h2 {
+    position: relative;
+    z-index: 1;
+    font-weight: 400;
+    letter-spacing: -0.075em;
+  }
+
+  h1 {
+    max-width: 710px;
+    margin-top: 1.15rem;
+    font-size: clamp(2.6rem, 5.4vw, 5.3rem);
+    line-height: 0.98;
+  }
+
+  .intro-copy {
+    position: relative;
+    z-index: 1;
+    max-width: 520px;
+    margin-top: 1.45rem;
+    color: var(--natural-muted);
+    font-size: 0.88rem;
+    line-height: 1.6;
+  }
+
+  .direction-list {
+    display: grid;
+    border-top: 1px solid #ececeb;
+  }
+
+  .direction {
+    display: grid;
+    min-height: 180px;
+    align-items: center;
+    border-bottom: 1px solid #ececeb;
+    grid-template-columns: 42px 180px 1fr auto;
+    gap: 1.5rem;
+    padding: 1rem 0;
+    transition: background-color 180ms ease;
+  }
+
+  .direction:hover {
+    background: #fafafa;
+  }
+
+  .direction-number {
+    padding-left: 0.2rem;
+  }
+
+  .direction-art {
+    position: relative;
+    width: 150px;
+    height: 116px;
+    overflow: hidden;
+    border-radius: 12px;
+    background: #f6f6f5;
+  }
+
+  .direction-art i {
+    position: absolute;
+    display: block;
+  }
+
+  .signal .direction-art i:first-child {
+    top: 20px;
+    left: 43px;
+    width: 62px;
+    height: 62px;
+    border-radius: 10px;
+    background: #88d4bd;
+    filter: blur(1px);
+  }
+
+  .signal .direction-art i:nth-child(2) {
+    top: 55px;
+    left: 103px;
+    width: 24px;
+    height: 1px;
+    background: #b9b9b7;
+  }
+
+  .signal .direction-art i:nth-child(3) {
+    top: 50px;
+    right: 11px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #e6d39e;
+  }
+
+  .prompt .direction-art i {
+    right: 23px;
+    left: 23px;
+    height: 1px;
+    background: #a9a9a7;
+  }
+
+  .prompt .direction-art i:first-child { top: 32px; width: 56%; background: #161514; }
+  .prompt .direction-art i:nth-child(2) { top: 57px; }
+  .prompt .direction-art i:nth-child(3) { top: 82px; width: 46%; background: #82b8a6; }
+
+  .approval .direction-art i {
+    top: 28px;
+    width: 34px;
+    height: 60px;
+    border-radius: 7px;
+    background: #fff;
+  }
+
+  .approval .direction-art i:first-child { left: 22px; border: 1px solid #d5d5d3; }
+  .approval .direction-art i:nth-child(2) { left: 59px; border: 1px solid #d5d5d3; }
+  .approval .direction-art i:nth-child(3) { left: 96px; background: #80cbb5; }
+
+  h2 {
+    font-size: clamp(1.45rem, 2.8vw, 2.25rem);
+    line-height: 1.05;
+  }
+
+  .direction-copy p {
+    max-width: 520px;
+    margin-top: 0.65rem;
+    color: var(--natural-muted);
+    font-size: 0.77rem;
+    line-height: 1.55;
+  }
+
+  .direction-link {
+    padding-right: 0.35rem;
+    color: var(--natural-ink);
+  }
+
+  .direction-link b {
+    margin-left: 0.2rem;
+    font-weight: 400;
+  }
+
+  .note {
+    margin: 1.1rem 0.2rem 0;
+    color: var(--natural-muted);
+    font-size: 0.6rem;
+  }
+
+  @media (max-width: 700px) {
+    main {
+      width: min(calc(100% - 2rem), 1060px);
+    }
+
+    .intro {
+      min-height: 420px;
+      padding-inline: 0;
+    }
+
+    .direction {
+      grid-template-columns: 28px 100px 1fr;
+      gap: 0.8rem;
+    }
+
+    .direction-art {
+      width: 92px;
+      height: 92px;
+    }
+
+    .signal .direction-art i:first-child { top: 22px; left: 22px; width: 48px; height: 48px; }
+    .signal .direction-art i:nth-child(2) { top: 52px; left: 68px; width: 13px; }
+    .signal .direction-art i:nth-child(3) { top: 47px; right: 6px; }
+    .prompt .direction-art i { right: 14px; left: 14px; }
+    .prompt .direction-art i:first-child { top: 26px; }
+    .prompt .direction-art i:nth-child(2) { top: 46px; }
+    .prompt .direction-art i:nth-child(3) { top: 66px; }
+    .approval .direction-art i { top: 22px; width: 19px; height: 48px; }
+    .approval .direction-art i:first-child { left: 16px; }
+    .approval .direction-art i:nth-child(2) { left: 37px; }
+    .approval .direction-art i:nth-child(3) { left: 58px; }
+
+    .direction-link {
+      display: none;
+    }
+  }
+</style>

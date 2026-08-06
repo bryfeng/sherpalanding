@@ -1,0 +1,304 @@
+---
+import NaturalDraftLayout from '../../../layouts/NaturalDraftLayout.astro';
+import NaturalDraftNav from '../../../components/natural/NaturalDraftNav.astro';
+
+const prompts = [
+  'Where is my exposure concentrated?',
+  'What changed across the wallets I connect?',
+  'How might a recurring buy fit my plan?'
+];
+---
+
+<NaturalDraftLayout
+  title="Prompt First — Natural-inspired Sherpa study"
+  description="A calm, conversation-led Sherpa landing direction inspired by Natural's interface language."
+  accent="#d2c597"
+>
+  <div class="prompt-page">
+    <NaturalDraftNav current="prompt" />
+
+    <main id="draft-main">
+      <section class="hero" aria-labelledby="prompt-title">
+        <div class="halo halo-one" aria-hidden="true"></div>
+        <div class="halo halo-two" aria-hidden="true"></div>
+        <p class="eyebrow">A conversation, grounded in your portfolio</p>
+        <h1 id="prompt-title">What would you like to understand?</h1>
+        <p class="hero-copy">Start with a question. Sherpa uses the wallets and chains you connect to give context, explain trade-offs, and help you decide what happens next.</p>
+
+        <a class="prompt-bar" href="https://app.runsherpa.ai" aria-label="Open Sherpa to ask a portfolio question">
+          <span>Ask Sherpa about your portfolio…</span>
+          <b aria-hidden="true">↗</b>
+        </a>
+      </section>
+
+      <section class="questions" aria-labelledby="questions-title">
+        <div class="questions-heading">
+          <p id="questions-title">Questions you can ask</p>
+          <span>Examples only—no made-up responses</span>
+        </div>
+        <ol>
+          {prompts.map((prompt, index) => (
+            <li>
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <p>{prompt}</p>
+              <i aria-hidden="true">↗</i>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <section class="outcome" aria-labelledby="outcome-title">
+        <div>
+          <p>What follows a question</p>
+          <h2 id="outcome-title">Context first. Options second. Action only when you choose it.</h2>
+        </div>
+        <div class="outcome-list">
+          <span>Portfolio context</span>
+          <span>Clear explanation</span>
+          <span>Strategy options</span>
+          <span>Policy-aware plan</span>
+        </div>
+      </section>
+
+      <footer>
+        <p>Sherpa is non-custodial. Crypto assets and automated strategies involve market, protocol, and smart-contract risk; no outcomes or returns are guaranteed.</p>
+        <a href="/drafts/natural/">All Natural studies <span aria-hidden="true">↗</span></a>
+      </footer>
+    </main>
+  </div>
+</NaturalDraftLayout>
+
+<style is:global>
+  .prompt-page {
+    --natural-ink: #161514;
+    --natural-muted: #62615f;
+    --natural-accent: #d2c597;
+    --natural-focus: #9d8d52;
+    min-height: 100vh;
+    background: #fff;
+  }
+</style>
+
+<style>
+  main {
+    width: min(calc(100% - 3rem), 980px);
+    margin-inline: auto;
+  }
+
+  .hero {
+    position: relative;
+    display: grid;
+    min-height: min(720px, calc(100svh - 64px));
+    place-content: center;
+    justify-items: center;
+    overflow: hidden;
+    padding: 5rem 1rem 4rem;
+    text-align: center;
+  }
+
+  .halo {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(50px);
+    opacity: 0.16;
+    pointer-events: none;
+  }
+
+  .halo-one {
+    top: 13%;
+    left: 12%;
+    width: 16rem;
+    height: 16rem;
+    background: #d5c88e;
+  }
+
+  .halo-two {
+    right: 14%;
+    bottom: 12%;
+    width: 13rem;
+    height: 13rem;
+    background: #b5d5c8;
+  }
+
+  .eyebrow,
+  .questions-heading,
+  .outcome > div > p,
+  .questions li > span {
+    position: relative;
+    z-index: 1;
+    color: var(--natural-muted);
+    font-size: 0.66rem;
+    letter-spacing: -0.04em;
+  }
+
+  h1,
+  h2 {
+    position: relative;
+    z-index: 1;
+    font-weight: 400;
+    letter-spacing: -0.08em;
+  }
+
+  h1 {
+    max-width: 720px;
+    margin-top: 1.2rem;
+    font-size: clamp(2.65rem, 5.8vw, 5.5rem);
+    line-height: 0.98;
+  }
+
+  .hero-copy {
+    position: relative;
+    z-index: 1;
+    max-width: 610px;
+    margin-top: 1.4rem;
+    color: var(--natural-muted);
+    font-size: 0.86rem;
+    line-height: 1.65;
+  }
+
+  .prompt-bar {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    width: min(100%, 500px);
+    min-height: 4rem;
+    margin-top: 2.25rem;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.85rem 1rem 0.85rem 1.2rem;
+    border-radius: 9px;
+    background: #f4f4f3;
+    color: #777674;
+    font-size: 0.75rem;
+    letter-spacing: -0.04em;
+    transition: background-color 160ms ease, transform 160ms ease;
+  }
+
+  .prompt-bar:hover {
+    transform: translateY(-2px);
+    background: #ededeb;
+  }
+
+  .prompt-bar b {
+    display: grid;
+    width: 1.9rem;
+    height: 1.9rem;
+    flex: 0 0 auto;
+    place-items: center;
+    border-radius: 7px;
+    background: #161514;
+    color: #fff;
+    font-weight: 400;
+  }
+
+  .questions {
+    padding: 1rem 0 5rem;
+    border-top: 1px solid #ececeb;
+  }
+
+  .questions-heading {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.9rem 0;
+  }
+
+  .questions-heading span {
+    color: var(--natural-muted);
+    font-size: 0.58rem;
+  }
+
+  .questions ol {
+    border-top: 1px solid #ececeb;
+  }
+
+  .questions li {
+    display: grid;
+    min-height: 124px;
+    align-items: center;
+    border-bottom: 1px solid #ececeb;
+    grid-template-columns: 54px 1fr auto;
+    gap: 1.2rem;
+    transition: background-color 160ms ease;
+  }
+
+  .questions li:hover {
+    background: #fafafa;
+  }
+
+  .questions li > span {
+    padding-left: 0.25rem;
+    color: #a19f95;
+  }
+
+  .questions li p {
+    font-size: clamp(1.05rem, 2.4vw, 1.6rem);
+    letter-spacing: -0.07em;
+    line-height: 1.2;
+  }
+
+  .questions li i {
+    padding-right: 0.4rem;
+    color: var(--natural-muted);
+    font-size: 0.82rem;
+    font-style: normal;
+  }
+
+  .outcome {
+    display: grid;
+    margin-bottom: 4rem;
+    padding: clamp(2.4rem, 5vw, 4.5rem);
+    border-radius: 14px;
+    background: #f7f6f2;
+    grid-template-columns: 1.3fr 0.7fr;
+    gap: 3rem;
+  }
+
+  .outcome > div > p {
+    color: #908866;
+  }
+
+  h2 {
+    max-width: 590px;
+    margin-top: 1rem;
+    font-size: clamp(2rem, 4.2vw, 4rem);
+    line-height: 1.02;
+  }
+
+  .outcome-list {
+    align-self: end;
+    border-top: 1px solid #ddd9ca;
+  }
+
+  .outcome-list span {
+    display: block;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid #ddd9ca;
+    color: var(--natural-muted);
+    font-size: 0.68rem;
+  }
+
+  footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: 1.8rem 0 2.8rem;
+    border-top: 1px solid #ececeb;
+    color: var(--natural-muted);
+    font-size: 0.6rem;
+    line-height: 1.55;
+  }
+
+  footer p { max-width: 670px; }
+  footer a { color: var(--natural-ink); white-space: nowrap; }
+
+  @media (max-width: 650px) {
+    main { width: min(calc(100% - 2rem), 980px); }
+    .hero { min-height: 610px; padding-inline: 0; }
+    h1 { font-size: clamp(2.55rem, 12vw, 3.6rem); }
+    .questions li { min-height: 112px; grid-template-columns: 34px 1fr auto; gap: 0.65rem; }
+    .outcome { grid-template-columns: 1fr; gap: 2.5rem; padding: 2rem 1.3rem; }
+    footer { display: grid; }
+  }
+</style>

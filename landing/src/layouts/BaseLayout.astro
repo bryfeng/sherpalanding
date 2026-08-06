@@ -5,35 +5,45 @@ interface Props {
 }
 
 const {
-  title = 'Sherpa - DeFi Execution Engine',
-  description = 'Execute DeFi strategies automatically. Set up DCA, automated swaps, and risk policies with AI-powered guardrails.'
+  title = 'Sherpa — The trading platform for your agents',
+  description = 'Give your agents portfolio context and policy-aware trading workflows across chains. You define the mandate, keep custody, and control authorization.'
 } = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, 'https://runsherpa.ai');
+const socialImageURL = new URL('/og.png', 'https://runsherpa.ai');
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
+    <meta name="theme-color" content="#08110f" />
+    <meta name="color-scheme" content="dark" />
+    <link rel="canonical" href={canonicalURL} />
 
-    <!-- Open Graph -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content="https://runsherpa.ai/og-image.png" />
-    <meta property="og:url" content="https://runsherpa.ai" />
+    <meta property="og:url" content={canonicalURL} />
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Sherpa" />
+    <meta property="og:image" content={socialImageURL} />
+    <meta property="og:image:width" content="1734" />
+    <meta property="og:image:height" content="907" />
+    <meta property="og:image:alt" content="Sherpa — The trading platform for your agents." />
 
-    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content="https://runsherpa.ai/og-image.png" />
+    <meta name="twitter:image" content={socialImageURL} />
+    <meta name="twitter:image:alt" content="Sherpa — The trading platform for your agents." />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
   </head>
   <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
     <slot />
   </body>
 </html>

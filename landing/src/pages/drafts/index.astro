@@ -1,0 +1,327 @@
+---
+import DraftLayout from '../../layouts/DraftLayout.astro';
+import DraftNav from '../../components/drafts/DraftNav.astro';
+
+const drafts = [
+  {
+    number: '01',
+    name: 'Alpine Ledger',
+    href: '/drafts/alpine-ledger/',
+    type: 'Balanced · Brand-led',
+    title: 'A clearer route through your onchain portfolio.',
+    description: 'Warm editorial confidence, alpine navigation, and one honest workflow path.',
+    className: 'alpine'
+  },
+  {
+    number: '02',
+    name: 'Field Notes',
+    href: '/drafts/field-notes/',
+    type: 'Conversational · Editorial',
+    title: 'Turn portfolio questions into informed next steps.',
+    description: 'Conversation is presented as research material—not a simulated chat window.',
+    className: 'notes'
+  },
+  {
+    number: '03',
+    name: 'Policy Route',
+    href: '/drafts/policy-route/',
+    type: 'Controlled · Technical',
+    title: 'Automate the plan. Keep control of every execution.',
+    description: 'Policy gates and wallet approval make automation feel disciplined and legible.',
+    className: 'policy'
+  }
+];
+---
+
+<DraftLayout
+  title="Sherpa redesign studies"
+  description="Three private redesign studies for the Sherpa landing page."
+>
+  <div class="draft-index">
+    <DraftNav current="index" />
+
+    <main id="draft-main">
+      <section class="index-intro">
+        <div>
+          <p class="kicker">Design study · August 2026</p>
+          <h1>Three ways to make Sherpa feel calm, credible, and distinctly its own.</h1>
+        </div>
+        <p class="intro-copy">
+          Each direction translates editorial warmth and technical precision into Sherpa’s world. They use truthful copy, lightweight CSS, and workflow diagrams instead of a fake product screenshot.
+        </p>
+      </section>
+
+      <section class="draft-grid" aria-label="Available redesign drafts">
+        {drafts.map((draft) => (
+          <article class:list={['draft-card', draft.className]}>
+            <a href={draft.href} aria-label={`View ${draft.name} design draft`}>
+              <div class="card-meta">
+                <span>{draft.number}</span>
+                <span>{draft.type}</span>
+              </div>
+              <div class="miniature" aria-hidden="true">
+                <i></i><i></i><i></i><i></i>
+              </div>
+              <div class="card-copy">
+                <p>{draft.name}</p>
+                <h2>{draft.title}</h2>
+                <span>{draft.description}</span>
+              </div>
+              <div class="view-draft">View direction <span aria-hidden="true">↗</span></div>
+            </a>
+          </article>
+        ))}
+      </section>
+
+      <aside class="study-note">
+        <span>Shared principle</span>
+        <p>Editorial warmth above the fold. Product precision when Sherpa explains, plans, and executes.</p>
+      </aside>
+    </main>
+  </div>
+</DraftLayout>
+
+<style is:global>
+  .draft-index {
+    --draft-paper: #f3f0e8;
+    --draft-ink: #17251d;
+    --draft-muted: #69645c;
+    --draft-rule: #c9c2b5;
+    --draft-accent: #758c75;
+    --draft-accent-dark: #365846;
+    --draft-focus: #9a633d;
+    min-height: 100vh;
+    background: var(--draft-paper);
+  }
+</style>
+
+<style>
+  main {
+    width: min(calc(100% - 4rem), 1180px);
+    margin-inline: auto;
+    padding: clamp(4.5rem, 8vw, 8rem) 0 6rem;
+  }
+
+  .index-intro {
+    display: grid;
+    grid-template-columns: minmax(0, 1.7fr) minmax(260px, 0.65fr);
+    align-items: end;
+    gap: 3rem;
+  }
+
+  .kicker,
+  .card-meta,
+  .card-copy > p,
+  .study-note > span {
+    color: var(--draft-muted);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  h1,
+  h2 {
+    font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+    font-weight: 400;
+  }
+
+  h1 {
+    max-width: 850px;
+    margin-top: 1.25rem;
+    font-size: clamp(2.7rem, 5.6vw, 5.4rem);
+    letter-spacing: -0.055em;
+    line-height: 0.98;
+  }
+
+  .intro-copy {
+    max-width: 390px;
+    color: var(--draft-muted);
+    font-size: 1rem;
+    line-height: 1.75;
+  }
+
+  .draft-grid {
+    display: grid;
+    margin-top: clamp(4rem, 8vw, 7.5rem);
+    border-top: 1px solid var(--draft-rule);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .draft-card {
+    min-width: 0;
+    border-right: 1px solid var(--draft-rule);
+  }
+
+  .draft-card:first-child {
+    border-left: 1px solid var(--draft-rule);
+  }
+
+  .draft-card a {
+    display: flex;
+    min-height: 620px;
+    flex-direction: column;
+    padding: 1.35rem;
+    border-bottom: 1px solid var(--draft-rule);
+    transition: background-color 220ms ease;
+  }
+
+  .draft-card a:hover {
+    background: rgba(255, 255, 255, 0.26);
+  }
+
+  .card-meta {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .card-meta span:first-child {
+    color: var(--draft-ink);
+  }
+
+  .miniature {
+    position: relative;
+    height: 220px;
+    margin: 2rem -0.2rem 2.2rem;
+    overflow: hidden;
+    border: 1px solid var(--draft-rule);
+  }
+
+  .alpine .miniature {
+    background: #e7e2d7;
+  }
+
+  .alpine .miniature i {
+    position: absolute;
+    inset: 18% 12%;
+    border: 1px solid rgba(54, 88, 70, 0.36);
+    border-radius: 47% 53% 42% 58% / 58% 38% 62% 42%;
+  }
+
+  .alpine .miniature i:nth-child(2) { inset: 28% 21%; transform: rotate(8deg); }
+  .alpine .miniature i:nth-child(3) { inset: 38% 30%; transform: rotate(-7deg); }
+  .alpine .miniature i:nth-child(4) { inset: 48% 40%; }
+
+  .notes .miniature {
+    background: #f6f1e7;
+  }
+
+  .notes .miniature i {
+    position: absolute;
+    right: 10%;
+    left: 10%;
+    height: 1px;
+    background: #bcb3a6;
+  }
+
+  .notes .miniature i:first-child { top: 22%; width: 55%; background: #292b25; }
+  .notes .miniature i:nth-child(2) { top: 42%; }
+  .notes .miniature i:nth-child(3) { top: 62%; width: 72%; }
+  .notes .miniature i:nth-child(4) { top: 82%; width: 44%; background: #a9664d; }
+
+  .policy .miniature {
+    background: #e7e8e1;
+  }
+
+  .policy .miniature i {
+    position: absolute;
+    top: 28%;
+    width: 18%;
+    height: 44%;
+    border: 1px solid #a7aaa1;
+    background: #f3f2ec;
+  }
+
+  .policy .miniature i:first-child { left: 6%; }
+  .policy .miniature i:nth-child(2) { left: 29%; }
+  .policy .miniature i:nth-child(3) { left: 52%; }
+  .policy .miniature i:nth-child(4) { left: 75%; background: #294a3e; }
+
+  .card-copy > p {
+    margin-bottom: 1rem;
+  }
+
+  h2 {
+    min-height: 4.5em;
+    font-size: clamp(1.65rem, 2.5vw, 2.35rem);
+    letter-spacing: -0.035em;
+    line-height: 1.08;
+  }
+
+  .card-copy > span {
+    display: block;
+    margin-top: 1.2rem;
+    color: var(--draft-muted);
+    font-size: 0.88rem;
+    line-height: 1.65;
+  }
+
+  .view-draft {
+    display: flex;
+    margin-top: auto;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--draft-rule);
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .study-note {
+    display: grid;
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--draft-rule);
+    grid-template-columns: 1fr 2fr;
+    gap: 2rem;
+  }
+
+  .study-note p {
+    max-width: 620px;
+    font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+    font-size: clamp(1.35rem, 2.4vw, 2rem);
+    letter-spacing: -0.025em;
+    line-height: 1.25;
+  }
+
+  @media (max-width: 900px) {
+    main {
+      width: min(calc(100% - 2rem), 1180px);
+    }
+
+    .index-intro {
+      grid-template-columns: 1fr;
+      gap: 1.75rem;
+    }
+
+    .draft-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .draft-card,
+    .draft-card:first-child {
+      border-left: 1px solid var(--draft-rule);
+    }
+
+    .draft-card a {
+      min-height: 540px;
+    }
+
+    h2 {
+      min-height: auto;
+    }
+  }
+
+  @media (max-width: 600px) {
+    h1 {
+      font-size: clamp(2.65rem, 13vw, 4rem);
+    }
+
+    .study-note {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

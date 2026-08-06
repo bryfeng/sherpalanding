@@ -1,0 +1,513 @@
+---
+import DraftLayout from '../../layouts/DraftLayout.astro';
+import DraftNav from '../../components/drafts/DraftNav.astro';
+
+const questions = [
+  'Where is my exposure concentrated?',
+  'What changed across wallets and chains?',
+  'How could a recurring buy fit my plan?'
+];
+
+const flow = [
+  { number: 'I', title: 'Question', text: 'Ask in plain language.' },
+  { number: 'II', title: 'Context', text: 'Sherpa reads the portfolio you connect.' },
+  { number: 'III', title: 'Options', text: 'See an explanation and possible next steps.' },
+  { number: 'IV', title: 'Your choice', text: 'You decide what Sherpa should prepare.' }
+];
+---
+
+<DraftLayout
+  title="Field Notes — Sherpa design study"
+  description="An editorial, conversational redesign direction for Sherpa."
+  themeColor="#f6f1e8"
+>
+  <div class="notes-page">
+    <DraftNav current="notes" />
+
+    <main id="draft-main">
+      <section class="hero" aria-labelledby="notes-title">
+        <div class="margin-label" aria-hidden="true">
+          <span>Field note</span>
+          <span>№ 02</span>
+        </div>
+
+        <div class="hero-copy">
+          <p class="eyebrow">Ask your portfolio</p>
+          <h1 id="notes-title">Turn portfolio questions into informed next steps.</h1>
+          <p class="hero-intro">
+            Explore allocation, exposure, activity, and strategy ideas across chains—then decide what Sherpa should prepare.
+          </p>
+          <div class="actions" aria-label="Try the Field Notes direction">
+            <a class="primary-action" href="https://app.runsherpa.ai">Start a conversation <span aria-hidden="true">↗</span></a>
+            <a class="secondary-action" href="#conversation-flow">Explore the method</a>
+          </div>
+        </div>
+
+        <aside class="question-notes" aria-labelledby="questions-title">
+          <div class="notes-heading">
+            <p id="questions-title">Questions you can ask</p>
+            <span>Examples, not a simulated chat</span>
+          </div>
+          <ol>
+            {questions.map((question, index) => (
+              <li>
+                <span>0{index + 1}</span>
+                <p>{question}</p>
+                <i aria-hidden="true">↗</i>
+              </li>
+            ))}
+          </ol>
+        </aside>
+      </section>
+
+      <section class="conversation-flow" id="conversation-flow" aria-labelledby="flow-title">
+        <div class="flow-intro">
+          <div>
+            <p class="eyebrow">The conversation method</p>
+            <h2 id="flow-title">Clarity before action.</h2>
+          </div>
+          <p>
+            Sherpa combines connected portfolio context with a conversational interface. Analysis can lead to a strategy proposal, but never silently to a signed transaction.
+          </p>
+        </div>
+
+        <ol class="flow-list">
+          {flow.map((item) => (
+            <li>
+              <span>{item.number}</span>
+              <div>
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <section class="editorial-grid" aria-label="Sherpa product capabilities">
+        <article class="feature feature-wide">
+          <span>Portfolio intelligence</span>
+          <h2>See the portfolio as a whole—not as a pile of chain explorers.</h2>
+          <p>Use conversation to examine allocation, exposures, and activity across the accounts you connect.</p>
+        </article>
+        <article class="feature">
+          <span>Automated strategies</span>
+          <h3>DCA and copy trading, expressed as rules.</h3>
+        </article>
+        <article class="feature accent-feature">
+          <span>Non-custodial</span>
+          <h3>Your wallet retains custody and final approval.</h3>
+        </article>
+      </section>
+
+      <footer class="draft-footer">
+        <div>
+          <span>Important note</span>
+          <p>Crypto assets and automated strategies involve market, protocol, and smart-contract risk. Sherpa does not guarantee outcomes or returns.</p>
+        </div>
+        <a href="/drafts/">Compare all directions <span aria-hidden="true">↗</span></a>
+      </footer>
+    </main>
+  </div>
+</DraftLayout>
+
+<style is:global>
+  .notes-page {
+    --draft-paper: #f6f1e8;
+    --draft-paper-deep: #ebe4d8;
+    --draft-ink: #292b25;
+    --draft-muted: #655d58;
+    --draft-rule: #c7bdb0;
+    --draft-accent: #725d68;
+    --draft-accent-dark: #56444f;
+    --draft-moss: #65705b;
+    --draft-terracotta: #a9664d;
+    --draft-focus: #8c4935;
+    min-height: 100vh;
+    background: var(--draft-paper);
+  }
+</style>
+
+<style>
+  main {
+    width: min(calc(100% - 4rem), 1180px);
+    margin-inline: auto;
+  }
+
+  .hero {
+    position: relative;
+    display: grid;
+    min-height: min(820px, calc(100svh - 68px));
+    grid-template-columns: 80px minmax(0, 1.05fr) minmax(370px, 0.95fr);
+    align-items: center;
+    gap: 2.5rem;
+    padding: clamp(5rem, 9vw, 8rem) 0;
+  }
+
+  .margin-label {
+    align-self: stretch;
+    display: flex;
+    padding: 0.5rem 0;
+    border-right: 1px solid var(--draft-rule);
+    flex-direction: column;
+    justify-content: space-between;
+    color: var(--draft-muted);
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    writing-mode: vertical-rl;
+  }
+
+  .margin-label span:last-child {
+    transform: rotate(180deg);
+  }
+
+  .hero-copy {
+    max-width: 650px;
+  }
+
+  .eyebrow,
+  .notes-heading,
+  .feature > span,
+  .draft-footer span {
+    font-size: 0.69rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .eyebrow {
+    color: var(--draft-accent-dark);
+  }
+
+  h1,
+  h2,
+  h3,
+  .question-notes li p {
+    font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+    font-weight: 400;
+  }
+
+  h1 {
+    margin-top: 1.35rem;
+    font-size: clamp(3.4rem, 6.3vw, 6.35rem);
+    letter-spacing: -0.06em;
+    line-height: 0.96;
+    text-wrap: balance;
+  }
+
+  .hero-intro {
+    max-width: 550px;
+    margin-top: 1.9rem;
+    color: var(--draft-muted);
+    font-size: clamp(1rem, 1.4vw, 1.1rem);
+    line-height: 1.75;
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+    margin-top: 2.2rem;
+  }
+
+  .primary-action,
+  .secondary-action {
+    display: inline-flex;
+    min-height: 3.2rem;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.25rem;
+    border: 1px solid var(--draft-ink);
+    border-radius: 999px;
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.055em;
+    transition: background-color 180ms ease, color 180ms ease, transform 180ms ease;
+  }
+
+  .primary-action {
+    gap: 1rem;
+    background: var(--draft-ink);
+    color: var(--draft-paper);
+  }
+
+  .primary-action:hover {
+    transform: translateY(-2px);
+    background: var(--draft-accent-dark);
+  }
+
+  .secondary-action:hover {
+    background: var(--draft-paper-deep);
+  }
+
+  .question-notes {
+    padding: 1.4rem;
+    border: 1px solid var(--draft-rule);
+    background: rgba(255, 255, 255, 0.16);
+  }
+
+  .notes-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-bottom: 1rem;
+    color: var(--draft-accent-dark);
+  }
+
+  .notes-heading span {
+    color: var(--draft-muted);
+    font-size: 0.54rem;
+    letter-spacing: 0.08em;
+  }
+
+  .question-notes li {
+    display: grid;
+    min-height: 126px;
+    border-top: 1px solid var(--draft-rule);
+    grid-template-columns: 2.2rem 1fr auto;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .question-notes li > span,
+  .question-notes li > i {
+    color: var(--draft-muted);
+    font-size: 0.67rem;
+    font-style: normal;
+  }
+
+  .question-notes li p {
+    font-size: clamp(1.35rem, 2.1vw, 1.75rem);
+    line-height: 1.2;
+  }
+
+  .conversation-flow {
+    padding: clamp(6rem, 10vw, 10rem) 0;
+    border-top: 1px solid var(--draft-rule);
+  }
+
+  .flow-intro {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+  }
+
+  .flow-intro h2 {
+    margin-top: 1rem;
+    font-size: clamp(2.8rem, 5vw, 5rem);
+    letter-spacing: -0.055em;
+    line-height: 1;
+  }
+
+  .flow-intro > p {
+    max-width: 520px;
+    align-self: end;
+    color: var(--draft-muted);
+    line-height: 1.8;
+  }
+
+  .flow-list {
+    display: grid;
+    margin-top: 4.5rem;
+    border-top: 1px solid var(--draft-rule);
+    border-left: 1px solid var(--draft-rule);
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .flow-list li {
+    min-height: 250px;
+    padding: 1.4rem;
+    border-right: 1px solid var(--draft-rule);
+    border-bottom: 1px solid var(--draft-rule);
+  }
+
+  .flow-list li > span {
+    color: var(--draft-terracotta);
+    font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+    font-size: 0.9rem;
+    font-style: italic;
+  }
+
+  .flow-list li div {
+    margin-top: 5rem;
+  }
+
+  .flow-list h3 {
+    font-size: 1.55rem;
+  }
+
+  .flow-list p {
+    margin-top: 0.75rem;
+    color: var(--draft-muted);
+    font-size: 0.83rem;
+    line-height: 1.65;
+  }
+
+  .editorial-grid {
+    display: grid;
+    margin-bottom: clamp(5rem, 9vw, 8rem);
+    border-top: 1px solid var(--draft-rule);
+    border-left: 1px solid var(--draft-rule);
+    grid-template-columns: 1.5fr 1fr;
+  }
+
+  .feature {
+    min-height: 270px;
+    padding: 2rem;
+    border-right: 1px solid var(--draft-rule);
+    border-bottom: 1px solid var(--draft-rule);
+  }
+
+  .feature-wide {
+    grid-row: span 2;
+  }
+
+  .feature > span {
+    color: var(--draft-moss);
+  }
+
+  .feature h2 {
+    max-width: 610px;
+    margin-top: clamp(5rem, 10vw, 10rem);
+    font-size: clamp(2.4rem, 4.5vw, 4.5rem);
+    letter-spacing: -0.05em;
+    line-height: 1;
+  }
+
+  .feature h3 {
+    max-width: 360px;
+    margin-top: 4rem;
+    font-size: clamp(1.7rem, 3vw, 2.6rem);
+    letter-spacing: -0.035em;
+    line-height: 1.08;
+  }
+
+  .feature > p {
+    max-width: 500px;
+    margin-top: 1.4rem;
+    color: var(--draft-muted);
+  }
+
+  .accent-feature {
+    background: var(--draft-accent);
+    color: #fffaf4;
+  }
+
+  .accent-feature > span {
+    color: rgba(255, 250, 244, 0.72);
+  }
+
+  .draft-footer {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 3rem;
+    padding: 2rem 0 3rem;
+    border-top: 1px solid var(--draft-rule);
+    color: var(--draft-muted);
+    font-size: 0.72rem;
+  }
+
+  .draft-footer div {
+    display: grid;
+    max-width: 760px;
+    grid-template-columns: 140px 1fr;
+    gap: 1.5rem;
+  }
+
+  .draft-footer a {
+    color: var(--draft-ink);
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 920px) {
+    main {
+      width: min(calc(100% - 2rem), 1180px);
+    }
+
+    .hero {
+      min-height: auto;
+      grid-template-columns: 42px 1fr;
+      padding-block: 5rem;
+    }
+
+    .question-notes {
+      grid-column: 2;
+    }
+
+    .flow-list {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 650px) {
+    .hero {
+      display: block;
+    }
+
+    .margin-label {
+      display: none;
+    }
+
+    h1 {
+      font-size: clamp(3.15rem, 14vw, 4.4rem);
+    }
+
+    .question-notes {
+      margin-top: 3.5rem;
+    }
+
+    .notes-heading {
+      display: grid;
+    }
+
+    .question-notes li {
+      min-height: 112px;
+    }
+
+    .flow-intro,
+    .editorial-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .flow-list {
+      grid-template-columns: 1fr;
+    }
+
+    .flow-list li {
+      min-height: 190px;
+    }
+
+    .flow-list li div {
+      margin-top: 3rem;
+    }
+
+    .feature-wide {
+      grid-row: auto;
+    }
+
+    .feature h2 {
+      margin-top: 5rem;
+    }
+
+    .actions {
+      display: grid;
+    }
+
+    .primary-action,
+    .secondary-action {
+      width: 100%;
+    }
+
+    .draft-footer,
+    .draft-footer div {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

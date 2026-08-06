@@ -1,0 +1,520 @@
+---
+import DraftLayout from '../../layouts/DraftLayout.astro';
+import DraftNav from '../../components/drafts/DraftNav.astro';
+
+const route = [
+  { number: '01', label: 'Connect', detail: 'Bring wallets and positions into one view.' },
+  { number: '02', label: 'Understand', detail: 'Ask about exposure, allocation, and activity.' },
+  { number: '03', label: 'Set the route', detail: 'Choose a strategy and define its limits.' },
+  { number: '04', label: 'Review & sign', detail: 'Sherpa prepares; your wallet approves.' }
+];
+---
+
+<DraftLayout
+  title="Alpine Ledger — Sherpa design study"
+  description="A warm, editorial redesign direction for Sherpa built around navigation and portfolio clarity."
+>
+  <div class="alpine-page">
+    <DraftNav current="alpine" />
+
+    <main id="draft-main">
+      <section class="hero" aria-labelledby="alpine-title">
+        <div class="hero-copy">
+          <p class="eyebrow">Portfolio intelligence · Automated strategies</p>
+          <h1 id="alpine-title">A clearer route through your onchain portfolio.</h1>
+          <p class="hero-intro">
+            Ask questions, automate DCA or copy-trading strategies, and prepare multi-chain transactions with controls you define. Sherpa is non-custodial—you review and sign.
+          </p>
+          <div class="actions" aria-label="Try the Alpine Ledger direction">
+            <a class="primary-action" href="https://app.runsherpa.ai">Open Sherpa <span aria-hidden="true">↗</span></a>
+            <a class="text-action" href="#route">Follow the route <span aria-hidden="true">↓</span></a>
+          </div>
+        </div>
+
+        <div class="hero-landscape" aria-label="Sherpa workflow: portfolio, intelligence, policy, and wallet approval">
+          <div class="contours" aria-hidden="true">
+            <i></i><i></i><i></i><i></i><i></i>
+          </div>
+          <div class="summit-note">
+            <span>Control point 04</span>
+            <strong>Your wallet signs</strong>
+          </div>
+          <span class="altitude altitude-one" aria-hidden="true">4,280</span>
+          <span class="altitude altitude-two" aria-hidden="true">3,760</span>
+          <span class="trail-marker" aria-hidden="true"></span>
+        </div>
+
+        <div class="hero-footer" aria-label="Sherpa product principles">
+          <span>01 · Non-custodial</span>
+          <span>02 · Policy controlled</span>
+          <span>03 · Multi-chain</span>
+        </div>
+      </section>
+
+      <section class="route-section" id="route" aria-labelledby="route-title">
+        <div class="route-heading">
+          <p class="eyebrow">How it works</p>
+          <h2 id="route-title">From portfolio context to an action you control.</h2>
+        </div>
+
+        <ol class="route-list">
+          {route.map((step) => (
+            <li>
+              <span class="route-number">{step.number}</span>
+              <strong>{step.label}</strong>
+              <p>{step.detail}</p>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <section class="capability-band" aria-label="Sherpa capabilities">
+        <div>
+          <span>Portfolio intelligence</span>
+          <p>Conversational analysis across the wallets and chains you connect.</p>
+        </div>
+        <div>
+          <span>Strategy automation</span>
+          <p>Recurring buys and copy-trading rules shaped by your limits.</p>
+        </div>
+        <div>
+          <span>Controlled execution</span>
+          <p>Prepared transactions remain subject to your policy and signature.</p>
+        </div>
+      </section>
+
+      <footer class="draft-footer">
+        <p>Crypto assets and automated strategies involve market, protocol, and smart-contract risk. Sherpa does not guarantee outcomes or returns.</p>
+        <a href="/drafts/">Compare all directions <span aria-hidden="true">↗</span></a>
+      </footer>
+    </main>
+  </div>
+</DraftLayout>
+
+<style is:global>
+  .alpine-page {
+    --draft-paper: #f3f0e8;
+    --draft-paper-deep: #e8e2d6;
+    --draft-ink: #17251d;
+    --draft-muted: #625e57;
+    --draft-rule: #c9c2b5;
+    --draft-accent: #758c75;
+    --draft-accent-dark: #365846;
+    --draft-copper: #a96f47;
+    --draft-focus: #9a633d;
+    min-height: 100vh;
+    background: var(--draft-paper);
+  }
+</style>
+
+<style>
+  main {
+    overflow: hidden;
+  }
+
+  .hero {
+    position: relative;
+    display: grid;
+    width: min(calc(100% - 4rem), 1180px);
+    min-height: min(830px, calc(100svh - 68px));
+    margin-inline: auto;
+    grid-template-columns: minmax(0, 1.1fr) minmax(360px, 0.9fr);
+    grid-template-rows: 1fr auto;
+    align-items: center;
+    gap: 3rem 4rem;
+    padding: clamp(5rem, 9vw, 8rem) 0 2rem;
+  }
+
+  .hero-copy {
+    position: relative;
+    z-index: 2;
+    max-width: 720px;
+  }
+
+  .eyebrow,
+  .hero-footer,
+  .summit-note span,
+  .capability-band span {
+    font-size: 0.69rem;
+    font-weight: 700;
+    letter-spacing: 0.145em;
+    text-transform: uppercase;
+  }
+
+  .eyebrow {
+    color: var(--draft-accent-dark);
+  }
+
+  h1,
+  h2 {
+    font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+    font-weight: 400;
+  }
+
+  h1 {
+    max-width: 780px;
+    margin-top: 1.45rem;
+    font-size: clamp(3.5rem, 6.7vw, 6.7rem);
+    letter-spacing: -0.065em;
+    line-height: 0.94;
+    text-wrap: balance;
+  }
+
+  .hero-intro {
+    max-width: 610px;
+    margin-top: 2rem;
+    color: var(--draft-muted);
+    font-size: clamp(1rem, 1.4vw, 1.12rem);
+    line-height: 1.72;
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem 1.5rem;
+    margin-top: 2.2rem;
+  }
+
+  .primary-action,
+  .text-action {
+    display: inline-flex;
+    min-height: 3.2rem;
+    align-items: center;
+    justify-content: center;
+    gap: 1.1rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+  }
+
+  .primary-action {
+    padding: 0.8rem 1.3rem;
+    border-radius: 999px;
+    background: var(--draft-ink);
+    color: var(--draft-paper);
+    transition: background-color 180ms ease, transform 180ms ease;
+  }
+
+  .primary-action:hover {
+    transform: translateY(-2px);
+    background: var(--draft-accent-dark);
+  }
+
+  .text-action {
+    border-bottom: 1px solid var(--draft-rule);
+  }
+
+  .hero-landscape {
+    position: relative;
+    height: min(540px, 60vw);
+    min-height: 430px;
+    overflow: hidden;
+    border: 1px solid var(--draft-rule);
+    background: var(--draft-paper-deep);
+  }
+
+  .hero-landscape::before {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(23, 37, 29, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(23, 37, 29, 0.05) 1px, transparent 1px);
+    background-size: 42px 42px;
+    content: '';
+  }
+
+  .contours {
+    position: absolute;
+    inset: 5% -32% -20% 2%;
+    transform: rotate(-9deg);
+  }
+
+  .contours i {
+    position: absolute;
+    inset: 5%;
+    border: 1px solid rgba(54, 88, 70, 0.48);
+    border-radius: 43% 57% 50% 50% / 60% 40% 60% 40%;
+  }
+
+  .contours i:nth-child(2) { inset: 13%; transform: rotate(7deg); }
+  .contours i:nth-child(3) { inset: 22%; transform: rotate(-5deg); }
+  .contours i:nth-child(4) { inset: 31%; transform: rotate(8deg); }
+  .contours i:nth-child(5) { inset: 40%; transform: rotate(-6deg); }
+
+  .trail-marker {
+    position: absolute;
+    top: 43%;
+    left: 54%;
+    width: 0.8rem;
+    height: 0.8rem;
+    border: 3px solid var(--draft-paper-deep);
+    border-radius: 50%;
+    background: var(--draft-copper);
+    box-shadow: 0 0 0 1px var(--draft-copper);
+    animation: marker-pulse 3.6s ease-in-out infinite;
+  }
+
+  @keyframes marker-pulse {
+    50% { box-shadow: 0 0 0 9px rgba(169, 111, 71, 0.12); }
+  }
+
+  .summit-note {
+    position: absolute;
+    right: 1.3rem;
+    bottom: 1.3rem;
+    left: 1.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(23, 37, 29, 0.24);
+  }
+
+  .summit-note span,
+  .altitude {
+    color: var(--draft-muted);
+  }
+
+  .summit-note strong {
+    font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+    font-size: 1.25rem;
+    font-weight: 400;
+  }
+
+  .altitude {
+    position: absolute;
+    font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+  }
+
+  .altitude-one { top: 19%; left: 20%; }
+  .altitude-two { top: 58%; right: 14%; }
+
+  .hero-footer {
+    display: flex;
+    grid-column: 1 / -1;
+    justify-content: space-between;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--draft-rule);
+    color: var(--draft-muted);
+  }
+
+  .route-section {
+    width: min(calc(100% - 4rem), 1180px);
+    margin-inline: auto;
+    padding: clamp(6rem, 10vw, 10rem) 0;
+  }
+
+  .route-heading {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 3rem;
+  }
+
+  h2 {
+    max-width: 760px;
+    font-size: clamp(2.6rem, 5vw, 5rem);
+    letter-spacing: -0.055em;
+    line-height: 1;
+  }
+
+  .route-list {
+    position: relative;
+    display: grid;
+    margin-top: clamp(4rem, 8vw, 7rem);
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .route-list::before {
+    position: absolute;
+    top: 1rem;
+    right: 8%;
+    left: 8%;
+    height: 1px;
+    background: var(--draft-rule);
+    content: '';
+  }
+
+  .route-list li {
+    position: relative;
+    padding-right: 2rem;
+  }
+
+  .route-number {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    width: 2rem;
+    height: 2rem;
+    place-items: center;
+    border: 1px solid var(--draft-accent-dark);
+    border-radius: 50%;
+    background: var(--draft-paper);
+    color: var(--draft-accent-dark);
+    font-size: 0.62rem;
+    font-weight: 700;
+  }
+
+  .route-list strong {
+    display: block;
+    margin-top: 1.5rem;
+    font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+  }
+
+  .route-list p {
+    max-width: 220px;
+    margin-top: 0.65rem;
+    color: var(--draft-muted);
+    font-size: 0.86rem;
+    line-height: 1.65;
+  }
+
+  .capability-band {
+    display: grid;
+    padding: 0 max(2rem, calc((100vw - 1180px) / 2));
+    border-top: 1px solid var(--draft-rule);
+    border-bottom: 1px solid var(--draft-rule);
+    background: var(--draft-paper-deep);
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .capability-band div {
+    padding: 2.5rem 2.3rem 2.7rem 0;
+    border-right: 1px solid var(--draft-rule);
+  }
+
+  .capability-band div + div {
+    padding-left: 2.3rem;
+  }
+
+  .capability-band div:last-child {
+    border-right: 0;
+  }
+
+  .capability-band span {
+    color: var(--draft-accent-dark);
+  }
+
+  .capability-band p {
+    max-width: 310px;
+    margin-top: 0.9rem;
+    color: var(--draft-muted);
+    font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+    font-size: 1.25rem;
+    line-height: 1.35;
+  }
+
+  .draft-footer {
+    display: flex;
+    width: min(calc(100% - 4rem), 1180px);
+    margin-inline: auto;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 3rem;
+    padding: 2rem 0 3rem;
+    color: var(--draft-muted);
+    font-size: 0.72rem;
+  }
+
+  .draft-footer p {
+    max-width: 680px;
+  }
+
+  .draft-footer a {
+    color: var(--draft-ink);
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 900px) {
+    .hero,
+    .route-section,
+    .draft-footer {
+      width: min(calc(100% - 2rem), 1180px);
+    }
+
+    .hero {
+      min-height: auto;
+      grid-template-columns: 1fr;
+      grid-template-rows: auto;
+      gap: 3rem;
+      padding-top: 5rem;
+    }
+
+    .hero-landscape {
+      height: 440px;
+    }
+
+    .hero-footer {
+      grid-column: 1;
+    }
+
+    .route-heading {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .route-list {
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem 1rem;
+    }
+
+    .route-list::before {
+      display: none;
+    }
+
+    .capability-band {
+      padding-inline: 1rem;
+      grid-template-columns: 1fr;
+    }
+
+    .capability-band div,
+    .capability-band div + div {
+      padding: 2rem 0;
+      border-right: 0;
+      border-bottom: 1px solid var(--draft-rule);
+    }
+
+    .capability-band div:last-child {
+      border-bottom: 0;
+    }
+  }
+
+  @media (max-width: 560px) {
+    h1 {
+      font-size: clamp(3.2rem, 15vw, 4.5rem);
+    }
+
+    .actions {
+      display: grid;
+      align-items: stretch;
+    }
+
+    .primary-action,
+    .text-action {
+      width: 100%;
+    }
+
+    .hero-landscape {
+      min-height: 380px;
+    }
+
+    .hero-footer {
+      display: grid;
+      gap: 0.5rem;
+    }
+
+    .route-list {
+      grid-template-columns: 1fr;
+    }
+
+    .draft-footer {
+      display: grid;
+    }
+  }
+</style>

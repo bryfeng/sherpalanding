@@ -1,0 +1,350 @@
+---
+import NaturalDraftLayout from '../../../layouts/NaturalDraftLayout.astro';
+import NaturalDraftNav from '../../../components/natural/NaturalDraftNav.astro';
+
+const stages = [
+  { label: 'Portfolio', note: 'The context you choose to connect', color: 'mint' },
+  { label: 'Policy', note: 'The limits that define an eligible action', color: 'sand' },
+  { label: 'Wallet', note: 'The final approval that stays with you', color: 'ink' }
+];
+---
+
+<NaturalDraftLayout
+  title="Approval Loop — Natural-inspired Sherpa study"
+  description="A policy and wallet approval-forward Sherpa landing direction inspired by Natural's interface language."
+  accent="#91cab8"
+>
+  <div class="approval-page">
+    <NaturalDraftNav current="approval" />
+
+    <main id="draft-main">
+      <section class="hero" aria-labelledby="approval-title">
+        <div class="light light-one" aria-hidden="true"></div>
+        <div class="light light-two" aria-hidden="true"></div>
+        <div class="hero-copy">
+          <p class="eyebrow">A practical definition of control</p>
+          <h1 id="approval-title">A plan can move forward. Your approval stays put.</h1>
+          <p>Sherpa can analyze your portfolio and prepare a policy-eligible transaction. It cannot replace the review and wallet signature that make it yours.</p>
+          <div class="hero-actions" aria-label="Try the Approval Loop direction">
+            <a class="primary-action" href="#loop">See the approval loop <span aria-hidden="true">↓</span></a>
+            <a class="secondary-action" href="https://app.runsherpa.ai">Open Sherpa <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+
+        <div class="loop-art" aria-label="Portfolio context moves through a policy check before wallet approval">
+          <div class="loop-line" aria-hidden="true"><i></i></div>
+          <div class="loop-card card-one"><span>Portfolio</span><b>01</b></div>
+          <div class="loop-card card-two"><span>Policy</span><b>02</b></div>
+          <div class="loop-card card-three"><span>Wallet</span><b>03</b></div>
+          <span class="arrow-one" aria-hidden="true">→</span>
+          <span class="arrow-two" aria-hidden="true">→</span>
+        </div>
+      </section>
+
+      <section class="loop" id="loop" aria-labelledby="loop-title">
+        <div class="loop-heading">
+          <p>Three visible steps</p>
+          <h2 id="loop-title">Automation can be a sequence, not a black box.</h2>
+        </div>
+        <ol>
+          {stages.map((stage, index) => (
+            <li class={stage.color}>
+              <div class="stage-art" aria-hidden="true"><i></i><i></i></div>
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <h3>{stage.label}</h3>
+              <p>{stage.note}</p>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <section class="plain-language" aria-labelledby="language-title">
+        <div>
+          <span>What policy control means</span>
+          <h2 id="language-title">Sherpa checks the limits before it prepares an action.</h2>
+        </div>
+        <p>Policy controls can shape strategy amounts, permitted activity, and when a transaction is ready for review. They help prevent unintended execution; they do not eliminate investment or protocol risk.</p>
+      </section>
+
+      <footer>
+        <p>Crypto assets and automated strategies involve market, protocol, and smart-contract risk. Sherpa does not guarantee outcomes or returns.</p>
+        <a href="/drafts/natural/">All Natural studies <span aria-hidden="true">↗</span></a>
+      </footer>
+    </main>
+  </div>
+</NaturalDraftLayout>
+
+<style is:global>
+  .approval-page {
+    --natural-ink: #161514;
+    --natural-muted: #62615f;
+    --natural-accent: #91cab8;
+    --natural-focus: #4d997f;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    min-height: 100vh;
+    background: #fff;
+  }
+</style>
+
+<style>
+  main {
+    width: min(calc(100% - 3rem), 1080px);
+    margin-inline: auto;
+  }
+
+  .hero {
+    position: relative;
+    display: grid;
+    min-height: min(760px, calc(100svh - 64px));
+    grid-template-columns: 1fr 0.95fr;
+    align-items: center;
+    gap: clamp(2.5rem, 7vw, 7rem);
+    overflow: hidden;
+    padding: 5rem 0 4rem;
+  }
+
+  .light {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(56px);
+    opacity: 0.16;
+    pointer-events: none;
+  }
+
+  .light-one {
+    top: 12%;
+    left: -7%;
+    width: 14rem;
+    height: 14rem;
+    background: #8acdb9;
+  }
+
+  .light-two {
+    right: 1%;
+    bottom: 10%;
+    width: 12rem;
+    height: 12rem;
+    background: #efdfa9;
+  }
+
+  .hero-copy {
+    position: relative;
+    z-index: 1;
+    max-width: 580px;
+  }
+
+  .eyebrow,
+  .loop-heading > p,
+  .loop li > span,
+  .plain-language span {
+    color: var(--natural-muted);
+    font-family: "SFMono-Regular", "Cascadia Mono", "Roboto Mono", Menlo, Consolas, monospace;
+    font-size: 0.66rem;
+    letter-spacing: 0;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-weight: 500;
+    letter-spacing: -0.065em;
+  }
+
+  h1 {
+    margin-top: 1.2rem;
+    font-size: clamp(2.75rem, 5.8vw, 5.55rem);
+    letter-spacing: -0.045em;
+    line-height: 0.98;
+    word-spacing: 0.06em;
+  }
+
+  .hero-copy > p:not(.eyebrow) {
+    max-width: 530px;
+    margin-top: 1.45rem;
+    color: var(--natural-muted);
+    font-size: 0.86rem;
+    line-height: 1.65;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 2rem;
+  }
+
+  .primary-action,
+  .secondary-action {
+    display: inline-flex;
+    min-height: 2.9rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    padding: 0.7rem 0.95rem;
+    border-radius: 8px;
+    font-size: 0.72rem;
+    letter-spacing: -0.04em;
+    transition: transform 160ms ease, background-color 160ms ease;
+  }
+
+  .primary-action { background: var(--natural-ink); color: #fff; }
+  .primary-action:hover { transform: translateY(-2px); }
+  .secondary-action { background: #f3f3f2; }
+  .secondary-action:hover { background: #e8e8e7; }
+
+  .loop-art {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    min-height: 390px;
+    place-items: center;
+  }
+
+  .loop-line {
+    position: absolute;
+    width: min(100%, 360px);
+    height: 210px;
+    border: 1px solid #dededb;
+    border-radius: 50%;
+    transform: rotate(-13deg);
+  }
+
+  .loop-line i {
+    position: absolute;
+    top: -0.25rem;
+    right: 24%;
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 50%;
+    background: #91cab8;
+  }
+
+  .loop-card {
+    position: absolute;
+    display: grid;
+    width: 108px;
+    height: 96px;
+    align-content: space-between;
+    padding: 0.8rem;
+    border-radius: 9px;
+    background: #f5f5f4;
+    color: var(--natural-ink);
+    font-family: "SFMono-Regular", "Cascadia Mono", "Roboto Mono", Menlo, Consolas, monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0;
+  }
+
+  .loop-card b {
+    color: #999895;
+    font-size: 0.56rem;
+    font-weight: 400;
+  }
+
+  .card-one { top: 15%; left: 3%; }
+  .card-two { right: 5%; bottom: 13%; background: #f3ecd5; }
+  .card-three { top: 25%; right: 1%; background: #a8dbc9; }
+  .arrow-one,
+  .arrow-two { position: absolute; color: #aaa9a6; font-size: 1.3rem; }
+  .arrow-one { top: 31%; left: 33%; }
+  .arrow-two { right: 32%; bottom: 26%; transform: rotate(127deg); }
+
+  .loop {
+    padding: clamp(4rem, 8vw, 7rem) 0;
+    border-top: 1px solid #ececeb;
+  }
+
+  .loop-heading {
+    display: grid;
+    grid-template-columns: 0.72fr 1.28fr;
+    gap: 2rem;
+  }
+
+  h2 {
+    max-width: 740px;
+    font-size: clamp(2.2rem, 4.5vw, 4.4rem);
+    letter-spacing: -0.05em;
+    line-height: 1;
+  }
+
+  .loop ol {
+    display: grid;
+    margin-top: 4.5rem;
+    border-top: 1px solid #ececeb;
+    border-left: 1px solid #ececeb;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .loop li {
+    min-height: 320px;
+    padding: 1rem;
+    border-right: 1px solid #ececeb;
+    border-bottom: 1px solid #ececeb;
+  }
+
+  .stage-art {
+    position: relative;
+    height: 90px;
+  }
+
+  .stage-art i {
+    position: absolute;
+    display: block;
+  }
+
+  .mint .stage-art i:first-child { top: 14px; left: 17px; width: 45px; height: 45px; border-radius: 8px; background: #91cab8; }
+  .mint .stage-art i:nth-child(2) { top: 35px; left: 70px; width: 42px; height: 1px; background: #bbb; }
+  .sand .stage-art i:first-child { top: 13px; left: 15px; width: 74px; height: 48px; border-radius: 8px; background: #f3ecd5; }
+  .sand .stage-art i:nth-child(2) { top: 27px; left: 28px; width: 46px; height: 1px; background: #b9ad87; box-shadow: 0 13px #b9ad87; }
+  .ink .stage-art i:first-child { top: 13px; left: 18px; width: 58px; height: 52px; border-radius: 8px; background: #161514; }
+  .ink .stage-art i:nth-child(2) { top: 30px; left: 87px; width: 15px; height: 15px; border-radius: 50%; background: #91cab8; }
+
+  .loop li > span { color: #91bfae; }
+  .loop h3 { margin-top: 1.2rem; font-size: 1.28rem; line-height: 1.05; }
+  .loop li p { max-width: 240px; margin-top: 0.7rem; color: var(--natural-muted); font-size: 0.69rem; line-height: 1.6; }
+
+  .plain-language {
+    display: grid;
+    margin-bottom: 4rem;
+    padding: clamp(2.3rem, 5vw, 4.5rem);
+    border-radius: 14px;
+    background: #f4f4f3;
+    grid-template-columns: 1.25fr 0.75fr;
+    align-items: end;
+    gap: 3rem;
+  }
+
+  .plain-language span { color: #559b83; }
+  .plain-language h2 { margin-top: 1rem; }
+  .plain-language > p { max-width: 360px; color: var(--natural-muted); font-size: 0.75rem; line-height: 1.7; }
+
+  footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: 1.8rem 0 2.8rem;
+    border-top: 1px solid #ececeb;
+    color: var(--natural-muted);
+    font-size: 0.6rem;
+    line-height: 1.55;
+  }
+
+  footer p { max-width: 670px; }
+  footer a { color: var(--natural-ink); white-space: nowrap; }
+
+  @media (max-width: 760px) {
+    main { width: min(calc(100% - 2rem), 1080px); }
+    .hero { min-height: auto; grid-template-columns: 1fr; gap: 2rem; padding: 4.5rem 0; }
+    .loop-art { max-width: 500px; width: 100%; min-height: 330px; }
+    .loop-heading, .plain-language { grid-template-columns: 1fr; gap: 1.5rem; }
+    .loop ol { grid-template-columns: 1fr; }
+    .loop li { min-height: 240px; }
+  }
+
+  @media (max-width: 480px) {
+    h1 { font-size: clamp(2.35rem, 11vw, 3.25rem); }
+    .hero-actions { display: grid; }
+    .loop-art { transform: scale(0.88); transform-origin: center; margin-block: -1rem; }
+    .plain-language { padding: 2rem 1.3rem; }
+    footer { display: grid; }
+  }
+</style>

@@ -1,0 +1,62 @@
+---
+interface Props {
+  href?: string;
+  label?: string;
+}
+
+const { href = '#top', label = 'Sherpa home' } = Astro.props;
+---
+
+<a class="brand" href={href} aria-label={label}>
+  <span class="brand-symbol" aria-hidden="true">
+    <span></span>
+    <span></span>
+    <span></span>
+  </span>
+  <span class="brand-word">Sherpa</span>
+</a>
+
+<style>
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.72rem;
+    width: fit-content;
+    font-size: 1.08rem;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+  }
+
+  .brand-symbol {
+    position: relative;
+    display: grid;
+    width: 2.15rem;
+    height: 2.15rem;
+    place-items: center;
+    overflow: hidden;
+    border-radius: 0.65rem;
+    background: var(--accent);
+  }
+
+  .brand-symbol span {
+    position: absolute;
+    left: 0.55rem;
+    width: 1.2rem;
+    height: 2px;
+    transform: rotate(-38deg);
+    border-radius: var(--radius-full);
+    background: var(--color-accent-ink);
+  }
+
+  .brand-symbol span:nth-child(1) {
+    top: 0.72rem;
+  }
+
+  .brand-symbol span:nth-child(2) {
+    top: 1.05rem;
+  }
+
+  .brand-symbol span:nth-child(3) {
+    top: 1.38rem;
+  }
+</style>

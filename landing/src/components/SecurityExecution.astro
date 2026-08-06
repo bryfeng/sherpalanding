@@ -1,0 +1,267 @@
+<section class="section section-light security" id="security" aria-labelledby="security-title">
+  <div class="container security-grid">
+    <div class="execution-map">
+      <div class="map-header">
+        <span>Agent execution path</span>
+        <strong>Policy checked</strong>
+      </div>
+
+      <div class="route">
+        <div class="route-node intent-node">
+          <span>Agent intent</span>
+          <strong>Trade within the approved mandate</strong>
+        </div>
+        <div class="route-line"><i></i><small>Policy validation</small></div>
+        <div class="route-node policy-node">
+          <span>Allowed</span>
+          <strong>Within configured limits</strong>
+        </div>
+        <div class="route-line"><i></i><small>Route prepared</small></div>
+        <div class="network-row" aria-label="Multi-chain route contexts">
+          <span>Source chain</span>
+          <span>Policy</span>
+          <span>Route</span>
+          <span>Destination chain</span>
+        </div>
+        <div class="route-line"><i></i><small>User authorization</small></div>
+        <div class="wallet-node">
+          <span aria-hidden="true">◇</span>
+          <div><small>Non-custodial wallet</small><strong>Review & authorize</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="security-copy">
+      <p class="eyebrow">Multi-chain execution</p>
+      <h2 class="section-heading" id="security-title">Multi-chain trading for agents. Authorization stays with you.</h2>
+      <p class="section-intro">
+        Sherpa lets agents plan and prepare transactions across supported networks. Policy checks determine what qualifies; your wallet retains transaction authorization.
+      </p>
+
+      <div class="policy-list">
+        <article>
+          <span>01</span>
+          <div><h3>Trading mandate</h3><p>Set sizing, slippage, asset, and network limits for agents.</p></div>
+        </article>
+        <article>
+          <span>02</span>
+          <div><h3>Explicit authorization</h3><p>Review transactions or pre-authorized permissions before an agent can act.</p></div>
+        </article>
+        <article>
+          <span>03</span>
+          <div><h3>Pause when needed</h3><p>Stop agents and revise the policy as your needs change.</p></div>
+        </article>
+      </div>
+
+      <p class="security-note">
+        Non-custodial does not remove protocol, smart-contract, bridge, oracle, liquidity, or market risk.
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .security-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+    gap: clamp(3rem, 7vw, 7rem);
+    align-items: center;
+  }
+
+  .execution-map {
+    overflow: hidden;
+    border: 1px solid rgba(11, 23, 19, 0.18);
+    border-radius: var(--radius-xl);
+    background: var(--color-ink);
+    color: var(--text);
+    box-shadow: var(--shadow-card);
+  }
+
+  .map-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    min-height: 4rem;
+    padding: 0 var(--space-5);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .map-header span {
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .map-header strong {
+    padding: 0.4rem 0.65rem;
+    border-radius: var(--radius-full);
+    background: rgba(185, 238, 107, 0.1);
+    color: var(--accent);
+    font-size: 0.65rem;
+  }
+
+  .route {
+    display: grid;
+    justify-items: center;
+    padding: clamp(2rem, 5vw, 3.5rem);
+    background-image:
+      linear-gradient(rgba(246, 243, 235, 0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(246, 243, 235, 0.025) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  .route-node,
+  .wallet-node {
+    width: min(100%, 330px);
+    padding: var(--space-4) var(--space-5);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    background: #14231e;
+  }
+
+  .route-node {
+    display: grid;
+    gap: 0.2rem;
+  }
+
+  .route-node span,
+  .wallet-node small,
+  .route-line small {
+    color: #819088;
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    text-transform: uppercase;
+  }
+
+  .route-node strong,
+  .wallet-node strong {
+    font-size: var(--text-sm);
+  }
+
+  .policy-node {
+    border-color: rgba(185, 238, 107, 0.35);
+    background: rgba(185, 238, 107, 0.07);
+  }
+
+  .policy-node span,
+  .policy-node strong {
+    color: var(--accent);
+  }
+
+  .route-line {
+    position: relative;
+    display: grid;
+    height: 4.2rem;
+    place-items: center;
+  }
+
+  .route-line i {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: var(--color-line-strong);
+  }
+
+  .route-line small {
+    position: relative;
+    padding: 0.25rem 0.55rem;
+    border-radius: var(--radius-full);
+    background: var(--color-ink);
+  }
+
+  .network-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-2);
+  }
+
+  .network-row span {
+    padding: 0.5rem 0.7rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-full);
+    background: #14231e;
+    color: #c6d0cb;
+    font-size: 0.68rem;
+    font-weight: 700;
+  }
+
+  .wallet-node {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .wallet-node > span {
+    display: grid;
+    width: 2.4rem;
+    height: 2.4rem;
+    place-items: center;
+    border-radius: var(--radius-sm);
+    background: var(--accent);
+    color: var(--color-accent-ink);
+    font-weight: 800;
+  }
+
+  .wallet-node div {
+    display: grid;
+  }
+
+  .security-copy .section-heading {
+    font-size: clamp(2.6rem, 5.3vw, 4.9rem);
+  }
+
+  .policy-list {
+    margin-top: var(--space-8);
+    border-top: 1px solid var(--color-dark-line);
+  }
+
+  .policy-list article {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--space-4);
+    padding: var(--space-5) 0;
+    border-bottom: 1px solid var(--color-dark-line);
+  }
+
+  .policy-list article > span {
+    color: #668a2d;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+  }
+
+  .policy-list h3 {
+    font-size: var(--text-base);
+    letter-spacing: -0.02em;
+  }
+
+  .policy-list p {
+    margin-top: 0.2rem;
+    color: #5d6a63;
+    font-size: var(--text-sm);
+  }
+
+  .security-note {
+    margin-top: var(--space-6);
+    padding-left: var(--space-4);
+    border-left: 2px solid #8db94b;
+    color: #5d6a63;
+    font-size: var(--text-xs);
+    line-height: 1.6;
+  }
+
+  @media (max-width: 940px) {
+    .security-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .execution-map {
+      order: 2;
+    }
+  }
+</style>
