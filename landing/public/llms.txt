@@ -1,0 +1,22 @@
+# Sherpa
+
+> Non-custodial trading infrastructure for AI agents.
+
+Portfolio context in. Policy-checked transaction intent out. User authorization remains required.
+
+Application: https://app.runsherpa.ai/
+Contact: team@runsherpa.ai
+
+## Interface
+
+- Capabilities: portfolio intelligence, DCA, copy trading, and multi-chain transaction preparation.
+- Constraints: user-defined asset scope, size, cadence, and approval policy.
+- Invariant: Sherpa does not hold keys, guarantee returns, or bypass required authorization.
+
+## Sequence
+
+Observe → propose → validate → prepare → authorize.
+
+## Risk
+
+Crypto assets and decentralized finance involve substantial risk, including loss of principal. Agent-assisted and automated strategies can lose money and may not execute as expected. Sherpa provides software and information, not investment, legal, or tax advice.

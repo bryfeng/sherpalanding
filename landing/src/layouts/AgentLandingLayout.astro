@@ -1,7 +1,7 @@
 ---
-const title = 'Sherpa — The trading platform for your agents';
+const title = 'Sherpa — Trading infrastructure for AI agents';
 const description =
-  'Give your agents portfolio context and policy-aware trading workflows across chains. You define the mandate, keep custody, and control authorization.';
+  'A non-custodial trading layer for AI agents: portfolio context, strategy workflows, policy controls, and multi-chain transaction preparation.';
 const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://runsherpa.ai').href;
 ---
 
@@ -11,9 +11,11 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://runsherpa.a
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#f8f8f6" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#0b0b0b" />
     <meta name="color-scheme" content="light" />
     <link rel="canonical" href={canonical} />
+    <link rel="alternate" type="text/plain" href="/llms.txt" title="Sherpa information for AI agents" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonical} />
@@ -40,7 +42,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://runsherpa.a
   html {
     min-width: 320px;
     scroll-behavior: smooth;
-    background: #f8f8f6;
+    background: #f2f2ef;
   }
 
   body {
@@ -48,8 +50,8 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://runsherpa.a
     min-height: 100vh;
     margin: 0;
     overflow-x: hidden;
-    background: #f8f8f6;
-    color: #171716;
+    background: #f2f2ef;
+    color: #0b0b0b;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
     font-size: 16px;
     line-height: 1.5;
@@ -75,7 +77,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://runsherpa.a
   }
 
   :focus-visible {
-    outline: 3px solid #2f8c70;
+    outline: 3px solid #0b0b0b;
     outline-offset: 4px;
   }
 
@@ -86,8 +88,8 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://runsherpa.a
     left: 0.75rem;
     padding: 0.7rem 0.95rem;
     transform: translateY(-180%);
-    border-radius: 0.5rem;
-    background: #171716;
+    border: 1px solid #fff;
+    background: #0b0b0b;
     color: #fff;
     font-size: 0.875rem;
     font-weight: 650;
@@ -99,8 +101,8 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://runsherpa.a
   }
 
   ::selection {
-    background: #b9e2d4;
-    color: #171716;
+    background: #0b0b0b;
+    color: #fff;
   }
 
   @media (prefers-reduced-motion: reduce) {
