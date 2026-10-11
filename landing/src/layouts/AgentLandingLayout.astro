@@ -1,7 +1,7 @@
 ---
-const title = 'Sherpa — Trading infrastructure for AI agents';
+const title = 'Sherpa — A guide for your money';
 const description =
-  'A non-custodial trading layer for AI agents: portfolio context, strategy workflows, policy controls, and multi-chain transaction preparation.';
+  'A financial agent workspace for research, asset management, and strategy planning. You approve execution.';
 const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://runsherpa.ai').href;
 ---
 
@@ -12,7 +12,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://runsherpa.a
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <meta name="robots" content="index, follow" />
-    <meta name="theme-color" content="#0b0b0b" />
+    <meta name="theme-color" content="#f6f7f4" />
     <meta name="color-scheme" content="light" />
     <link rel="canonical" href={canonical} />
     <link rel="alternate" type="text/plain" href="/llms.txt" title="Sherpa information for AI agents" />
@@ -40,19 +40,23 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://runsherpa.a
   }
 
   html {
+    --paper: #f6f7f4;
+    --ink: #293c4d;
+    --muted: #61717e;
+    --rule: #dce2e4;
+    --accent: #425c78;
     min-width: 320px;
     scroll-behavior: smooth;
-    background: #f2f2ef;
+    background: var(--paper);
   }
 
   body {
     min-width: 320px;
     min-height: 100vh;
     margin: 0;
-    overflow-x: hidden;
-    background: #f2f2ef;
-    color: #0b0b0b;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: Menlo, Consolas, "Liberation Mono", monospace;
     font-size: 16px;
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
@@ -76,8 +80,10 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://runsherpa.a
     -webkit-tap-highlight-color: transparent;
   }
 
+  button { font: inherit; }
+
   :focus-visible {
-    outline: 3px solid #0b0b0b;
+    outline: 2px solid var(--accent);
     outline-offset: 4px;
   }
 

@@ -1,339 +1,177 @@
-<header class="document-bar">
-  <div class="bar-inner">
-    <a class="site-id" href="/">runsherpa.ai</a>
-    <span>representation: text/html</span>
-    <nav aria-label="Document actions">
-      <a href="/llms.txt">raw</a>
-      <a class="open-link" href="https://app.runsherpa.ai">open_application() <span aria-hidden="true">↗</span></a>
-    </nav>
-  </div>
+---
+const views = ['Research', 'Assets', 'Strategies'];
+---
+
+<header class="site-header wrap">
+  <a class="brand" href="/" aria-label="Sherpa home"><img src="/artbook/goggles-mineral.svg" width="44" height="33" alt="" /><span>sherpa</span></a>
+  <nav aria-label="Main navigation"><a class="workspace-link" href="#workspace">Workspace</a></nav>
 </header>
-
 <main id="main-content">
-  <article class="agent-document" aria-labelledby="document-title">
-    <div class="title-row">
-      <span class="syntax" aria-hidden="true">#</span>
-      <h1 id="document-title">Sherpa</h1>
+  <section class="hero wrap" aria-labelledby="hero-title">
+    <div class="hero-copy">
+      <p class="eyebrow">A financial agent workspace</p>
+      <h1 id="hero-title">A guide for<br />your money.</h1>
+      <p class="hero-summary">Research. Plan. Manage.</p>
+      <a class="primary-link" href="#workspace">Explore the workspace <span aria-hidden="true">↓</span></a>
     </div>
-
-    <blockquote>Non-custodial trading infrastructure for AI agents.</blockquote>
-
-    <p class="summary">Portfolio context in. Policy-checked transaction intent out. User authorization remains required.</p>
-
-    <section aria-labelledby="interface-title">
-      <div class="section-title">
-        <span class="syntax" aria-hidden="true">##</span>
-        <h2 id="interface-title">Interface</h2>
-      </div>
-      <dl class="interface-list">
-        <div>
-          <dt>capabilities</dt>
-          <dd>portfolio intelligence · DCA · copy trading · multi-chain preparation</dd>
-        </div>
-        <div>
-          <dt>constraints</dt>
-          <dd>user-defined scope · size · cadence · approval policy</dd>
-        </div>
-        <div>
-          <dt>invariant</dt>
-          <dd>Sherpa does not hold keys or bypass authorization</dd>
-        </div>
-      </dl>
-    </section>
-
-    <section aria-labelledby="sequence-title">
-      <div class="section-title">
-        <span class="syntax" aria-hidden="true">##</span>
-        <h2 id="sequence-title">Sequence</h2>
-      </div>
-      <p class="sequence" aria-label="Observe, propose, validate, prepare, then authorize">observe <span>→</span> propose <span>→</span> validate <span>→</span> prepare <span>→</span> authorize</p>
-    </section>
-
-    <div class="document-links">
-      <a href="https://app.runsherpa.ai"><span aria-hidden="true">→</span> Open application</a>
-      <a href="/llms.txt"><span aria-hidden="true">→</span> Read raw llms.txt</a>
+    <div class="guide-stage">
+      <div class="guide-art" id="guide-art"><img id="guide-image" src="/artbook/summit-head.png" width="403" height="441" fetchpriority="high" alt="Summit, a smiling Sherpa head with an ivory hood and mineral goggles" /></div>
     </div>
-  </article>
+  </section>
+  <div class="workspace-topics wrap" aria-label="Workspace areas">
+    <div><span class="topic-number">01</span><span>Research</span><small>Sources &amp; notes</small></div>
+    <div><span class="topic-number">02</span><span>Assets</span><small>Context &amp; allocation</small></div>
+    <div><span class="topic-number">03</span><span>Strategies</span><small>Plans &amp; review</small></div>
+  </div>
+  <section class="workspace-section wrap" id="workspace" aria-labelledby="workspace-title">
+    <div class="section-heading"><h2 id="workspace-title">The workspace.</h2><div class="theme-picker" role="group" aria-label="Preview color theme"><button type="button" data-theme="mineral" aria-pressed="false" aria-controls="workspace-preview"><i class="mineral-dot" aria-hidden="true"></i>Mineral</button><button type="button" data-theme="graphite" aria-pressed="true" aria-controls="workspace-preview"><i class="graphite-dot" aria-hidden="true"></i>Graphite</button></div></div>
+    <div class="workspace-preview" id="workspace-preview" data-theme="graphite">
+      <div class="window-bar"><span><img src="/artbook/goggles-mineral.svg" width="24" height="18" alt="" />Personal workspace</span><span class="preview-label">Preview · Example data</span></div>
+      <div class="workspace-shell">
+        <aside class="workspace-rail" aria-label="Workspace preview navigation">
+          <span class="rail-label">WORKSPACE</span>
+          <div class="view-tabs" role="tablist" aria-label="Workspace preview views" aria-orientation="vertical">{views.map((view, index) => (<button type="button" role="tab" id={`tab-${index}`} data-view={index} aria-selected={index === 0} aria-controls={`view-${index}`} tabindex={index === 0 ? 0 : -1}><svg viewBox="0 0 24 24" aria-hidden="true"><path d={index === 0 ? 'M5 4h14v16H5z M9 8h6 M9 12h6 M9 16h3' : index === 1 ? 'M5 19V11 M12 19V5 M19 19v-5 M3 20h18' : 'M4 17l5-7 5 3 6-9 M16 4h4v4'} /></svg>{view}</button>))}</div>
+          <div class="rail-notes"><span class="rail-label">NOTES</span><span><i aria-hidden="true"></i>Allocation review</span><span><i aria-hidden="true"></i>Market notebook</span></div>
+          <div class="rail-bottom"><span class="personal-icon">P</span><span>Personal</span></div>
+        </aside>
+        <div class="preview-content">
+          <section id="view-0" role="tabpanel" aria-labelledby="tab-0" tabindex="0">
+            <div class="desk-heading"><div><p class="panel-eyebrow">RESEARCH / MARKET NOTEBOOK</p><h3>Compare the picture.</h3></div><span class="status">Working note</span></div>
+            <div class="research-grid">
+              <article class="chart-card" aria-labelledby="chart-title">
+                <div class="card-heading"><h4 id="chart-title">Relative performance</h4><span>1Y</span></div>
+                <div class="chart-key"><span><i></i>Bitcoin</span><span><i></i>Ethereum</span></div>
+                <svg class="chart" viewBox="0 0 520 270" role="img" aria-label="Illustrative line chart comparing bitcoin and ethereum. Both start at an index of 100. This is example data, not market performance.">
+                  <defs><linearGradient id="chart-line" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#72c7ec" /><stop offset=".55" stop-color="#95b4f3" /><stop offset="1" stop-color="#b7a0ef" /></linearGradient><linearGradient id="chart-area" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#95b4f3" stop-opacity=".16" /><stop offset="1" stop-color="#95b4f3" stop-opacity="0" /></linearGradient></defs>
+                  <g class="chart-grid"><path d="M16 35H470 M16 90H470 M16 145H470 M16 200H470" /><text x="480" y="39">130</text><text x="480" y="94">120</text><text x="480" y="149">110</text><text x="480" y="204">100</text></g>
+                  <path d="M16 200C38 200 42 177 63 182S96 197 117 163S150 159 172 135S205 157 226 125S258 133 282 104S315 125 338 88S370 91 394 65S430 85 470 40V224H16Z" fill="url(#chart-area)" />
+                  <path class="comparison-line" d="M16 200C38 200 42 184 63 195S96 201 117 178S150 186 172 162S205 192 226 166S258 174 282 141S315 164 338 124S370 146 394 110S430 137 470 100" />
+                  <path class="main-line" d="M16 200C38 200 42 177 63 182S96 197 117 163S150 159 172 135S205 157 226 125S258 133 282 104S315 125 338 88S370 91 394 65S430 85 470 40" /><circle cx="470" cy="40" r="4" fill="#b7a0ef" />
+                  <g class="chart-axis"><text x="16" y="257">JAN</text><text x="155" y="257">APR</text><text x="302" y="257">JUL</text><text x="446" y="257">OCT</text></g>
+                </svg>
+                <div class="card-footer"><span>Indexed to 100</span><span>Illustrative only</span></div>
+              </article>
+              <article class="conversation-card" aria-label="Example research conversation">
+                <div class="card-heading"><h4>Allocation review</h4><span>01 note</span></div>
+                <div class="conversation-body"><span class="speaker">YOU</span><p>Compare bitcoin and ethereum.</p><div class="agent-heading"><img src="/artbook/goggles-mineral.svg" width="28" height="21" alt="" /><span>Sherpa</span><small>RESEARCH</small></div><p>Start with the same time range.<br />Then compare risk and costs.</p><details class="note-artifact"><summary><span><span aria-hidden="true">▤</span> Comparison note</span><span class="note-chevron" aria-hidden="true">⌄</span></summary><dl><div><dt>Horizon</dt><dd>1 year</dd></div><div><dt>Costs</dt><dd>To review</dd></div><div><dt>Decision</dt><dd>Open</dd></div></dl></details><div class="context-tags"><span>2 assets</span><span>Working draft</span></div></div>
+              </article>
+            </div>
+          </section>
+          <section id="view-1" role="tabpanel" aria-labelledby="tab-1" tabindex="0" hidden>
+            <div class="desk-heading"><div><p class="panel-eyebrow">ASSETS / ALLOCATION REVIEW</p><h3>See what you hold.</h3></div><span class="status">Example portfolio</span></div>
+            <div class="asset-grid"><article class="allocation-card"><div class="card-heading"><h4>Allocation</h4><span>3 assets</span></div><div class="allocation-ring" role="img" aria-label="Example allocation: cash 50 percent, bitcoin 30 percent, ethereum 20 percent"><span>3<small>ASSETS</small></span></div><div class="card-footer"><span>Example weights</span><span>Illustrative only</span></div></article><article class="holdings-card"><div class="card-heading"><h4>Holdings</h4><span>Weight</span></div><dl class="holdings"><div><dt><i class="cash"></i>Cash<small>Reserve</small></dt><dd>50%</dd></div><div><dt><i class="bitcoin"></i>Bitcoin<small>Asset</small></dt><dd>30%</dd></div><div><dt><i class="ethereum"></i>Ethereum<small>Asset</small></dt><dd>20%</dd></div></dl><p class="asset-note">Review concentration, liquidity, and risk.</p></article></div>
+          </section>
+          <section id="view-2" role="tabpanel" aria-labelledby="tab-2" tabindex="0" hidden>
+            <div class="desk-heading"><div><p class="panel-eyebrow">STRATEGIES / PLAN REVIEW</p><h3>Make the plan clear.</h3></div><span class="status">Draft</span></div>
+            <article class="strategy-card"><div class="card-heading"><h4>Allocation plan</h4><span>v01</span></div><div class="strategy-body"><div><span class="panel-eyebrow">QUESTION</span><h4>When should I rebalance?</h4><p>Define the rules before any action.</p></div><dl class="plan-rules"><div><dt>Review</dt><dd>Monthly</dd></div><div><dt>Threshold</dt><dd>To define</dd></div><div><dt>Limits</dt><dd>To review</dd></div><div><dt>Execution</dt><dd>Requires approval</dd></div></dl></div><div class="card-footer"><span>Draft → Review → Approve</span><span>No action taken</span></div></article>
+          </section>
+        </div>
+      </div>
+    </div>
+    <div class="workspace-caption"><span>Research → Plan → Review</span><span>You approve execution.</span></div>
+  </section>
 </main>
+<footer class="site-footer wrap"><span>© {new Date().getFullYear()} Sherpa</span><a href="mailto:team@runsherpa.ai">Contact <span aria-hidden="true">↗</span></a><details><summary>Risk disclosure</summary><p>Financial assets and trading involve risk. You can lose money. Sherpa provides software and information. It does not provide investment, legal, or tax advice. You are responsible for your instructions and approved actions.</p></details></footer>
 
-<footer class="document-footer">
-  <details>
-    <summary>Risk disclosure</summary>
-    <p>Crypto assets and decentralized finance involve substantial risk, including loss of principal. Agent-assisted, automated, and copy-trading strategies can lose money and may not execute as expected. Sherpa provides software and information, not investment, legal, or tax advice. The user remains responsible for instructions and authorized activity.</p>
-  </details>
-  <p>© {new Date().getFullYear()} Sherpa</p>
-</footer>
+<script>
+  const preview = document.getElementById('workspace-preview');
+  const themeButtons = document.querySelectorAll<HTMLButtonElement>('.theme-picker [data-theme]');
+  themeButtons.forEach((button) => button.addEventListener('click', () => {
+    if (preview) preview.dataset.theme = button.dataset.theme;
+    themeButtons.forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
+  }));
+  const tabs = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-view]'));
+  const tablist = document.querySelector('[role=tablist]');
+  const mobile = window.matchMedia('(max-width: 700px)');
+  function setOrientation() { tablist?.setAttribute('aria-orientation', mobile.matches ? 'horizontal' : 'vertical'); }
+  setOrientation();
+  mobile.addEventListener('change', setOrientation);
+  function selectView(button: HTMLButtonElement) {
+    tabs.forEach((tab) => {
+      const selected = tab === button;
+      tab.setAttribute('aria-selected', String(selected));
+      tab.tabIndex = selected ? 0 : -1;
+      const panel = document.getElementById(tab.getAttribute('aria-controls') ?? '');
+      if (panel) panel.hidden = !selected;
+    });
+  }
+  tabs.forEach((button, index) => {
+    button.addEventListener('click', () => selectView(button));
+    button.addEventListener('keydown', (event) => {
+      let next = index;
+      if (event.key === 'ArrowDown' || event.key === 'ArrowRight') next = (index + 1) % tabs.length;
+      else if (event.key === 'ArrowUp' || event.key === 'ArrowLeft') next = (index + tabs.length - 1) % tabs.length;
+      else if (event.key === 'Home') next = 0;
+      else if (event.key === 'End') next = tabs.length - 1;
+      else return;
+      event.preventDefault(); selectView(tabs[next]); tabs[next].focus();
+    });
+  });
+</script>
 
 <style>
-  :global(:root) {
-    --black: #090909;
-    --paper: #f3f3ef;
-    --ink: #11110f;
-    --muted: #74746f;
-    --rule: #cecec7;
-    --mono: "SFMono-Regular", "Cascadia Mono", "Roboto Mono", Menlo, Consolas, monospace;
-  }
-
-  .document-bar {
-    background: var(--black);
-    color: #f7f7f3;
-  }
-
-  .bar-inner {
-    width: min(1120px, calc(100% - 3rem));
-    min-height: 56px;
-    display: grid;
-    grid-template-columns: 1fr 1fr auto;
-    gap: 2rem;
-    align-items: center;
-    margin: 0 auto;
-    font-family: var(--mono);
-    font-size: 0.63rem;
-    letter-spacing: 0.02em;
-  }
-
-  .site-id {
-    font-weight: 800;
-  }
-
-  .bar-inner > span {
-    color: #8f8f8a;
-  }
-
-  nav {
-    display: flex;
-    align-items: center;
-    gap: 1.4rem;
-  }
-
-  nav a,
-  .document-links a {
-    text-decoration: underline;
-    text-decoration-color: transparent;
-    text-underline-offset: 0.25rem;
-    transition: text-decoration-color 140ms ease;
-  }
-
-  nav a:hover,
-  .document-links a:hover {
-    text-decoration-color: currentColor;
-  }
-
-  .open-link {
-    color: #fff;
-    font-weight: 750;
-  }
-
-  main {
-    background: var(--paper);
-  }
-
-  .agent-document {
-    width: min(920px, calc(100% - 3rem));
-    min-height: calc(100svh - 132px);
-    margin: 0 auto;
-    padding: clamp(4rem, 8vw, 7.5rem) 0 clamp(4.5rem, 8vw, 7rem);
-  }
-
-  .title-row,
-  .section-title {
-    display: grid;
-    grid-template-columns: 42px minmax(0, 1fr);
-    align-items: baseline;
-  }
-
-  .syntax {
-    color: #a2a29c;
-    font-family: var(--mono);
-    font-weight: 500;
-  }
-
-  h1 {
-    font-family: var(--mono);
-    font-size: clamp(4.6rem, 10.5vw, 8rem);
-    font-weight: 600;
-    letter-spacing: -0.045em;
-    line-height: 0.96;
-  }
-
-  blockquote {
-    margin: 2.2rem 0 0 42px;
-    padding-left: 1rem;
-    border-left: 2px solid var(--ink);
-    font-size: clamp(1.12rem, 2.2vw, 1.5rem);
-    font-weight: 580;
-    letter-spacing: -0.025em;
-    line-height: 1.45;
-  }
-
-  .summary {
-    max-width: 680px;
-    margin: 1.35rem 0 0 42px;
-    color: #53534f;
-    font-size: 0.98rem;
-    line-height: 1.6;
-  }
-
-  section {
-    margin-top: 3.5rem;
-  }
-
-  .section-title h2 {
-    font-family: var(--mono);
-    font-size: 0.9rem;
-    font-weight: 750;
-    letter-spacing: -0.015em;
-  }
-
-  .interface-list {
-    margin: 1.15rem 0 0 42px;
-    border-top: 1px solid var(--rule);
-  }
-
-  .interface-list div {
-    display: grid;
-    grid-template-columns: 130px minmax(0, 1fr);
-    gap: 1.4rem;
-    padding: 0.92rem 0;
-    border-bottom: 1px solid var(--rule);
-  }
-
-  .interface-list dt {
-    color: var(--muted);
-    font-family: var(--mono);
-    font-size: 0.67rem;
-  }
-
-  .interface-list dd {
-    margin: 0;
-    font-size: 0.88rem;
-    line-height: 1.5;
-  }
-
-  .sequence {
-    margin: 1.1rem 0 0 42px;
-    font-family: var(--mono);
-    font-size: clamp(0.78rem, 1.7vw, 0.96rem);
-    line-height: 1.8;
-  }
-
-  .sequence span {
-    padding: 0 0.35rem;
-    color: var(--muted);
-  }
-
-  .document-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.5rem 2.5rem;
-    margin: 3.8rem 0 0 42px;
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    font-weight: 750;
-  }
-
-  .document-footer {
-    min-height: 76px;
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 2rem;
-    align-items: start;
-    padding: 1.3rem max(1.5rem, calc((100% - 1120px) / 2));
-    background: var(--black);
-    color: #8f8f8a;
-    font-family: var(--mono);
-    font-size: 0.6rem;
-  }
-
-  .document-footer details {
-    max-width: 820px;
-  }
-
-  .document-footer summary {
-    width: max-content;
-    cursor: pointer;
-  }
-
-  .document-footer details p {
-    margin-top: 0.8rem;
-    color: #aaa9a3;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-    font-size: 0.68rem;
-    line-height: 1.55;
-  }
-
-  .document-footer > p {
-    white-space: nowrap;
-  }
-
-  @media (max-width: 620px) {
-    .bar-inner {
-      width: min(100% - 2rem, 1120px);
-      grid-template-columns: 1fr auto;
-      gap: 1rem;
-    }
-
-    .bar-inner > span,
-    nav > a:first-child {
-      display: none;
-    }
-
-    .agent-document {
-      width: min(100% - 2rem, 920px);
-      padding-top: 4rem;
-    }
-
-    .title-row,
-    .section-title {
-      grid-template-columns: 28px minmax(0, 1fr);
-    }
-
-    h1 {
-      font-size: clamp(4.5rem, 23vw, 6.3rem);
-    }
-
-    blockquote,
-    .summary,
-    .interface-list,
-    .sequence,
-    .document-links {
-      margin-left: 28px;
-    }
-
-    blockquote {
-      margin-top: 1.7rem;
-      font-size: 1.05rem;
-    }
-
-    .summary {
-      font-size: 0.9rem;
-    }
-
-    section {
-      margin-top: 3rem;
-    }
-
-    .interface-list div {
-      grid-template-columns: 1fr;
-      gap: 0.45rem;
-    }
-
-    .sequence span {
-      padding: 0 0.1rem;
-    }
-
-    .document-links {
-      display: grid;
-    }
-
-    .document-footer {
-      grid-template-columns: 1fr;
-      gap: 1rem;
-      padding: 1.2rem 1rem 1.5rem;
-    }
-
-    .document-footer > p {
-      white-space: normal;
-    }
-  }
+  .wrap { width: min(1180px, calc(100% - 80px)); margin-inline: auto; }
+  .site-header { display: flex; justify-content: space-between; align-items: center; height: 100px; border-bottom: 1px solid var(--rule); }
+  .brand { display: flex; align-items: center; gap: 9px; font-size: 22px; font-weight: 600; letter-spacing: -.08em; }
+  .brand img { object-fit: contain; }
+  nav { display: flex; align-items: center; gap: 36px; font-size: 11px; }
+  nav a { padding-block: 12px; } nav a span { margin-left: 8px; }
+  nav a:hover, .site-footer a:hover { color: var(--accent); }
+  .hero { display: grid; grid-template-columns: 1.12fr 1fr; align-items: center; gap: 50px; padding-block: 60px 48px; }
+  .hero-copy { padding-block: 48px; }
+  .eyebrow { margin-bottom: 26px; font-size: 10px; color: var(--muted); }
+  h1 { font-size: clamp(40px, 4.5vw, 64px); font-weight: 400; line-height: 1.22; letter-spacing: -.065em; }
+  .hero-summary { margin-top: 24px; font-size: 14px; color: var(--muted); }
+  .primary-link { display: inline-flex; align-items: center; justify-content: space-between; gap: 40px; min-height: 48px; padding: 13px 20px; border: 1px solid var(--ink); border-radius: 7px; background: var(--ink); color: var(--paper); font-size: 11px; transition: background 160ms ease, transform 160ms ease; }
+  .hero .primary-link { margin-top: 36px; }.primary-link:hover { background: #435569; transform: translateY(-2px); }
+  .guide-stage { min-width: 0; width: min(100%, 460px); margin-inline: auto; }
+  .guide-art { position: relative; width: 100%; aspect-ratio: 403 / 380; overflow: hidden; mix-blend-mode: multiply; }
+  .guide-art img { display: block; width: 100%; height: auto; }
+  .workspace-topics { display: grid; grid-template-columns: repeat(3, 1fr); padding-block: 28px; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+  .workspace-topics > div { display: grid; grid-template-columns: 28px 1fr; gap: 6px 14px; align-content: center; padding-inline: 28px; border-left: 1px solid var(--rule); font-size: 12px; }
+  .workspace-topics > div:first-child { padding-left: 0; border: 0; }.topic-number { grid-row: span 2; color: var(--muted); font-size: 9px; padding-top: 3px; }.workspace-topics small { font-size: 9px; color: var(--muted); }
+  .workspace-section { padding-block: 90px 0; scroll-margin-top: 28px; }.section-heading { display: flex; justify-content: space-between; align-items: center; gap: 24px; margin-bottom: 24px; }
+  h2 { font-size: 26px; font-weight: 400; letter-spacing: -.06em; }.theme-picker { display: flex; gap: 4px; }
+  .theme-picker button { display: flex; align-items: center; gap: 7px; min-height: 44px; padding: 10px 12px; background: transparent; color: var(--muted); border: 1px solid transparent; border-radius: 6px; font-size: 9px; }
+  .theme-picker button[aria-pressed=true] { border-color: var(--rule); color: var(--ink); }.theme-picker i { width: 9px; height: 9px; border-radius: 50%; border: 1px solid #aab4bc; }.mineral-dot { background: #e9eef3; }.graphite-dot { background: #293644; }
+  .workspace-preview { --surface: #222d39; --control: #273340; --preview-ink: #eef5fc; --preview-muted: #adbbcc; --preview-rule: #415062; --selected: #3b4a5b; --preview-accent: #bad6ee; padding: 8px; border: 1px solid #56616e; border-radius: 16px; background: linear-gradient(125deg,#484351,#394958 52%,#47474a); box-shadow: 0 20px 60px #2637470d; }
+  .workspace-preview[data-theme=mineral] { --surface: #fcfcfa; --control: #f4f7fa; --preview-ink: #293c4d; --preview-muted: #5f7285; --preview-rule: #d9e1e8; --selected: #e7eef5; --preview-accent: #425c78; border-color: #c5d0dc; background: linear-gradient(125deg,#e6e4ee,#dce7ef 52%,#ede5de); }
+  .window-bar { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 10px 14px 16px; font-size: 10px; color: #edf3fa; }.window-bar > span:first-child { display: flex; align-items: center; gap: 9px; }.preview-label { font-size: 9px; color: #d2dae5; }
+  [data-theme=mineral] .window-bar, [data-theme=mineral] .preview-label { color: #43586c; }
+  .workspace-shell { display: grid; grid-template-columns: 192px minmax(0,1fr); min-height: 438px; background: var(--control); color: var(--preview-ink); border: 1px solid var(--preview-rule); border-radius: 10px; overflow: hidden; }
+  .workspace-rail { display: flex; flex-direction: column; gap: 16px; background: var(--surface); padding: 24px 12px 18px; border-right: 1px solid var(--preview-rule); }.rail-label { padding-inline: 10px; color: var(--preview-muted); font-size: 8px; letter-spacing: .05em; }
+  .view-tabs { display: flex; flex-direction: column; gap: 5px; }.view-tabs button { display: flex; align-items: center; gap: 10px; min-height: 44px; padding: 9px 10px; background: transparent; color: var(--preview-muted); border: 1px solid transparent; border-radius: 6px; font-size: 10px; text-align: left; }
+  .view-tabs button[aria-selected=true] { background: var(--selected); color: var(--preview-ink); border-color: var(--preview-rule); }.view-tabs svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.4; }
+  .rail-notes { display: grid; gap: 16px; padding-top: 20px; }.rail-notes > span:not(.rail-label) { padding-inline: 10px; font-size: 8px; color: var(--preview-muted); }.rail-notes i { display: inline-block; width: 5px; height: 5px; margin-right: 8px; border-radius: 50%; background: #a99bcf; }.rail-notes > span:last-child i { background: #72c7ec; }
+  .rail-bottom { display: flex; align-items: center; gap: 10px; margin-top: auto; padding: 20px 10px 0; color: var(--preview-muted); font-size: 9px; }.personal-icon { display: grid; place-items: center; width: 25px; height: 25px; border: 1px solid var(--preview-rule); border-radius: 6px; }
+  .preview-content { min-width: 0; padding: 24px; }[role=tabpanel][hidden] { display: none; }.desk-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 24px; }.panel-eyebrow { font-size: 8px; color: var(--preview-muted); letter-spacing: .035em; }
+  h3 { margin-top: 7px; font-size: 20px; line-height: 1.5; font-weight: 400; letter-spacing: -.05em; }.status { border: 1px solid var(--preview-rule); border-radius: 16px; padding: 5px 8px; font-size: 8px; color: var(--preview-muted); white-space: nowrap; }
+  .research-grid { display: grid; grid-template-columns: minmax(0,1.15fr) minmax(0,1fr); gap: 16px; }
+  .chart-card, .conversation-card, .allocation-card, .holdings-card, .strategy-card { min-width: 0; border: 1px solid var(--preview-rule); border-radius: 9px; background: var(--surface); overflow: hidden; }
+  .card-heading { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 16px; }h4 { font-size: 10px; font-weight: 400; }.card-heading > span { font-size: 8px; color: var(--preview-muted); }
+  .chart-key { display: flex; gap: 16px; padding: 0 16px 10px; font-size: 8px; color: var(--preview-muted); }.chart-key i { display: inline-block; width: 12px; height: 2px; margin: 0 5px 2px 0; background: #95b4f3; }.chart-key > span:last-child i { background: #a7a0b4; }
+  .chart { display: block; width: calc(100% - 22px); height: auto; margin: 16px 11px; overflow: visible; }.chart-grid path { stroke: var(--preview-rule); stroke-width: 1; fill: none; opacity: .5; }.chart text { fill: var(--preview-muted); font-size: 10px; }.main-line { stroke: url(#chart-line); stroke-width: 2.5; fill: none; }.comparison-line { stroke: #a7a0b4; stroke-width: 1.5; stroke-dasharray: 4 4; fill: none; }
+  .card-footer { display: flex; justify-content: space-between; gap: 12px; padding: 12px 16px; border-top: 1px solid var(--preview-rule); color: var(--preview-muted); font-size: 8px; }
+  .conversation-card .card-heading { border-bottom: 1px solid var(--preview-rule); }.conversation-body { padding: 16px; font-size: 10px; line-height: 1.8; }.speaker { color: var(--preview-muted); font-size: 8px; }.conversation-body > p { margin-top: 5px; }
+  .agent-heading { display: flex; align-items: center; gap: 7px; margin-top: 22px; }.agent-heading small { margin-left: auto; color: var(--preview-muted); font-size: 7px; }.note-artifact { margin-top: 16px; border: 1px solid var(--preview-rule); border-radius: 6px; background: var(--control); }
+  .note-artifact summary { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px; min-height: 44px; cursor: pointer; font-size: 9px; list-style: none; }.note-artifact summary::-webkit-details-marker { display: none; }.note-artifact summary > span > span { color: var(--preview-accent); margin-right: 4px; }.note-artifact[open] .note-chevron { transform: rotate(180deg); }
+  .note-artifact dl { margin: 0; padding: 0 12px 12px; font-size: 8px; }.note-artifact dl div { display: flex; justify-content: space-between; gap: 12px; padding-top: 8px; }.note-artifact dt { color: var(--preview-muted); }.note-artifact dd { margin: 0; }
+  .context-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; color: var(--preview-muted); font-size: 8px; }.context-tags span { padding: 2px 6px; border: 1px solid var(--preview-rule); border-radius: 4px; }.workspace-caption { display: flex; justify-content: space-between; gap: 20px; padding-top: 18px; color: var(--muted); font-size: 9px; }
+  .asset-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 16px; }.allocation-ring { display: grid; place-items: center; position: relative; width: 178px; height: 178px; margin: 8px auto 24px; border-radius: 50%; background: conic-gradient(#92abc2 0 50%,#b7a0cf 50% 80%,#deaa8a 80%); }.allocation-ring::before { content: ''; position: absolute; inset: 18px; background: var(--surface); border-radius: 50%; }.allocation-ring > span { position: relative; font-size: 28px; text-align: center; }.allocation-ring small { display: block; font-size: 8px; color: var(--preview-muted); }
+  .holdings { margin: 0; padding-inline: 16px; }.holdings > div { display: flex; align-items: center; justify-content: space-between; padding-block: 16px; border-top: 1px solid var(--preview-rule); font-size: 11px; }.holdings dt { position: relative; padding-left: 22px; }.holdings i { position: absolute; top: 6px; left: 0; width: 8px; height: 8px; border-radius: 50%; }.cash { background: #92abc2; }.bitcoin { background: #b7a0cf; }.ethereum { background: #deaa8a; }.holdings small { display: block; margin-top: 3px; font-size: 8px; color: var(--preview-muted); }.holdings dd { margin: 0; }.asset-note { padding: 8px 16px 16px; font-size: 9px; color: var(--preview-muted); }
+  .strategy-body { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; padding: 26px; }.strategy-body h4 { margin-top: 12px; font-size: 17px; line-height: 1.5; }.strategy-body p { margin-top: 14px; color: var(--preview-muted); font-size: 10px; line-height: 1.8; }.plan-rules { margin: 0; }.plan-rules > div { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding-block: 14px; border-top: 1px solid var(--preview-rule); font-size: 10px; }.plan-rules dt { color: var(--preview-muted); }.plan-rules dd { margin: 0; text-align: right; }
+  .site-footer { margin-top: 72px; display: flex; align-items: baseline; flex-wrap: wrap; gap: 18px 30px; padding-block: 24px 36px; border-top: 1px solid var(--rule); color: var(--muted); font-size: 9px; }.site-footer > span { margin-right: auto; }.site-footer details { max-width: 400px; }.site-footer summary { cursor: pointer; width: fit-content; }.site-footer details p { padding-top: 14px; font-size: 10px; line-height: 1.9; }
+  button { cursor: pointer; }button:hover { color: var(--ink); }.workspace-preview button:hover { color: var(--preview-ink); }.workspace-preview :focus-visible { outline-color: var(--preview-accent); }
+  .workspace-preview h4 { font-size: 12px; }
+  .preview-label, .rail-label, .rail-notes > span:not(.rail-label), .rail-bottom,
+  .panel-eyebrow, .status, .card-heading > span, .chart-key, .card-footer,
+  .speaker, .agent-heading small, .note-artifact summary, .note-artifact dl,
+  .context-tags, .asset-note, .allocation-ring small, .holdings small { font-size: 10px; }
+  .view-tabs button, .conversation-body, .plan-rules > div, .strategy-body p { font-size: 11px; }
+  .chart text { font-size: 17px; }
+  @media (min-width: 1400px) { .hero { padding-block: 72px 56px; }.guide-art { width: 92%; margin-inline: auto; } }
+  @media (max-width: 1000px) { .wrap { width: calc(100% - 48px); }.hero { gap: 24px; padding-block: 40px; }h1 { font-size: 46px; }.workspace-shell { grid-template-columns: 150px minmax(0,1fr); }.research-grid { grid-template-columns: 1fr; }.chart { max-height: 240px; }.preview-content { padding: 20px; }.conversation-body { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 20px; }.speaker, .conversation-body > p:first-of-type { grid-column: 1; }.agent-heading, .conversation-body > p:last-of-type { grid-column: 2; }.agent-heading { grid-row: 1; margin: 0; }.note-artifact { grid-column: 1 / -1; margin-top: 10px; }.context-tags { grid-column: 1 / -1; }.workspace-topics > div { padding-inline: 20px; }.asset-grid { grid-template-columns: 1fr; }.strategy-body { grid-template-columns: 1fr; gap: 20px; } }
+  @media (max-width: 700px) { .site-header { height: 80px; }.hero { grid-template-columns: 1fr; gap: 12px; padding-top: 40px; }.hero-copy { padding-block: 0; }h1 { font-size: clamp(38px,8.3vw,56px); }.eyebrow { margin-bottom: 20px; }.hero-summary { margin-top: 20px; }.hero .primary-link { margin-top: 26px; }.guide-stage { max-width: 380px; width: 100%; margin: 10px auto 0; }.guide-art { width: 85%; margin-inline: auto; }.workspace-topics { padding-block: 22px; }.workspace-topics > div { grid-template-columns: 1fr; gap: 5px; padding-inline: 12px; font-size: 10px; }.topic-number { grid-row: auto; margin-bottom: 6px; }.workspace-topics small { font-size: 8px; line-height: 1.7; }.workspace-section { padding-top: 50px; }.section-heading { flex-wrap: wrap; gap: 12px; }h2 { font-size: 22px; }.workspace-shell { grid-template-columns: 1fr; }.workspace-rail { display: block; padding: 8px; border-right: 0; border-bottom: 1px solid var(--preview-rule); }.workspace-rail > .rail-label, .rail-notes, .rail-bottom { display: none; }.view-tabs { flex-direction: row; }.view-tabs button { flex: 1; justify-content: center; gap: 6px; padding: 9px 5px; font-size: 9px; }.preview-content { padding: 20px 12px 12px; }.desk-heading { flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }h3 { font-size: 17px; }.window-bar { flex-wrap: wrap; gap: 6px; padding: 8px 8px 14px; }.preview-label { font-size: 8px; }.conversation-body { display: block; }.agent-heading { margin-top: 20px; }.note-artifact { margin-top: 14px; }.workspace-caption { flex-direction: column; gap: 8px; }.site-footer { margin-top: 48px; gap: 18px; }.site-footer details { flex-basis: 100%; }.workspace-preview { border-radius: 12px; }.workspace-topics > div:first-child { padding-right: 12px; } }
+  @media (max-width: 700px) { .preview-label { font-size: 10px; }.view-tabs button { font-size: 10px; }.panel-eyebrow { font-size: 9px; } }
+  @media (max-width: 380px) { .wrap { width: calc(100% - 32px); }nav { gap: 16px; }.section-heading { display: block; }.theme-picker { margin-top: 12px; }.preview-content { padding-inline: 8px; }.view-tabs svg { display: none; }.card-heading { padding-inline: 12px; } }
 </style>

@@ -1,22 +1,23 @@
 # Sherpa
 
-> Non-custodial trading infrastructure for AI agents.
+> A guide for your money.
 
-Portfolio context in. Policy-checked transaction intent out. User authorization remains required.
+A financial agent workspace for research, asset management, and strategy planning.
 
-Application: https://app.runsherpa.ai/
 Contact: team@runsherpa.ai
 
-## Interface
+## Workspace preview
 
-- Capabilities: portfolio intelligence, DCA, copy trading, and multi-chain transaction preparation.
-- Constraints: user-defined asset scope, size, cadence, and approval policy.
-- Invariant: Sherpa does not hold keys, guarantee returns, or bypass required authorization.
+The landing page shows a design preview with example data. It is not a live portfolio, market data feed, backtest, or execution interface.
 
-## Sequence
+- Research: sources and notes.
+- Assets: context and allocation.
+- Strategies: plans and review.
 
-Observe → propose → validate → prepare → authorize.
+## Authorization
+
+You approve execution. A plan or preview does not execute a transaction.
 
 ## Risk
 
-Crypto assets and decentralized finance involve substantial risk, including loss of principal. Agent-assisted and automated strategies can lose money and may not execute as expected. Sherpa provides software and information, not investment, legal, or tax advice.
+Financial assets and trading involve risk. You can lose money. Sherpa provides software and information. It does not provide investment, legal, or tax advice. You are responsible for your instructions and approved actions.
